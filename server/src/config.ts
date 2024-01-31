@@ -17,15 +17,15 @@ function coerceBoolean(value: unknown) {
 }
 
 const databaseSchema = z.object({
-  type: z.enum(['mysql', 'mariadb', 'postgres', 'better-sqlite3', 'pg-mem', 'neon']).default('postgres'),
-  host: z.string(),
-  port: z.number(),
-  username: z.string(),
-  password: z.string(),
-  database: z.string(),
-  logging: z.boolean(),
-  synchronize: z.boolean(),
-  ssl: z.boolean().default(true),
+  type: z.enum(['postgres', 'mysql', 'mariadb', 'better-sqlite3', 'pg-mem', 'neon']).default('postgres'),
+  host: z.string().optional(),
+  port: z.number().optional().default(5432),
+  username: z.string().optional(),
+  password: z.string().optional(),
+  database: z.string().optional(),
+  logging: z.boolean().default(false),
+  synchronize: z.boolean().default(true),
+  ssl: z.boolean().default(false),
 });
 
 const schema = z.object({
