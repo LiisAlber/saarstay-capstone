@@ -1,69 +1,59 @@
-import 'dotenv/config'
-import z from 'zod'
+import 'dotenv/config';
+import z from 'zod';
 
-const { env } = process
+const { env } = process;
 
-if (!env.NODE_ENV) env.NODE_ENV = 'development'
+if (!env.NODE_ENV) env.NODE_ENV = 'development';
 
-const isTest = env.NODE_ENV === 'test'
-const isDevTest = env.NODE_ENV === 'development' || isTest
+const isTest = env.NODE_ENV === 'test';
+const isDevTest = env.NODE_ENV === 'development' || isTest;
 
-const inMemoryDatabaseSchema = z.object({
-  type: z.literal('pg-mem'),
-  host: z.string().default('localhost'),
-  port: z.coerce.number().default(5432),
-  database: z.string().default('test'),
-  username: z.string().default('test'),
-  password: z.string().default('test'),
-  logging: z.boolean().default(false),
-  synchronize: z.boolean().default(true),
-});
+// Utility function
+function coerceBoolean(value: unknown) {
+  if (typeof value === 'string') {
+    return value === 'true' || value === '1';
+  }
+  return false;
+}
 
-const regularDatabaseSchema = z.object({
-  type: z.enum(['postgres', 'mysql', 'mariadb', 'better-sqlite3']).default('postgres'),
-  host: z.string().default(env.DB_HOST || 'localhost'),
-  port: z.coerce.number().default(5432),
-  database: z.string().optional().default(env.DB_NAME || 'defaultDatabase'),
-  username: z.string().optional().default(env.DB_USER || 'defaultUsername'),
-  password: z.string().optional().default(env.DB_PASSWORD || 'defaultPassword'),
-  logging: z.preprocess(coerceBoolean, z.boolean().default(isDevTest)),
-  synchronize: z.preprocess(coerceBoolean, z.boolean().default(isDevTest)),
+const databaseSchema = z.object({
+  type: z.enum(['mysql', 'mariadb', 'postgres', 'better-sqlite3', 'pg-mem', 'neon']).default('postgres'),
+  host: z.string(),
+  port: z.number(),
+  username: z.string(),
+  password: z.string(),
+  database: z.string(),
+  logging: z.boolean(),
+  synchronize: z.boolean(),
   ssl: z.boolean().default(true),
 });
 
-// Function to select the appropriate schema
-function selectDatabaseSchema() {
-  return env.DB_TYPE === 'pg-mem' ? inMemoryDatabaseSchema : regularDatabaseSchema;
-}
-const schema = z
-  .object({
-    env: z.enum(['development', 'production', 'staging', 'test']).default('development'),
-    isCi: z.boolean().default(coerceBoolean(env.CI)),
-    port: z.coerce.number().default(3000),
-    database: selectDatabaseSchema(),
+const schema = z.object({
+  env: z.enum(['development', 'production', 'staging', 'test']).default('development'),
+  isCi: z.boolean().default(coerceBoolean(env.CI)),
+  port: z.coerce.number().default(3000),
+  database: databaseSchema,
 
-    auth: z.object({
-      tokenKey: z.string().default(() => {
-        if (isDevTest) {
-          return 'dev-token-key' // Provide a default token key for non-production environments
-        }
-        throw new Error('You must provide a token key in production env!')
-      }),
-      expiresIn: z.string().default('7d'),
-      passwordCost: z.coerce.number().default(isDevTest ? 6 : 12),
+  auth: z.object({
+    tokenKey: z.string().default(() => {
+      if (isDevTest) {
+        return 'dev-token-key';
+      }
+      throw new Error('You must provide a token key in production env!');
     }),
+    expiresIn: z.string().default('7d'),
+    passwordCost: z.coerce.number().default(isDevTest ? 6 : 12),
+  }),
 
-    sendGrid: z.object({
-      apiKey: z.string(),
-    }),
+  sendGrid: z.object({
+    apiKey: z.string(),
+  }),
 
-    stripe: z.object({
-      secretKey: z.string(),
-      publishableKey: z.string(),
-    }),
-    
-  })
-  .readonly()
+  stripe: z.object({
+    secretKey: z.string(),
+    publishableKey: z.string(),
+  }),
+}).readonly();
 
 const config = schema.parse({
   env: env.NODE_ENV,
@@ -86,26 +76,18 @@ const config = schema.parse({
   },
 
   database: {
-    type: env.DB_TYPE,
+    type: env.DB_TYPE as 'mysql' | 'mariadb' | 'postgres' | 'better-sqlite3' | 'pg-mem',
     host: env.DB_HOST,
-    port: env.DB_PORT,
-    database: env.DB_NAME,
+    port: parseInt(env.DB_PORT || '5432', 10),
     username: env.DB_USER,
     password: env.DB_PASSWORD,
-    logging: env.DB_LOGGING,
-    synchronize: env.DB_SYNC,
+    database: env.DB_NAME,
+    logging: coerceBoolean(env.DB_LOGGING),
+    synchronize: coerceBoolean(env.DB_SYNC),
     ssl: true,
   },
-})
+});
 
-export default config
-
-// utility functions
-function coerceBoolean(value: unknown) {
-  if (typeof value === 'string') {
-    return value === 'true' || value === '1';
-  }
-  return false; 
-}
+export default config;
 
 export const SENDGRID_API_KEY = config.sendGrid.apiKey;

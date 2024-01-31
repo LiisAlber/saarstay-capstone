@@ -1,8 +1,9 @@
+import { DataSourceOptions } from 'typeorm';
 import createApp from './app'
 import { createDatabase } from './database'
 import config from './config'
 
-const database = createDatabase(config.database)
+const database = createDatabase(config.database as DataSourceOptions);
 
 database.initialize().then(() => {
   const app = createApp(database)
