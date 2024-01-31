@@ -53,4 +53,8 @@ async function getPostgresVersion() {
   console.log(response);
 }
 
-getPostgresVersion();
+// Only call getPostgresVersion if not using pg-mem
+if (process.env.DB_TYPE !== 'pg-mem') {
+  getPostgresVersion();
+}
+
