@@ -18,11 +18,11 @@ function coerceBoolean(value: unknown) {
 
 const databaseSchema = z.object({
   type: z.enum(['postgres', 'mysql', 'mariadb', 'better-sqlite3', 'pg-mem', 'neon']).default('postgres'),
-  host: z.string().optional(),
+  host: z.string().optional().default('localhost'),
   port: z.number().optional().default(5432),
-  username: z.string().optional(),
-  password: z.string().optional(),
-  database: z.string().optional(),
+  username: z.string().optional().default(''),
+  password: z.string().optional().default(''),
+  database: z.string().optional().default('defaultDatabase'),
   logging: z.boolean().default(false),
   synchronize: z.boolean().default(true),
   ssl: z.boolean().default(false),
@@ -76,16 +76,19 @@ const config = schema.parse({
   },
 
   database: {
-    type: env.DB_TYPE as 'mysql' | 'mariadb' | 'postgres' | 'better-sqlite3' | 'pg-mem',
-    host: env.DB_HOST,
-    port: parseInt(env.DB_PORT || '5432', 10),
-    username: env.DB_USER,
-    password: env.DB_PASSWORD,
-    database: env.DB_NAME,
-    logging: coerceBoolean(env.DB_LOGGING),
-    synchronize: coerceBoolean(env.DB_SYNC),
+    type: env.DB_TYPE,
+    // Ignore other settings if using in-memory database
+    ...(env.DB_TYPE !== 'pg-mem' && {
+      host: env.DB_HOST,
+      port: parseInt(env.DB_PORT || '5432', 10),
+      username: env.DB_USER,
+      password: env.DB_PASSWORD,
+      database: env.DB_NAME,
     ssl: true,
-  },
+  }),
+  logging: coerceBoolean(env.DB_LOGGING),
+  synchronize: coerceBoolean(env.DB_SYNC),
+},
 });
 
 export default config;
