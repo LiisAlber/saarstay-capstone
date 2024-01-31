@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # spin up a database
+  postgres:
+    image: postgres:16.1-alpine 
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: guesthouse2
+    ports:
+      - "5432"
+    volumes:
+      - guesthouse2-db:/var/lib/postgresql/data
+
+  # start up an API server
+  server:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+
+    environment:
+      - DB_HOST=postgres
+      
+    # If we would have some secrets that we want to pass:
+    env_file:
+      - ./server/.env
+    
+    ports:
+      - "3000"
+    depends_on:
+      - postgres
+
+  # start up a client (and proxy) server
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+      args:
+        # We want to pass in the configuration of how the
+        # user will reach the server. This must be decided
+        # before the `npm run build`, since we need to prepare
+        # these values for static JS files that will be served
+        # by NGINX to our visitors.
+        VITE_API_ORIGIN: http://localhost:3000
+        VITE_API_PATH: /api/v1/trpc
+    environment:
+      # Since our client NGINX server is not only serving static
+      # files, but also routing /api requests to our API server,
+      # we need to inform NGINX how it can reach the API server.
+      # Our API server is accessible as "http://server:3000".
+      # Docker Compose does some DNS magic for us to map the
+      # service name (server) to the internal container IP.
+      # However, when we will deploy our application to
+      # production, we will not use Docker Compose, and we
+      # need to use a different URL to reach our API server.
+      # To support both environments, we will use an environment
+      # variable to configure the proxy pass.
+      # Our development environment will use the provided value
+      # below, while our production environment will provide
+      # a different value.
+      API_PROXY_PASS: http://server:3000
+      VITE_STRIPE_PUBLISHABLE_KEY: pk_test_51OVagRH4pt7OXRyvBMT3JMFRReJJdZrjuKOUns5idUCG1QesE3rvSLeu7XEs9TLSNYky7ER0ARZPh0z2qzov6Bhk00prrm2n7g
+    ports:
+      - "3001:80"
+    depends_on:
+      - server
+
+volumes:
+  guesthouse2-db:
+

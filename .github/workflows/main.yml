@@ -1,0 +1,55 @@
+name: Capstone CI
+
+on: push
+
+jobs:
+  # Unit Tests Job
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Install dependencies
+      run: npm ci
+    - name: Type check client
+      run: npm run type-check -w client
+    - name: Type check server
+      run: npm run typecheck -w server
+    - name: Lint client code
+      run: npm run lint -w client
+    - name: Lint server code
+      run: npm run lint -w server
+    - name: Run client unit tests
+      run: npm run test:unit -w client
+    - name: Run server tests
+      env:
+        DB_TYPE: 'pg-mem' 
+        SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }} 
+        STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+        STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+      run: npm run test:mem -w server
+
+  # E2E Tests Job
+  e2e-tests:
+    runs-on: ubuntu-latest
+    needs: unit-tests # run e2e tests after unit tests have passed
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Install dependencies
+      run: npm ci -w client
+    - name: Install Playwright browsers
+      run: npx playwright install
+    - name: Run client E2E tests
+      run: npm run build -w=client
+      env:
+        VITE_API_ORIGIN: http://localhost:3000
+        VITE_API_PATH: /v1/trpc
