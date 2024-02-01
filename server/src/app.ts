@@ -45,12 +45,15 @@ export default function createApp(db: Database) {
 
   return app
 }
-const sql = postgres(process.env.DATABASE_URL!, { ssl: 'require' });
+export const sql = postgres(process.env.DATABASE_URL!, { ssl: 'require' });
 
-async function getPostgresVersion() {
+export async function getPostgresVersion() {
   const response = await sql`select version()`;
+  const [{ version }] = response;
+
    // eslint-disable-next-line no-console
   console.log(response);
+  return version; 
 }
 
 // Only call getPostgresVersion if not using pg-mem
