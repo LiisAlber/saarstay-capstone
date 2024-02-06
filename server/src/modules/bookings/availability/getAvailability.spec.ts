@@ -1,6 +1,6 @@
 import { it, expect } from 'vitest'
-import { fakeBooking } from '../../../entities/tests/fakes';
-import { Booking } from '../../../entities';
+import { fakeBooking } from '../../../entities/tests/fakes'
+import { Booking } from '../../../entities'
 import { createTestDatabase } from '../../../tests/utils/database'
 import { checkRoomAvailability } from '../services/roomAvailabilityService'
 

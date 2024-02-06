@@ -1,16 +1,20 @@
 <template>
-  <div class="max-w-md mx-auto my-8 p-8 bg-[#f7ebe9] rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold text-[#4F6259] mb-6">Complete Your Payment</h2>
+  <div class="mx-auto my-8 max-w-md rounded-lg bg-[#f7ebe9] p-8 shadow-md">
+    <h2 class="mb-6 text-2xl font-bold text-[#4F6259]">Complete Your Payment</h2>
     <form @submit.prevent="handlePayment">
-      <div id="card-element" v-if="stripeReady" class="p-3 border border-[#4F6259] rounded-lg mb-4">
+      <div id="card-element" v-if="stripeReady" class="mb-4 rounded-lg border border-[#4F6259] p-3">
         <!-- Stripe.js injects the Card Element here -->
       </div>
-      <button type="submit" :disabled="!stripeReady" class="w-full py-3 bg-[#4F6259] text-white font-medium rounded-lg hover:bg-[#5a7765] transition-colors disabled:opacity-50">
+      <button
+        type="submit"
+        :disabled="!stripeReady"
+        class="w-full rounded-lg bg-[#4F6259] py-3 font-medium text-white transition-colors hover:bg-[#5a7765] disabled:opacity-50"
+      >
         Pay
       </button>
     </form>
     <p v-if="!stripeReady" class="text-center text-[#4F6259]">Loading payment information...</p>
-    <p v-if="stripeError" class="mt-4 p-3 bg-red-200 text-red-600 border border-red-400 rounded-lg">
+    <p v-if="stripeError" class="mt-4 rounded-lg border border-red-400 bg-red-200 p-3 text-red-600">
       {{ stripeError }}
     </p>
   </div>

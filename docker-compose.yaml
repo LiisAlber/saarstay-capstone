@@ -5,8 +5,8 @@ services:
   postgres:
     image: postgres:16.1-alpine 
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: lalberjaansalu 
+      POSTGRES_PASSWORD: fKvhA8axk6By 
       POSTGRES_DB: guesthouse2
     ports:
       - "5432"
@@ -20,11 +20,10 @@ services:
       dockerfile: ./server/Dockerfile
 
     environment:
-      - DB_HOST=postgres
-      
-    # If we would have some secrets that we want to pass:
+      NODE_ENV: development
+
     env_file:
-      - ./server/.env
+    - ./server/.env
     
     ports:
       - "3000"
@@ -43,7 +42,8 @@ services:
         # these values for static JS files that will be served
         # by NGINX to our visitors.
         VITE_API_ORIGIN: http://localhost:3000
-        VITE_API_PATH: /api/v1/trpc
+        VITE_API_PATH: /v1/trpc
+        VITE_STRIPE_PUBLISHABLE_KEY: 'pk_test_51OVagRH4pt7OXRyvBMT3JMFRReJJdZrjuKOUns5idUCG1QesE3rvSLeu7XEs9TLSNYky7ER0ARZPh0z2qzov6Bhk00prrm2n7gz'
     environment:
       # Since our client NGINX server is not only serving static
       # files, but also routing /api requests to our API server,
@@ -59,8 +59,8 @@ services:
       # Our development environment will use the provided value
       # below, while our production environment will provide
       # a different value.
-      API_PROXY_PASS: http://server:3000
-      VITE_STRIPE_PUBLISHABLE_KEY: pk_test_51OVagRH4pt7OXRyvBMT3JMFRReJJdZrjuKOUns5idUCG1QesE3rvSLeu7XEs9TLSNYky7ER0ARZPh0z2qzov6Bhk00prrm2n7g
+      API_PROXY_PASS: "http://server:3000"
+
     ports:
       - "3001:80"
     depends_on:

@@ -14,12 +14,12 @@ export const updateBookingStatus = publicProcedure
     const { bookingId, paymentIntentId } = input
 
     // Check if the code is running in a test environment
-    const isTestEnvironment = process.env.NODE_ENV === 'test';
+    const isTestEnvironment = process.env.NODE_ENV === 'test'
 
     if (isTestEnvironment) {
       // Mock the behavior or perform specific test actions here
       // For example, you can return a specific result for testing
-      return { message: 'Booking updated successfully in test' };
+      return { message: 'Booking updated successfully in test' }
     }
 
     // Fetch the booking from the database

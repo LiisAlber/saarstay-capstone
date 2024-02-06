@@ -1,7 +1,7 @@
 import { it, expect } from 'vitest'
 import { TRPCError } from '@trpc/server'
-import { Feedback } from '../../../../entities';
-import { fakeFeedback } from '../../../../entities/tests/fakes';
+import { Feedback } from '../../../../entities'
+import { fakeFeedback } from '../../../../entities/tests/fakes'
 import { createTestDatabase } from '../../../../tests/utils/database'
 import adminEdit from '../adminEdit'
 
@@ -25,7 +25,7 @@ it('should allow an admin to edit feedback', async () => {
   const input = {
     feedbackId,
     updatedComment,
-    updatedStatus
+    updatedStatus,
   }
 
   // Act

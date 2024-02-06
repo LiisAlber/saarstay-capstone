@@ -1,9 +1,9 @@
 import { it, expect } from 'vitest'
 // eslint-disable-next-line import/no-useless-path-segments
-import { appRouter } from '../../../../modules/index';
-import { User, Location } from '../../../../entities';
-import { fakeAdminUser } from '../../../../entities/tests/fakes';
-import { authContext } from '../../../../tests/utils/context';
+import { appRouter } from '../../../../modules/index'
+import { User, Location } from '../../../../entities'
+import { fakeAdminUser } from '../../../../entities/tests/fakes'
+import { authContext } from '../../../../tests/utils/context'
 import { createTestDatabase } from '../../../../tests/utils/database'
 
 it('should create a location', async () => {

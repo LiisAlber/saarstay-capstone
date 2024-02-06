@@ -1,7 +1,7 @@
 import { vi, it, expect } from 'vitest'
-import { authContext, requestContext } from '../../tests/utils/context';
+import { authContext, requestContext } from '../../tests/utils/context'
 import { router } from '..'
-import { authenticatedProcedure } from '.'  
+import { authenticatedProcedure } from '.'
 
 const routes = router({
   testCall: authenticatedProcedure.query(() => 'passed'),

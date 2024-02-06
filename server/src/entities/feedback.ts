@@ -22,7 +22,6 @@ export class Feedback {
 export const feedbackSchema = z.object({
   comment: z.string(),
   rating: z.number().int().min(1).max(5),
-  
 })
 
 export type FeedbackInsert = z.infer<typeof feedbackSchema>

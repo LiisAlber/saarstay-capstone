@@ -2,9 +2,7 @@ import { fakeUser } from '@server/entities/tests/fakes'
 import { authUserSchema, type AuthUser } from '@server/entities/user'
 import type { Context, ContextMinimal } from '@server/trpc'
 
-export const requestContext = (
-  context: Partial<Context> & ContextMinimal
-): Context => ({
+export const requestContext = (context: Partial<Context> & ContextMinimal): Context => ({
   req: {
     header: () => undefined,
     get: () => undefined,

@@ -1,23 +1,25 @@
-import 'dotenv/config';
-import z from 'zod';
+import 'dotenv/config'
+import z from 'zod'
 
-const { env } = process;
+const { env } = process
 
-if (!env.NODE_ENV) env.NODE_ENV = 'development';
+if (!env.NODE_ENV) env.NODE_ENV = 'development'
 
-const isTest = env.NODE_ENV === 'test';
-const isDevTest = env.NODE_ENV === 'development' || isTest;
+const isTest = env.NODE_ENV === 'test'
+const isDevTest = env.NODE_ENV === 'development' || isTest
 
 // Utility function
 function coerceBoolean(value: unknown) {
   if (typeof value === 'string') {
-    return value === 'true' || value === '1';
+    return value === 'true' || value === '1'
   }
-  return false;
+  return false
 }
 
 const databaseSchema = z.object({
-  type: z.enum(['postgres', 'mysql', 'mariadb', 'better-sqlite3', 'pg-mem', 'neon']).default('postgres'),
+  type: z
+    .enum(['postgres', 'mysql', 'mariadb', 'better-sqlite3', 'pg-mem', 'neon'])
+    .default('postgres'),
   host: z.string().optional().default('localhost'),
   port: z.number().optional().default(5432),
   username: z.string().optional().default(''),
@@ -25,35 +27,44 @@ const databaseSchema = z.object({
   database: z.string().optional().default('defaultDatabase'),
   logging: z.boolean().default(false),
   synchronize: z.boolean().default(true),
-  ssl: z.boolean().default(false),
-});
+  ssl: z
+    .union([
+      z.boolean(),
+      z.object({
+        rejectUnauthorized: z.boolean(),
+      }),
+    ])
+    .default(false),
+})
 
-const schema = z.object({
-  env: z.enum(['development', 'production', 'staging', 'test']).default('development'),
-  isCi: z.boolean().default(coerceBoolean(env.CI)),
-  port: z.coerce.number().default(3000),
-  database: databaseSchema,
+const schema = z
+  .object({
+    env: z.enum(['development', 'production', 'staging', 'test']).default('development'),
+    isCi: z.boolean().default(coerceBoolean(env.CI)),
+    port: z.coerce.number().default(3000),
+    database: databaseSchema,
 
-  auth: z.object({
-    tokenKey: z.string().default(() => {
-      if (isDevTest) {
-        return 'dev-token-key';
-      }
-      throw new Error('You must provide a token key in production env!');
+    auth: z.object({
+      tokenKey: z.string().default(() => {
+        if (isDevTest) {
+          return 'dev-token-key'
+        }
+        throw new Error('You must provide a token key in production env!')
+      }),
+      expiresIn: z.string().default('7d'),
+      passwordCost: z.coerce.number().default(isDevTest ? 6 : 12),
     }),
-    expiresIn: z.string().default('7d'),
-    passwordCost: z.coerce.number().default(isDevTest ? 6 : 12),
-  }),
 
-  sendGrid: z.object({
-    apiKey: z.string(),
-  }),
+    sendGrid: z.object({
+      apiKey: z.string(),
+    }),
 
-  stripe: z.object({
-    secretKey: z.string(),
-    publishableKey: z.string(),
-  }),
-}).readonly();
+    stripe: z.object({
+      secretKey: z.string(),
+      publishableKey: z.string(),
+    }),
+  })
+  .readonly()
 
 const config = schema.parse({
   env: env.NODE_ENV,
@@ -84,13 +95,13 @@ const config = schema.parse({
       username: env.DB_USER,
       password: env.DB_PASSWORD,
       database: env.DB_NAME,
-    ssl: true,
-  }),
-  logging: coerceBoolean(env.DB_LOGGING),
-  synchronize: coerceBoolean(env.DB_SYNC),
-},
-});
+      ssl: env.DB_SSL_IS === 'true',
+    }),
+    logging: coerceBoolean(env.DB_LOGGING),
+    synchronize: coerceBoolean(env.DB_SYNC),
+  },
+})
 
-export default config;
+export default config
 
-export const SENDGRID_API_KEY = config.sendGrid.apiKey;
+export const SENDGRID_API_KEY = config.sendGrid.apiKey

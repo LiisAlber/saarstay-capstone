@@ -1,8 +1,8 @@
 import { it, expect } from 'vitest'
 import { DataSource } from 'typeorm'
 import { TRPCError } from '@trpc/server'
-import { Feedback } from '../../../entities';
-import { fakeFeedback } from '../../../entities/tests/fakes';
+import { Feedback } from '../../../entities'
+import { fakeFeedback } from '../../../entities/tests/fakes'
 import { createTestDatabase } from '../../../tests/utils/database'
 
 it('should return a list of confirmed feedbacks', async () => {

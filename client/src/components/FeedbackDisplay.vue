@@ -1,11 +1,17 @@
 <template>
   <div class="bg-pink-background">
     <div v-if="error" class="text-4f6259">{{ error }}</div>
-    <Carousel v-else-if="feedbackList.length" :wrap-around="true" :autoplay="3000" :navigationEnabled="true" :breakpoints="breakpoints">
+    <Carousel
+      v-else-if="feedbackList.length"
+      :wrap-around="true"
+      :autoplay="3000"
+      :navigationEnabled="true"
+      :breakpoints="breakpoints"
+    >
       <Slide v-for="feedback in feedbackList" :key="feedback.id">
-        <div class="rounded-lg bg-card-background p-4 shadow-lg">
+        <div class="bg-card-background rounded-lg p-4 shadow-lg">
           <p class="text-4f6259 font-semibold">{{ feedback.comment }}</p>
-          <div class="flex mt-2">
+          <div class="mt-2 flex">
             <StarIcon
               v-for="index in 5"
               :key="index"
@@ -22,41 +28,39 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Navigation } from 'vue3-carousel';
-import { trpc } from '@/trpc';
-import type { Feedback } from '@mono/server/src/shared/entities';
-import StarIcon from '@/components/StarIcon.vue';
+import { ref, onMounted } from 'vue'
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import { trpc } from '@/trpc'
+import type { Feedback } from '@mono/server/src/shared/entities'
+import StarIcon from '@/components/StarIcon.vue'
 
-const feedbackList = ref<Feedback[]>([]);
-const error = ref<string | null>(null);
+const feedbackList = ref<Feedback[]>([])
+const error = ref<string | null>(null)
 
 onMounted(async () => {
   try {
-    const data = await trpc.feedback.view.query();
-    feedbackList.value = data;
+    const data = await trpc.feedback.view.query()
+    feedbackList.value = data
   } catch (e) {
-    error.value = e instanceof Error ? e.message : 'Failed to fetch feedback';
+    error.value = e instanceof Error ? e.message : 'Failed to fetch feedback'
   }
-});
+})
 
 const getStarClass = (rating: number, index: number) => {
   return {
     'h-5 w-5 fill-current': true,
-    'text-dark-green': index <= rating, 
-    'text-light-green': index > rating 
-  };
-};
-
+    'text-dark-green': index <= rating,
+    'text-light-green': index > rating,
+  }
+}
 
 const breakpoints = {
   640: { itemsToShow: 1 },
   768: { itemsToShow: 2 },
   1024: { itemsToShow: 3 },
-};
+}
 </script>
 
 <style scoped>
@@ -65,19 +69,18 @@ const breakpoints = {
 }
 
 .bg-card-background {
-  background-color: #EACDC7; /* card background color */
+  background-color: #eacdc7; /* card background color */
 }
 
 .text-4f6259 {
-  color: #4F6259; 
+  color: #4f6259;
 }
 
 .text-dark-green {
-  color: #4F6259; /* Dark green color */
+  color: #4f6259; /* Dark green color */
 }
 
 .text-light-green {
-  color: #A9C0A6; /* Light green color */
+  color: #a9c0a6; /* Light green color */
 }
-
 </style>

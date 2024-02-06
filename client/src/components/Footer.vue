@@ -1,31 +1,45 @@
 <template>
-    <footer class="bg-[#4F6259] p-6 text-white">
-      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <h3 class="text-lg font-semibold">SaarstayGH OÜ</h3>
-          <p class="my-2">+372 55 555 555</p>
-          <p class="my-2">info@saarstay.ee</p>
-          <p class="my-2">Pärna 35, Kuressaare, Estonia</p>
-          <a href="https://maps.google.com/?q=Pärna+35,+Kuressaare,+Estonia" target="_blank" class="flex items-center space-x-1 text-[#f7ebe9] hover:text-[#EACDC7] transition-colors">
+  <footer class="bg-[#4F6259] text-white">
+    <div class="container mx-auto px-6 py-8">
+      <div class="flex flex-col justify-between md:flex-row">
+        <!-- Left Side Content -->
+        <div class="mb-6 flex flex-col md:mb-0">
+          <h3 class="mb-2 text-lg font-semibold">SaarstayGH OÜ</h3>
+          <p>+372 55 555 555</p>
+          <p>info@saarstay.ee</p>
+          <p>Pärna 35, Kuressaare, Estonia</p>
+          <a
+            href="https://maps.google.com/?q=Pärna+35,+Kuressaare,+Estonia"
+            target="_blank"
+            class="mt-4 flex items-center space-x-1 text-[#f7ebe9] transition-colors hover:text-[#EACDC7]"
+          >
             <i class="fas fa-map-marker-alt"></i>
             <span>View on Google Maps</span>
           </a>
-          <div class="flex space-x-4 mt-4">
-            <i class="fab fa-facebook-f text-[#f7ebe9] hover:text-[#EACDC7] transition-colors"></i>
-            <i class="fab fa-instagram text-[#f7ebe9] hover:text-[#EACDC7] transition-colors"></i>
+          <div class="mt-4 flex space-x-4">
+            <i class="fab fa-facebook-f transition-colors hover:text-[#EACDC7]"></i>
+            <i class="fab fa-instagram transition-colors hover:text-[#EACDC7]"></i>
           </div>
         </div>
-        <div class="mt-4 md:mt-0">
-          <p class="block my-2 hover:text-[#EACDC7] transition-colors">Privacy policy</p>
-          <p class="block my-2 hover:text-[#EACDC7] transition-colors">Cancellation policy</p>
-          <p class="block my-2 hover:text-[#EACDC7] transition-colors">House rules</p>
-          <p class="block my-2 hover:text-[#EACDC7] transition-colors">FAQs</p>
+
+        <!-- Center Logo -->
+        <div class="mb-6 flex justify-center md:mb-0">
+          <img
+            src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/SAARstay+logo.png"
+            alt="SAARstay Guesthouse Logo"
+            class="h-16 w-auto"
+          />
+        </div>
+
+        <!-- Right Side Content -->
+        <div class="flex flex-col items-start md:items-end">
+          <p class="my-2 block transition-colors hover:text-[#EACDC7]">Privacy policy</p>
+          <p class="my-2 block transition-colors hover:text-[#EACDC7]">Cancellation policy</p>
+          <p class="my-2 block transition-colors hover:text-[#EACDC7]">House rules</p>
+          <p class="my-2 block transition-colors hover:text-[#EACDC7]">FAQs</p>
         </div>
       </div>
-      <div class="text-center text-sm mt-8">
-        © 2024 SAARstay. All rights reserved.
-      </div>
-    </footer>
-  </template>
-  
-  
+      <div class="mt-8 text-center text-sm">© 2024 SAARstay. All rights reserved.</div>
+    </div>
+  </footer>
+</template>

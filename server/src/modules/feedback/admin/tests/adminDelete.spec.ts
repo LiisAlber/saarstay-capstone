@@ -1,9 +1,9 @@
 import { it, expect } from 'vitest'
 import { TRPCError } from '@trpc/server'
-import { Feedback } from '../../../../entities';
-import { fakeFeedback } from '../../../../entities/tests/fakes';
+import { Feedback } from '../../../../entities'
+import { fakeFeedback } from '../../../../entities/tests/fakes'
 import { createTestDatabase } from '../../../../tests/utils/database'
-import adminDelete from '../adminDelete' 
+import adminDelete from '../adminDelete'
 
 it('should allow an admin to delete feedback', async () => {
   // Arrange

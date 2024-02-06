@@ -1,9 +1,9 @@
-import { DataSourceOptions } from 'typeorm';
+import { DataSourceOptions } from 'typeorm'
 import { createDatabase } from '@server/database'
 import config from '@server/config'
 
 export async function createTestDatabase() {
-  const db = createDatabase(config.database as DataSourceOptions);
+  const db = createDatabase(config.database as DataSourceOptions)
 
   await db.initialize()
 
@@ -14,9 +14,7 @@ export function createMockDatabase(repositories: any) {
   return {
     getRepository: (entity: any) => {
       if (!(entity.name in repositories)) {
-        throw new Error(
-          `Repository for ${entity.name} was not found. Did you forget to mock it?`
-        )
+        throw new Error(`Repository for ${entity.name} was not found. Did you forget to mock it?`)
       }
 
       return repositories[entity.name]

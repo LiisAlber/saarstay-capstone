@@ -31,28 +31,27 @@ const confirmBooking = authenticatedProcedure
   .mutation(async ({ input, ctx: { repos } }) => {
     const bookingToUpdate = await repos.Booking.findOne({
       where: { id: input.bookingId },
-    });
+    })
 
     if (!bookingToUpdate) {
       throw new TRPCError({
         code: 'NOT_FOUND',
         message: 'Booking not found.',
-      });
+      })
     }
 
     // Allow confirming if booking is either pending or canceled
     if (bookingToUpdate.status === 'pending' || bookingToUpdate.status === 'canceled') {
-      bookingToUpdate.status = 'confirmed';
-      await repos.Booking.save(bookingToUpdate);
-      return bookingToUpdate;
+      bookingToUpdate.status = 'confirmed'
+      await repos.Booking.save(bookingToUpdate)
+      return bookingToUpdate
     }
 
     throw new TRPCError({
       code: 'CONFLICT',
       message: 'Booking cannot be confirmed in its current state.',
-    });
-  });
-
+    })
+  })
 
 // Procedure to cancel a booking (admin only)
 const cancelBooking = authenticatedProcedure

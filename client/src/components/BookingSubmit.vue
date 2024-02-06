@@ -21,12 +21,11 @@ const navigateToBookingForm = () => {
 .custom-button {
   background-color: #eacdc7;
   color: #184b45;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 .custom-button:hover {
   background-color: #f2c5bc;
   color: #184b45;
 }
-
 </style>

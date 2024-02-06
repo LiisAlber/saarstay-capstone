@@ -1,20 +1,16 @@
 <template>
-    <section class="offers-section text-center py-8 bg-pink-light">
-      <h2 class="text-4f6259 font-bold text-2xl mb-6">
-        What we offer
-      </h2>
-      <div class="offers-grid grid grid-cols-1 gap-4 md:grid-cols-3">
-        <div class="offer-item" v-for="offer in offers" :key="offer.text">
-          <i :class="['offer-icon', offer.icon]"></i>
-          <div class="offer-text">{{ offer.text }}</div>
-        </div>
+  <section class="offers-section bg-pink-light py-8 text-center">
+    <h2 class="text-4f6259 mb-6 text-2xl font-bold">What we offer</h2>
+    <div class="offers-grid grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div class="offer-item" v-for="offer in offers" :key="offer.text">
+        <i :class="['offer-icon', offer.icon]"></i>
+        <div class="offer-text">{{ offer.text }}</div>
       </div>
-    </section>
-  </template>
-
+    </div>
+  </section>
+</template>
 
 <script setup lang="ts">
-
 const offers = [
   { icon: 'fas fa-home', text: 'Private house' },
   { icon: 'fas fa-bed', text: '2 bedrooms' },
@@ -25,7 +21,7 @@ const offers = [
   { icon: 'fas fa-child', text: 'Family friendly' },
   { icon: 'fas fa-parking', text: 'Free parking' },
   { icon: 'fas fa-map-marked-alt', text: 'Great location' },
-];
+]
 </script>
 
 <style scoped>
@@ -43,13 +39,12 @@ const offers = [
 /* Mobile styles */
 .offers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 1rem;
 }
 
 .offer-item {
-  
-  background-color: rgba(79, 98, 89, 0.8); 
+  background-color: rgba(79, 98, 89, 0.8);
   border-radius: 10px;
   width: 100px; /* Fixed width */
   height: 100px; /* Fixed height */
@@ -64,7 +59,10 @@ const offers = [
 /* Tablet and desktop styles */
 @media (min-width: 768px) {
   .offers-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adapt number of columns to screen size */
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(100px, 1fr)
+    ); /* Adapt number of columns to screen size */
   }
 }
 

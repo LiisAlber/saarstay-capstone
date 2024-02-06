@@ -1,6 +1,6 @@
 import { it, expect } from 'vitest'
-import { Feedback } from '../../../../entities';
-import { fakeFeedback } from '../../../../entities/tests/fakes';
+import { Feedback } from '../../../../entities'
+import { fakeFeedback } from '../../../../entities/tests/fakes'
 import { createTestDatabase } from '../../../../tests/utils/database'
 import adminView from '../adminView'
 

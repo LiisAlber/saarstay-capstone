@@ -1,43 +1,59 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex min-h-screen flex-col bg-[#F7EBE9]">
     <!-- Header -->
     <Header class="fixed top-0 z-10 w-full bg-[#4F6259] bg-opacity-60 shadow-md" />
 
-        <!-- Hero Section with padding-top to push the content down below the header -->
-        <section
-      class="pt-[80px] h-screen bg-cover bg-center p-4 text-white relative"
-      :style="{ backgroundImage: 'url(https://stghbucket.s3.eu-north-1.amazonaws.com/interior/vecteezy_ai-generated-living-room-in-green-color-with-wood-furniture_36746398.jpg)' }"
+    <!-- Hero Section with padding-top to push the content down below the header -->
+    <section
+      class="relative h-screen bg-cover bg-center p-4 pt-[80px] text-white"
+      :style="{
+        backgroundImage:
+          'url(https://stghbucket.s3.eu-north-1.amazonaws.com/interior/vecteezy_ai-generated-living-room-in-green-color-with-wood-furniture_36746398.jpg)',
+      }"
     >
       <!-- Overlay with increased opacity for a darker effect -->
-      <div class="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-20"></div>
-    <div class="container mx-auto flex flex-col items-center justify-center h-full px-4 z-10 relative">
-      <h1 class="text-3xl font-extrabold sm:text-5xl mb-4"> <!-- Added mb-4 for spacing -->
-        City charm meets contemporary elegance
-      </h1>
-      <p class="mt-4 text-lg sm:mt-6 sm:text-xl mb-6"> <!-- Adjusted mb-6 for spacing -->
-        Embrace the fusion of modern elegance and city charm in the pulsating heart of Kuressaare.
-      </p>
+      <div class="absolute bottom-0 left-0 right-0 top-0 bg-black bg-opacity-20"></div>
+      <div
+        class="container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4"
+      >
+        <h1 class="mb-4 text-3xl font-extrabold sm:text-5xl">
+          <!-- Added mb-4 for spacing -->
+          City charm meets contemporary elegance
+        </h1>
+        <p class="mb-6 mt-4 text-lg sm:mt-6 sm:text-xl">
+          <!-- Adjusted mb-6 for spacing -->
+          Embrace the fusion of modern elegance and city charm in the pulsating heart of Kuressaare.
+        </p>
         <!-- BookingSubmit button with responsive margin -->
-        <div class="absolute bottom-0 left-0 right-0 pb-4 px-4">
-      <!-- Center the button in the container -->
-      <div class="flex justify-center">
-        <BookingSubmit class="mt-6 md:mt-12 lg:mt-24" />
-      </div>
-    </div>
+        <div class="absolute bottom-0 left-0 right-0 px-4 pb-4">
+          <!-- Center the button in the container -->
+          <div class="flex justify-center">
+            <BookingSubmit class="mt-6 md:mt-12 lg:mt-24" />
+          </div>
+        </div>
       </div>
     </section>
-    
+
     <!-- About Us Section -->
     <AboutSection />
 
     <!-- Gallery Section -->
-    <Gallery />
+    <section class="bg-[#F7EBE9]">
+      <Gallery />
+    </section>
 
     <!-- What We Offer Section -->
     <WhatWeOffer />
 
+    <!-- Pricelist Section -->
+    <section class="py-8 bg-[#F7EBE9]"> 
+      <div class="container mx-auto">
+        <PriceList class="mx-auto" />
+      </div>
+    </section>
+
     <!-- Feedback Section -->
-    <FeedbackDisplay />
+    <FeedbackDisplay class="mb-8" />
 
     <!-- Footer -->
     <Footer />
@@ -45,15 +61,15 @@
 </template>
 
 <script lang="ts" setup>
-import BookingSubmit from '@/components/BookingSubmit.vue';
-import Header from '@/components/Header.vue';
-import FeedbackDisplay from '@/components/FeedbackDisplay.vue';
-import WhatWeOffer from '@/components/WhatWeOffer.vue';
-import AboutSection from '@/components/AboutSection.vue';
-import Footer from '@/components/Footer.vue';
-import Gallery from '@/components/Gallery.vue';
+import BookingSubmit from '@/components/BookingSubmit.vue'
+import Header from '@/components/Header.vue'
+import FeedbackDisplay from '@/components/FeedbackDisplay.vue'
+import WhatWeOffer from '@/components/WhatWeOffer.vue'
+import AboutSection from '@/components/AboutSection.vue'
+import Footer from '@/components/Footer.vue'
+import Gallery from '@/components/Gallery.vue'
+import PriceList from '@/components/PriceList.vue'
 </script>
-
 
 <style scoped>
 .text-shadow {

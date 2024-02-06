@@ -1,7 +1,7 @@
 import { User } from '@server/entities/user'
 import { Booking } from '@server/entities/bookings'
 import { Feedback } from '@server/entities'
-import { random } from '../../tests/utils/random';
+import { random } from '../../tests/utils/random'
 
 const randomId = () => random.integer({ min: 1, max: 2147483647 })
 

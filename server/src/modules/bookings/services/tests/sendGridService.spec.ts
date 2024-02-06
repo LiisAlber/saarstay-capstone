@@ -1,10 +1,10 @@
-import { it, expect, vi } from 'vitest';
-import * as sendGridService from '../sendGridService';
+import { it, expect, vi } from 'vitest'
+import * as sendGridService from '../sendGridService'
 
 // Mocks entire sendGridService module
 vi.mock('../sendGridService', () => ({
   sendEmailWrapper: vi.fn(),
-}));
+}))
 
 it('should send an email successfully', async () => {
   // define a mock message object to simulate sending an email
@@ -24,11 +24,11 @@ it('should send an email successfully', async () => {
       headers: {}, // mock headers
     },
     {},
-  ]);
+  ])
 
   // expect the sendEmail function to complete without throwing errors
-  await expect(sendGridService.sendEmailWrapper(msg)).resolves.not.toThrow();
+  await expect(sendGridService.sendEmailWrapper(msg)).resolves.not.toThrow()
 
   // assert that the sendEmailWrapper function was called with the expected message
-  expect(sendGridService.sendEmailWrapper).toHaveBeenCalledWith(msg);
-});
+  expect(sendGridService.sendEmailWrapper).toHaveBeenCalledWith(msg)
+})
