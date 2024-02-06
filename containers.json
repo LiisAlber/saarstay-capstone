@@ -1,16 +1,16 @@
 {
     "client": {
-      "image": ":saarstay.client.13",
+      "image": ":saarstay.client.15",
       "command": [],
       "ports": {
         "80": "HTTP"
       },
       "environment": {
-        "API_PROXY_PASS": "http://localhost:3000"
+        "API_PROXY_PASS": "saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com"
       }
     },
     "server": {
-      "image": ":saarstay.server.14",
+      "image": ":saarstay.server.16",
       "ports": {
         "3000": "HTTP"
       },
