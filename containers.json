@@ -1,0 +1,34 @@
+{
+    "client": {
+      "image": ":saarstay.client.13",
+      "command": [],
+      "ports": {
+        "80": "HTTP"
+      },
+      "environment": {
+        "API_PROXY_PASS": "http://localhost:3000"
+      }
+    },
+    "server": {
+      "image": ":saarstay.server.14",
+      "ports": {
+        "3000": "HTTP"
+      },
+      "environment": {
+        "NODE_ENV": "production",
+        "DB_NAME": "guesthouse2",
+        "DB_USER": "lalberjaansalu",
+        "DB_PASSWORD": "fKvhA8axk6By",
+        "DB_HOST": "ep-aged-bush-a2d24kb9.eu-central-1.aws.neon.tech",
+        "DB_PORT": "5432",
+        "DB_LOGGING": "true",
+        "DB_SSL_IS": "true",
+        "DATABASE_URL": "postgres://lalberjaansalu:fKvhA8axk6By@ep-aged-bush-a2d24kb9.eu-central-1.aws.neon.tech/guesthouse2?sslmode=require",
+        "TOKEN_KEY": "supersecretkey",
+        "SENDGRID_API_KEY": "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",
+        "STRIPE_SECRET_KEY": "sk_test_51OVagRH4pt7OXRyvjYxZ3xX8V4CkveDofJLHGFx18iPdVuQeTpeXb4RPIGoMxxrMfz5Q2QYFtqkQrnGnRTaYvUai00Wky5ezqp",
+        "STRIPE_PUBLISHABLE_KEY": "pk_test_51OVagRH4pt7OXRyvBMT3JMFRReJJdZrjuKOUns5idUCG1QesE3rvSLeu7XEs9TLSNYky7ER0ARZPh0z2qzov6Bhk00prrm2n7g",
+        "ADMIN_PASSWORD": "securepassword123"
+      }
+    }
+  }
