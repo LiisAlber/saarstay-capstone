@@ -54,9 +54,15 @@ jobs:
         VITE_API_ORIGIN: saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com
         VITE_API_PATH: /v1/trpc
 
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: List files in the root
+      run: ls -l
+
     - name: Deploy to AWS Lightsail
       run: |
         aws lightsail create-container-service-deployment \
         --service-name saarstay \
-        --containers "file://containers.json" \
-        --public-endpoint "file://public-endpoint.json"
+        --containers file://containers.json \
+        --public-endpoint file://public-endpoint.json
