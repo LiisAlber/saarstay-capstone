@@ -1,29 +1,33 @@
 <template>
-    <div class="max-w-md mx-auto bg-[#F7EBE9] shadow-lg rounded-lg p-6">
-      <h2 class="text-xl font-semibold text-[#4F6259] mb-5">Prices</h2>
-  
-      <!-- Seasonal Rates -->
-      <div class="space-y-3">
-        <div v-for="(rate, index) in seasonalRates" :key="index" class="flex justify-between items-center">
-          <p class="text-[#4F6259]">{{ seasonPeriod(rate.start, rate.end) }}</p>
-          <p class="font-bold text-[#4F6259]">{{ rate.rate }}€/night</p>
-        </div>
-      </div>
-  
-      <!-- Default Rate -->
-      <div class="flex justify-between items-center mt-4 pt-4 border-t border-[#EACDC7]">
-        <p class="text-[#4F6259]">Default rate</p>
-        <p class="font-bold text-[#4F6259]">{{ defaultRate }}€/night</p>
-      </div>
-  
-      <!-- Additional Information -->
-      <div class="mt-5 text-sm text-[#4F6259]">
-        The price includes use of sauna and the hot tub.<br />
-        
-        Ask for a special offer for longer reservations.
+  <div class="mx-auto max-w-md rounded-lg bg-[#F7EBE9] p-6 shadow-lg">
+    <h2 class="mb-5 text-xl font-semibold text-[#4F6259]">Prices</h2>
+
+    <!-- Seasonal Rates -->
+    <div class="space-y-3">
+      <div
+        v-for="(rate, index) in seasonalRates"
+        :key="index"
+        class="flex items-center justify-between"
+      >
+        <p class="text-[#4F6259]">{{ seasonPeriod(rate.start, rate.end) }}</p>
+        <p class="font-bold text-[#4F6259]">{{ rate.rate }}€/night</p>
       </div>
     </div>
-  </template>
+
+    <!-- Default Rate -->
+    <div class="mt-4 flex items-center justify-between border-t border-[#EACDC7] pt-4">
+      <p class="text-[#4F6259]">Default rate</p>
+      <p class="font-bold text-[#4F6259]">{{ defaultRate }}€/night</p>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="mt-5 text-sm text-[#4F6259]">
+      The price includes use of sauna and the hot tub.<br />
+
+      Ask for a special offer for longer reservations.
+    </div>
+  </div>
+</template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'

@@ -4,7 +4,7 @@
       <div class="flex flex-col justify-between md:flex-row">
         <!-- Left Side Content -->
         <div class="mb-6 flex flex-col md:mb-0">
-          <h3 class="mb-2 text-lg font-semibold">SaarstayGH OÜ</h3>
+          <h3 class="mb-2 text-lg font-semibold">SaarStayGH OÜ</h3>
           <p>+372 55 555 555</p>
           <p>info@saarstay.ee</p>
           <p>Pärna 35, Kuressaare, Estonia</p>
@@ -39,7 +39,7 @@
           <p class="my-2 block transition-colors hover:text-[#EACDC7]">FAQs</p>
         </div>
       </div>
-      <div class="mt-8 text-center text-sm">© 2024 SAARstay. All rights reserved.</div>
+      <div class="mt-8 text-center text-sm">© 2024 SAARStay. All rights reserved.</div>
     </div>
   </footer>
 </template>

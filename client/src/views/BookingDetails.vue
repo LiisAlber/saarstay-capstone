@@ -1,8 +1,12 @@
 <template>
   <div class="flex min-h-screen items-center justify-center bg-[#f7ebe9] p-4">
-    <div class="mx-auto w-full max-w-lg rounded-lg bg-white p-6 shadow-md">
+    <Header class="fixed top-0 z-10 w-full bg-[#4F6259] bg-opacity-60 shadow-md" />
+    
+    <div class="mt-[100px] mx-auto w-full max-w-lg rounded-lg bg-white p-6 shadow-md">
       <h1 class="mb-6 text-3xl font-bold text-[#4F6259]">Booking Confirmation</h1>
+
       <p v-if="error" class="rounded-md bg-red-200 p-4 text-red-600">{{ error }}</p>
+
       <div v-if="bookingDetails" class="space-y-4">
         <p><strong>Guest Name:</strong> {{ bookingDetails.guestName }}</p>
         <p><strong>Email:</strong> {{ bookingDetails.guestEmail }}</p>
@@ -16,15 +20,33 @@
           <strong>Special Requests:</strong> {{ bookingDetails.specialRequests }}
         </p>
         <p><strong>Total Price:</strong> {{ bookingDetails.totalPrice }}€</p>
+
+        <p class="mt-4 font-medium">
+          A confirmation email has been sent to
+          <span class="font-bold">{{ bookingDetails.guestEmail }}</span
+          >. Please check your inbox for the booking details and contact us if you need any further
+          assistance.
+        </p>
+
+        <button
+          class="mt-6 w-full rounded-lg bg-[#4F6259] py-3 font-medium text-white transition-colors hover:bg-[#EACDC7] hover:text-[#4F6259]"
+          @click="redirectToHome"
+        >
+          Return to Homepage
+        </button>
       </div>
     </div>
   </div>
+  <!-- Footer -->
+  <Footer class="pt-4" />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { trpc } from '@/trpc'
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 
 interface BookingDetail {
   guestName: string
@@ -67,4 +89,10 @@ onMounted(async () => {
     error.value = 'Invalid booking ID'
   }
 })
+
+const router = useRouter()
+
+const redirectToHome = () => {
+  router.push('/')
+}
 </script>

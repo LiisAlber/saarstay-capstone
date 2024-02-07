@@ -46,7 +46,7 @@
     <WhatWeOffer />
 
     <!-- Pricelist Section -->
-    <section class="py-8 bg-[#F7EBE9]"> 
+    <section class="bg-[#F7EBE9] py-8">
       <div class="container mx-auto">
         <PriceList class="mx-auto" />
       </div>

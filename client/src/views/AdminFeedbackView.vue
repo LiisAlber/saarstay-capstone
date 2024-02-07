@@ -1,5 +1,11 @@
 <template>
   <div class="container mx-auto bg-[#F7EBE9] px-4 py-4">
+    <button 
+      @click="goToAdminDashboard" 
+      class="mb-4 rounded-lg bg-[#EACDC7] py-2 px-4 text-sm font-medium text-[#4F6259] transition-colors hover:bg-[#4F6259] hover:text-white"
+    >
+      Back to Admin Dashboard
+    </button>
     <h1 class="mb-4 text-2xl font-bold text-[#4F6259]">Admin Feedback Management</h1>
     <div v-if="error" class="mb-4 rounded border border-red-400 bg-red-100 p-4 text-red-700">
       {{ error }}
@@ -38,12 +44,14 @@ import { trpc } from '@/trpc'
 import type { Feedback } from '@mono/server/src/shared/entities'
 import { isLoggedIn } from '@/stores/user'
 import FeedbackCard from '@/components/FeedbackCard.vue'
+import { useRouter } from 'vue-router'
 
 const feedbackList = ref<Feedback[] | null>(null)
 const error = ref('')
 const selectedFeedback = ref<Feedback | null>(null)
 const editComment = ref('')
 const updatedStatus = ref<'pending' | 'confirmed' | 'canceled'>('pending')
+const router = useRouter()
 
 const fetchFeedbacks = async () => {
   if (!isLoggedIn.value) {
@@ -95,6 +103,10 @@ const deleteFeedback = async (feedbackId: number) => {
 }
 
 onMounted(fetchFeedbacks)
+
+const goToAdminDashboard = () => {
+  router.push('/admin/dashboard') 
+}
 </script>
 
 <style scoped>

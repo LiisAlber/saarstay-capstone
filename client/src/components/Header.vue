@@ -2,11 +2,13 @@
   <header class="fixed left-0 top-0 z-50 w-full bg-[rgba(79,98,89,0.62)] shadow">
     <div class="container mx-auto flex items-center justify-between p-2">
       <!-- Logo -->
-      <img
-        src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/SAARstay+logo.png"
-        alt="SAARstay Guesthouse Logo"
-        class="logo-size"
-      />
+      <router-link to="/">
+        <img
+          src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/SAARstay+logo.png"
+          alt="SAARstay Guesthouse Logo"
+          class="logo-size"
+        />
+      </router-link>
 
       <!-- Navigation Links for desktop -->
       <nav class="hidden items-center space-x-4 sm:flex">
@@ -38,7 +40,6 @@
       class="absolute left-0 top-full w-full shadow-md sm:hidden"
       style="background-color: #f7ebe9"
     >
-      <router-link to="/" class="block px-4 py-2" style="color: #4f6259">Home</router-link>
       <router-link to="/booking/form" class="block px-4 py-2" style="color: #4f6259"
         >Book Now</router-link
       >

@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto flex h-screen items-center justify-center bg-[#F7EBE9]">
     <div class="w-full max-w-xs">
-      <h1 class="mb-6 text-2xl font-bold text-[#4F6259]">Admin Login</h1>
+      <h1 class="mb-6 text-2xl font-bold text-[#4F6259]">SAARStay Admin Login</h1>
       <form @submit.prevent="handleLogin" class="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md">
         <div class="mb-4">
           <input

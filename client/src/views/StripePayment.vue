@@ -5,13 +5,21 @@
       <div id="card-element" v-if="stripeReady" class="mb-4 rounded-lg border border-[#4F6259] p-3">
         <!-- Stripe.js injects the Card Element here -->
       </div>
-      <button
-        type="submit"
-        :disabled="!stripeReady"
-        class="w-full rounded-lg bg-[#4F6259] py-3 font-medium text-white transition-colors hover:bg-[#5a7765] disabled:opacity-50"
-      >
-        Pay
-      </button>
+      <div class="flex justify-between mt-4">
+        <button
+      class="rounded-lg border border-[#4F6259] bg-[#EACDC7] py-2 px-4 text-sm font-medium text-[#4F6259] transition-colors hover:bg-[#4F6259] hover:text-white"
+      @click="handleCancel"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      :disabled="!stripeReady"
+      class="rounded-lg border border-[#4F6259] bg-[#4F6259] py-2 px-4 text-sm font-medium text-white transition-colors hover:bg-[#EACDC7] hover:text-[#4F6259] disabled:opacity-50"
+    >
+      Pay
+    </button>
+  </div>
     </form>
     <p v-if="!stripeReady" class="text-center text-[#4F6259]">Loading payment information...</p>
     <p v-if="stripeError" class="mt-4 rounded-lg border border-red-400 bg-red-200 p-3 text-red-600">
@@ -94,5 +102,10 @@ const handlePayment = async () => {
       console.log('Payment Intent Status:', result.paymentIntent.status)
     }
   }
+}
+
+const handleCancel = () => {
+  // Directs the user to the booking form page
+  router.push({ name: 'BookingForm' }) 
 }
 </script>

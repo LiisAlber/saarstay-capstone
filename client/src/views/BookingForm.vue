@@ -1,86 +1,109 @@
 <template>
   <div class="mx-auto my-8 max-w-md rounded-lg bg-[#f7ebe9] p-8 shadow-md">
-    <h2 class="mb-6 text-2xl font-bold text-[#4F6259]">Create Booking</h2>
-    <form @submit.prevent="handleSubmit">
-      <div class="mb-4">
-        <label class="mb-2 block font-medium text-[#4F6259]">Guest Name</label>
-        <input
-          type="text"
-          v-model="bookingForm.guestName"
-          class="w-full rounded-lg border border-[#4F6259] p-3"
-          placeholder="Full Name"
-        />
+    <!-- Header -->
+    <Header class="fixed top-0 z-10 w-full bg-[#4F6259] bg-opacity-60 shadow-md" />
+
+    <section class="flex flex-grow flex-col items-center justify-center p-4 pb-8 pt-[100px]">
+      <div class="mx-auto my-8 w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+        <h2 class="mb-6 text-2xl font-bold text-[#4F6259]">Create Booking</h2>
+        <form @submit.prevent="handleSubmit">
+          <div class="mb-4">
+            <label class="mb-2 block font-medium text-[#4F6259]">Guest Name</label>
+            <input
+              type="text"
+              v-model="bookingForm.guestName"
+              class="w-full rounded-lg border border-[#4F6259] p-3"
+              placeholder="Full Name"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="mb-2 block font-medium text-[#4F6259]">Guest Email</label>
+            <input
+              type="email"
+              v-model="bookingForm.guestEmail"
+              class="w-full rounded-lg border border-[#4F6259] p-3"
+              placeholder="Email"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="mb-2 block font-medium text-[#4F6259]">Contact Number</label>
+            <input
+              type="tel"
+              v-model="bookingForm.guestContactNumber"
+              class="w-full rounded-lg border border-[#4F6259] p-3"
+              placeholder="Phone Number"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="mb-2 block font-medium text-[#4F6259]">Check-In Date</label>
+            <input
+              type="date"
+              v-model="bookingForm.checkInDate"
+              class="w-full rounded-lg border border-[#4F6259] p-3"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="mb-2 block font-medium text-[#4F6259]">Check-Out Date</label>
+            <input
+              type="date"
+              v-model="bookingForm.checkOutDate"
+              class="w-full rounded-lg border border-[#4F6259] p-3"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="mb-2 block font-medium text-[#4F6259]">Number of Guests</label>
+            <input
+              type="number"
+              v-model="bookingForm.numberOfGuests"
+              class="w-full rounded-lg border border-[#4F6259] p-3"
+            />
+          </div>
+          <div class="mb-4">
+            <label class="mb-2 block font-medium text-[#4F6259]">Special Requests</label>
+            <textarea
+              v-model="bookingForm.specialRequests"
+              rows="4"
+              class="w-full rounded-lg border border-[#4F6259] p-3"
+              placeholder="Any special requests?"
+            ></textarea>
+          </div>
+          <div v-if="calculatedPrice" class="mb-4">
+            <label class="mb-2 block font-medium text-[#4F6259]">Total Price</label>
+            <p class="font-bold text-[#4F6259]">{{ calculatedPrice }}€</p>
+          </div>
+          <div class="mt-6 flex items-center justify-between">
+            <div class="mt-6 flex w-full items-center justify-between">
+              <button
+                type="button"
+                class="rounded-lg border border-[#4F6259] bg-[#EACDC7] px-5 py-2 text-sm font-medium text-[#4F6259] transition-colors hover:bg-[#4F6259] hover:text-white"
+                @click="handleCancel"
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                class="ml-auto rounded-lg border border-[#4F6259] bg-[#4F6259] px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-[#EACDC7] hover:text-[#4F6259]"
+              >
+                Book
+              </button>
+            </div>
+          </div>
+        </form>
+        <div v-if="bookingErrorMessage" class="error-message" v-html="bookingErrorMessage"></div>
       </div>
-      <div class="mb-4">
-        <label class="mb-2 block font-medium text-[#4F6259]">Guest Email</label>
-        <input
-          type="email"
-          v-model="bookingForm.guestEmail"
-          class="w-full rounded-lg border border-[#4F6259] p-3"
-          placeholder="Email"
-        />
-      </div>
-      <div class="mb-4">
-        <label class="mb-2 block font-medium text-[#4F6259]">Contact Number</label>
-        <input
-          type="tel"
-          v-model="bookingForm.guestContactNumber"
-          class="w-full rounded-lg border border-[#4F6259] p-3"
-          placeholder="Phone Number"
-        />
-      </div>
-      <div class="mb-4">
-        <label class="mb-2 block font-medium text-[#4F6259]">Check-In Date</label>
-        <input
-          type="date"
-          v-model="bookingForm.checkInDate"
-          class="w-full rounded-lg border border-[#4F6259] p-3"
-        />
-      </div>
-      <div class="mb-4">
-        <label class="mb-2 block font-medium text-[#4F6259]">Check-Out Date</label>
-        <input
-          type="date"
-          v-model="bookingForm.checkOutDate"
-          class="w-full rounded-lg border border-[#4F6259] p-3"
-        />
-      </div>
-      <div class="mb-4">
-        <label class="mb-2 block font-medium text-[#4F6259]">Number of Guests</label>
-        <input
-          type="number"
-          v-model="bookingForm.numberOfGuests"
-          class="w-full rounded-lg border border-[#4F6259] p-3"
-        />
-      </div>
-      <div class="mb-4">
-        <label class="mb-2 block font-medium text-[#4F6259]">Special Requests</label>
-        <textarea
-          v-model="bookingForm.specialRequests"
-          rows="4"
-          class="w-full rounded-lg border border-[#4F6259] p-3"
-          placeholder="Any special requests?"
-        ></textarea>
-      </div>
-      <div v-if="calculatedPrice" class="mb-4">
-        <label class="mb-2 block font-medium text-[#4F6259]">Total Price</label>
-        <p class="font-bold text-[#4F6259]">{{ calculatedPrice }}€</p>
-      </div>
-      <button
-        type="submit"
-        class="w-full rounded bg-[#4F6259] py-3 font-medium text-white transition-colors hover:bg-[#5a7765]"
-      >
-        Create Booking
-      </button>
-    </form>
-    <div v-if="bookingErrorMessage" class="error-message" v-html="bookingErrorMessage"></div>
+    </section>
   </div>
+  <!-- Footer -->
+  <Footer />
 </template>
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { trpc } from '@/trpc'
 import { useRouter } from 'vue-router'
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 
 const router = useRouter()
 const props = defineProps({
@@ -161,6 +184,10 @@ const handleSubmit = async () => {
     }
   }
 }
+
+const handleCancel = () => {
+  router.push('/')
+}
 </script>
 
 <style scoped>
@@ -186,7 +213,7 @@ const handleSubmit = async () => {
 
 .form-group p {
   color: #4f6259; /* Dark green color for the price */
-  font-size: 1rem; /* Adjust the font size as needed */
+  font-size: 1rem;
   font-weight: bold; /* Bold font for price */
 }
 
