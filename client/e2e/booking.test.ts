@@ -9,7 +9,7 @@ test.describe.serial('Booking Process', () => {
     const formLocator = page.locator('.booking-form-container form');
     await expect(formLocator).toBeVisible();
   });
-
+  
 
   test('Fill and submit booking form', async ({ page }) => {
     await page.goto('/booking/form');
@@ -52,10 +52,10 @@ test.describe.serial('Booking Process', () => {
     
 
 test('Handle payment actions', async ({ page }) => {
-    const bookingId = 'mockBookingId123';
-    const clientSecret = 'mockClientSecret123';
-  
-    await page.goto(`/booking/payment/${bookingId}/${clientSecret}`);
+  const bookingId = 'mockBookingId123';
+  const clientSecret = 'mockClientSecret123';
+
+  await page.goto(`/booking/payment/${bookingId}/${clientSecret}`);
   
     // Wait for the Stripe card element to be ready
     await page.waitForSelector('#card-element');
@@ -82,10 +82,9 @@ test('Handle payment actions', async ({ page }) => {
     });
 
     test('Get booking details on confirmation page', async ({ page }) => {
-        const bookingId = 'captured-or-known-valid-booking-id';
-        await page.goto(`/booking/details/${bookingId}`);
-        const bookingDetailsLocator = page.locator('text=Booking Confirmation');
-        await expect(bookingDetailsLocator).toBeVisible();
-        await expect(bookingDetailsLocator).toContainText('Booking Confirmation');
-      });
+      const bookingId = 'captured-or-known-valid-booking-id';
+      await page.goto(`/booking/details/${bookingId}`);
+      const bookingDetailsLocator = page.locator('text=Booking Confirmation');
+      await expect(bookingDetailsLocator).toBeVisible();
+    });
 });
