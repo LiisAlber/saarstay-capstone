@@ -51,5 +51,5 @@ jobs:
     - name: Run client E2E tests
       run: npm run build -w=client
       env:
-        VITE_API_ORIGIN: saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com
+        VITE_API_ORIGIN: http://localhost:3000
         VITE_API_PATH: /v1/trpc
