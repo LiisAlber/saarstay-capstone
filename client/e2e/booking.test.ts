@@ -10,6 +10,7 @@ test.describe.serial('Booking Process', () => {
     await expect(formLocator).toBeVisible();
   });
 
+
   test('Fill and submit booking form', async ({ page }) => {
     await page.goto('/booking/form');
     const bookingData = fakeBooking();
