@@ -41,7 +41,7 @@ services:
         # before the `npm run build`, since we need to prepare
         # these values for static JS files that will be served
         # by NGINX to our visitors.
-        VITE_API_ORIGIN: saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com
+        VITE_API_ORIGIN: http://localhost:3000
         VITE_API_PATH: /v1/trpc
         VITE_STRIPE_PUBLISHABLE_KEY: 'pk_test_51OVagRH4pt7OXRyvBMT3JMFRReJJdZrjuKOUns5idUCG1QesE3rvSLeu7XEs9TLSNYky7ER0ARZPh0z2qzov6Bhk00prrm2n7gz'
     environment:

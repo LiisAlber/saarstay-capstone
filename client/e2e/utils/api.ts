@@ -1,6 +1,6 @@
 import { apiOrigin, apiPath } from './config'
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client'
-import type { AppRouter } from '@mono/server/src/shared/trpc' // Adjust if necessary
+import type { AppRouter } from '@mono/server/src/shared/trpc' 
 import { fakeUser } from './fakeData'
 import type { Page } from '@playwright/test'
 import { superjson } from './superjson/common'
@@ -22,7 +22,6 @@ const trpc = createTRPCProxyClient<AppRouter>({
  */
 export async function loginNewUser(page: Page, userLogin = fakeUser()) {
   try {
-    // Adjust these API calls according to your project's API endpoints and methods
     await trpc.user.signup.mutate(userLogin);
   } catch (error) {
     // Handle error cases, e.g., user already exists
@@ -33,7 +32,6 @@ export async function loginNewUser(page: Page, userLogin = fakeUser()) {
 
   await page.goto('/');
 
-  // Replace 'token' with the actual key you use in localStorage for storing the auth token
   await page.evaluate(({ accessToken }) => {
     localStorage.setItem('token', accessToken);
   }, { accessToken });
@@ -42,9 +40,3 @@ export async function loginNewUser(page: Page, userLogin = fakeUser()) {
   return userLogin;
 }
 
-// Adjust or add more utility functions as needed for your tests
-// For example, if you have a function to create a booking or report a bug, define it here.
-// export const reportBug = trpc.bug.report.mutate;
-// export const createBooking = trpc.booking.create.mutate;
-
-// More utility functions can be added here as per your project requirements.
