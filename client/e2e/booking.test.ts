@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { fakeBooking } from 'utils/fakeData';
 
+console.log('CI environment variable:', process.env.CI);
+console.log('Running tests in headless mode:', !!process.env.CI);
+
 test.describe.serial('Booking Process', () => {
 
   test('Navigate to booking page and open booking form', async ({ page }) => {
