@@ -54,13 +54,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Start server for E2E tests and wait for readiness
-        run: |
-          npm run dev -w=server &
-          while ! curl --output /dev/null --silent --head --fail http://localhost:3000/health; do
-            echo "Waiting for server to be ready..."
-            sleep 1
-          done
+      - name: Start server for E2E tests
+        run: npm run dev -w=server &
         env:
           DB_USER: username
           DB_PASSWORD: password
