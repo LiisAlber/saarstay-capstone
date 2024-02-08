@@ -124,7 +124,6 @@ const bookingForm = ref({
 const bookingErrorMessage = ref('')
 const calculatedPrice = ref<number | null>(null)
 
-// Add the fetchCalculatedPrice function here
 const fetchCalculatedPrice = async () => {
   if (bookingForm.value.checkInDate && bookingForm.value.checkOutDate) {
     try {

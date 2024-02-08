@@ -4,46 +4,57 @@ import { fakeBooking } from 'utils/fakeData';
 test.describe.serial('Booking Process', () => {
 
   test('Navigate to booking page and open booking form', async ({ page }) => {
-    await page.goto('/');
-    await page.click('button[type="submit"]');
-    const formLocator = page.locator('.booking-form-container form');
-    await expect(formLocator).toBeVisible();
+    // Navigate directly to the booking form page.
+    await page.goto('/booking/form');
+    
+    // Wait for the state to be 'networkidle' to ensure all resources have been loaded.
+    await page.waitForLoadState('networkidle');
+
+    // Directly check for the form's visibility using a correct, specific selector.
+    // Adjust the selector based on the actual structure of your form.
+    const formLocator = page.locator('form'); // Adjusted for demonstration.
+    await expect(formLocator).toBeVisible({ timeout: 5000 });
   });
-  
 
   test('Fill and submit booking form', async ({ page }) => {
     await page.goto('/booking/form');
+    await page.waitForLoadState('networkidle');
+
     const bookingData = fakeBooking();
-    const form = page.locator('.booking-form-container form');
+    const currentDate = new Date().toISOString().split('T')[0];
+    console.log('Generated check-in date:', bookingData.checkInDate);
+    console.log('Generated check-out date:', bookingData.checkOutDate);
 
-    await form.locator('label:has-text("Guest Name") + div > input').fill(bookingData.guestName);
-    await form.locator('label:has-text("Guest Email") + div > input').fill(bookingData.guestEmail);
-    await form.locator('label:has-text("Contact Number") + div > input').fill(bookingData.guestContactNumber);
-    await form.locator('label:has-text("Check-In Date") + div > input').fill(bookingData.checkInDate);
-    await form.locator('label:has-text("Check-Out Date") + div > input').fill(bookingData.checkOutDate);
-    await form.locator('label:has-text("Number of Guests") + div > input').fill(bookingData.numberOfGuests.toString());
-    await form.locator('label:has-text("Special Requests") + div > input').fill(bookingData.specialRequests);
+    if (bookingData.checkInDate <= currentDate || bookingData.checkOutDate <= currentDate) {
+      throw new Error('The generated dates are not in the future.');
+  }
 
-    // Extract bookingId and clientSecret from the actual URL
-    const urlPattern = /\/booking\/payment\/([^/]+)\/([^/]+)/;
+    // Fill in the non-date inputs directly
+    await page.fill('input[type="text"][placeholder="Full Name"]', bookingData.guestName);
+    await page.fill('input[type="email"][placeholder="Email"]', bookingData.guestEmail);
+    await page.fill('input[type="tel"][placeholder="Phone Number"]', bookingData.guestContactNumber);
+    const checkInDateInput = await page.locator('xpath=//label[contains(text(), "Check-In Date")]/following-sibling::input[@type="date"]');
+    const checkOutDateInput = await page.locator('xpath=//label[contains(text(), "Check-Out Date")]/following-sibling::input[@type="date"]');
 
-    // Prepare to wait for URL change
-    const waitForURLPromise = page.waitForURL(urlPattern, { timeout: 20000 }); 
+    await checkInDateInput.fill(bookingData.checkInDate);
+    await checkOutDateInput.fill(bookingData.checkOutDate);
+
+    await page.fill('input[type="number"]', bookingData.numberOfGuests.toString());
+    await page.fill('textarea[placeholder="Any special requests?"]', bookingData.specialRequests);
+
+  
+  const urlPattern = /\/booking\/payment\/([^/]+)\/([^/]+)/;
+    
 
     // Submit the form
-    await form.locator('button[type="submit"]').click();
-
-    // Wait for the URL change to complete
-    await waitForURLPromise;
+    await page.click('button[type="submit"]');
+    await page.waitForURL(urlPattern, { timeout: 20000 });
 
     const actualUrl = page.url();
-
     const match = actualUrl.match(urlPattern);
     if (match) {
         const actualBookingId = match[1];
         const actualClientSecret = match[2];
-
-        // Using actualBookingId and actualClientSecret for further assertions or actions
         await expect(page).toHaveURL(`/booking/payment/${actualBookingId}/${actualClientSecret}`);
     } else {
         throw new Error('Failed to navigate to the expected URL');

@@ -3,7 +3,7 @@
     <!-- Header -->
     <Header class="fixed top-0 z-10 w-full bg-[#4F6259] bg-opacity-60 shadow-md" />
 
-    <!-- Hero Section with padding-top to push the content down below the header -->
+    <!-- Hero Section -->
     <section
       class="relative h-screen bg-cover bg-center p-4 pt-[80px] text-white"
       :style="{
@@ -17,16 +17,16 @@
         class="container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4"
       >
         <h1 class="mb-4 text-3xl font-extrabold sm:text-5xl">
-          <!-- Added mb-4 for spacing -->
+         
           City charm meets contemporary elegance
         </h1>
         <p class="mb-6 mt-4 text-lg sm:mt-6 sm:text-xl">
-          <!-- Adjusted mb-6 for spacing -->
+        
           Embrace the fusion of modern elegance and city charm in the pulsating heart of Kuressaare.
         </p>
-        <!-- BookingSubmit button with responsive margin -->
+        <!-- BookingSubmit button -->
         <div class="absolute bottom-0 left-0 right-0 px-4 pb-4">
-          <!-- Center the button in the container -->
+          
           <div class="flex justify-center">
             <BookingSubmit class="mt-6 md:mt-12 lg:mt-24" />
           </div>
