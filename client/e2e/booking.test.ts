@@ -22,8 +22,6 @@ test.describe.serial('Booking Process', () => {
 
     const bookingData = fakeBooking();
     const currentDate = new Date().toISOString().split('T')[0];
-    console.log('Generated check-in date:', bookingData.checkInDate);
-    console.log('Generated check-out date:', bookingData.checkOutDate);
 
     if (bookingData.checkInDate <= currentDate || bookingData.checkOutDate <= currentDate) {
       throw new Error('The generated dates are not in the future.');
