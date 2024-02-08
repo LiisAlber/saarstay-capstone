@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto bg-[#F7EBE9] px-4 py-4">
-    <button 
-      @click="goToAdminDashboard" 
-      class="mb-4 rounded-lg bg-[#EACDC7] py-2 px-4 text-sm font-medium text-[#4F6259] transition-colors hover:bg-[#4F6259] hover:text-white"
+    <button
+      @click="goToAdminDashboard"
+      class="mb-4 rounded-lg bg-[#EACDC7] px-4 py-2 text-sm font-medium text-[#4F6259] transition-colors hover:bg-[#4F6259] hover:text-white"
     >
       Back to Admin Dashboard
     </button>
@@ -105,7 +105,7 @@ const deleteFeedback = async (feedbackId: number) => {
 onMounted(fetchFeedbacks)
 
 const goToAdminDashboard = () => {
-  router.push('/admin/dashboard') 
+  router.push('/admin/dashboard')
 }
 </script>
 

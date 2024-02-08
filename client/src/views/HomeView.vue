@@ -17,16 +17,13 @@
         class="container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4"
       >
         <h1 class="mb-4 text-3xl font-extrabold sm:text-5xl">
-         
           City charm meets contemporary elegance
         </h1>
         <p class="mb-6 mt-4 text-lg sm:mt-6 sm:text-xl">
-        
           Embrace the fusion of modern elegance and city charm in the pulsating heart of Kuressaare.
         </p>
         <!-- BookingSubmit button -->
         <div class="absolute bottom-0 left-0 right-0 px-4 pb-4">
-          
           <div class="flex justify-center">
             <BookingSubmit class="mt-6 md:mt-12 lg:mt-24" />
           </div>

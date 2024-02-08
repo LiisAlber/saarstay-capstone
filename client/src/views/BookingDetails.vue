@@ -1,8 +1,8 @@
 <template>
   <div class="flex min-h-screen items-center justify-center bg-[#f7ebe9] p-4">
     <Header class="fixed top-0 z-10 w-full bg-[#4F6259] bg-opacity-60 shadow-md" />
-    
-    <div class="mt-[100px] mx-auto w-full max-w-lg rounded-lg bg-white p-6 shadow-md">
+
+    <div class="mx-auto mt-[100px] w-full max-w-lg rounded-lg bg-white p-6 shadow-md">
       <h1 class="mb-6 text-3xl font-bold text-[#4F6259]">Booking Confirmation</h1>
 
       <p v-if="error" class="rounded-md bg-red-200 p-4 text-red-600">{{ error }}</p>

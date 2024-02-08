@@ -31,8 +31,8 @@ test.describe.serial('Booking Process', () => {
     await page.fill('input[type="text"][placeholder="Full Name"]', bookingData.guestName);
     await page.fill('input[type="email"][placeholder="Email"]', bookingData.guestEmail);
     await page.fill('input[type="tel"][placeholder="Phone Number"]', bookingData.guestContactNumber);
-    const checkInDateInput = await page.locator('xpath=//label[contains(text(), "Check-In Date")]/following-sibling::input[@type="date"]');
-    const checkOutDateInput = await page.locator('xpath=//label[contains(text(), "Check-Out Date")]/following-sibling::input[@type="date"]');
+    const checkInDateInput = page.locator('xpath=//label[contains(text(), "Check-In Date")]/following-sibling::input[@type="date"]');
+    const checkOutDateInput = page.locator('xpath=//label[contains(text(), "Check-Out Date")]/following-sibling::input[@type="date"]');
 
     await checkInDateInput.fill(bookingData.checkInDate);
     await checkOutDateInput.fill(bookingData.checkOutDate);
@@ -41,8 +41,8 @@ test.describe.serial('Booking Process', () => {
     await page.fill('textarea[placeholder="Any special requests?"]', bookingData.specialRequests);
 
   
-  const urlPattern = /\/booking\/payment\/([^/]+)\/([^/]+)/;
-    
+    const urlPattern = /\/booking\/payment\/([^/]+)\/([^/]+)/;
+  
 
     // Submit the form
     await page.click('button[type="submit"]');
@@ -60,40 +60,40 @@ test.describe.serial('Booking Process', () => {
 });
     
 
-test('Handle payment actions', async ({ page }) => {
-  const bookingId = 'mockBookingId123';
-  const clientSecret = 'mockClientSecret123';
+  test('Handle payment actions', async ({ page }) => {
+    const bookingId = 'mockBookingId123';
+    const clientSecret = 'mockClientSecret123';
 
-  await page.goto(`/booking/payment/${bookingId}/${clientSecret}`);
-  
-    // Wait for the Stripe card element to be ready
-    await page.waitForSelector('#card-element');
-  
-    // Find the Stripe iframe directly
-    const stripeIframeHandle = await page.waitForSelector('iframe[src*="stripe.com"]');
-    const stripeFrame = await stripeIframeHandle.contentFrame();
-  
-    if (stripeFrame) {
-      // Fill the card details
-      await stripeFrame.fill('input[name="cardnumber"]', '4242 4242 4242 4242', { timeout: 20000 });
-      await stripeFrame.fill('input[name="exp-date"]', '12/34', { timeout: 20000 });
-      await stripeFrame.fill('input[name="cvc"]', '123', { timeout: 20000 });
-      await stripeFrame.fill('input[name="postal"]', '12345', { timeout: 20000 });
-  
-      // Click the submit button in the Stripe iframe
-      await stripeFrame.waitForSelector('button[type="submit"]:enabled', { timeout: 5000 });
-    // Wait for the expected navigation after submitting the payment
-    const expectedUrl = `/booking/payment/${bookingId}/${clientSecret}`;
-    await expect(page).toHaveURL(expectedUrl);
-    } else {
-    throw new Error('Stripe iframe not found');
-    }
-    });
+    await page.goto(`/booking/payment/${bookingId}/${clientSecret}`);
+    
+      // Wait for the Stripe card element to be ready
+      await page.waitForSelector('#card-element');
+    
+      // Find the Stripe iframe directly
+      const stripeIframeHandle = await page.waitForSelector('iframe[src*="stripe.com"]');
+      const stripeFrame = await stripeIframeHandle.contentFrame();
+    
+      if (stripeFrame) {
+        // Fill the card details
+        await stripeFrame.fill('input[name="cardnumber"]', '4242 4242 4242 4242', { timeout: 20000 });
+        await stripeFrame.fill('input[name="exp-date"]', '12/34', { timeout: 20000 });
+        await stripeFrame.fill('input[name="cvc"]', '123', { timeout: 20000 });
+        await stripeFrame.fill('input[name="postal"]', '12345', { timeout: 20000 });
+    
+        // Click the submit button in the Stripe iframe
+        await stripeFrame.waitForSelector('button[type="submit"]:enabled', { timeout: 5000 });
+      // Wait for the expected navigation after submitting the payment
+      const expectedUrl = `/booking/payment/${bookingId}/${clientSecret}`;
+      await expect(page).toHaveURL(expectedUrl);
+      } else {
+      throw new Error('Stripe iframe not found');
+      }
+      });
 
-    test('Get booking details on confirmation page', async ({ page }) => {
+  test('Get booking details on confirmation page', async ({ page }) => {
       const bookingId = 'captured-or-known-valid-booking-id';
       await page.goto(`/booking/details/${bookingId}`);
       const bookingDetailsLocator = page.locator('text=Booking Confirmation');
       await expect(bookingDetailsLocator).toBeVisible();
-    });
-});
+      });
+  });

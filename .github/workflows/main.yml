@@ -65,11 +65,20 @@ jobs:
         max-attempts: 5
         retry-delay: 5s
         url: http://localhost:3000/health
-    - name: Run client E2E tests
-      run: npm run test:e2e -w=client
+    - name: Run client E2E tests with debug logs
+      run: DEBUG=pw:api npm run test:e2e -w=client
+      env:
+        PWDEBUG: console
+    - name: Upload Playwright trace files
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: playwright-traces
+        path: client/test-results/**/trace.zip
     - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: playwright-report
         path: client/playwright-report/
         retention-days: 7
+  
