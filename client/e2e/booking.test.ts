@@ -14,8 +14,7 @@ test.describe.serial('Booking Process', () => {
     await page.waitForLoadState('networkidle');
 
     // Directly check for the form's visibility using a correct, specific selector.
-    // Adjust the selector based on the actual structure of your form.
-    const formLocator = page.locator('form'); // Adjusted for demonstration.
+    const formLocator = page.locator('form'); 
     await expect(formLocator).toBeVisible({ timeout: 5000 });
   });
 
@@ -30,7 +29,6 @@ test.describe.serial('Booking Process', () => {
       throw new Error('The generated dates are not in the future.');
   }
 
-    // Fill in the non-date inputs directly
     await page.fill('input[type="text"][placeholder="Full Name"]', bookingData.guestName);
     await page.fill('input[type="email"][placeholder="Email"]', bookingData.guestEmail);
     await page.fill('input[type="tel"][placeholder="Phone Number"]', bookingData.guestContactNumber);
@@ -43,10 +41,8 @@ test.describe.serial('Booking Process', () => {
     await page.fill('input[type="number"]', bookingData.numberOfGuests.toString());
     await page.fill('textarea[placeholder="Any special requests?"]', bookingData.specialRequests);
 
-  
     const urlPattern = /\/booking\/payment\/([^/]+)\/([^/]+)/;
   
-
     // Submit the form
     await page.click('button[type="submit"]');
     await page.waitForURL(urlPattern, { timeout: 20000 });
