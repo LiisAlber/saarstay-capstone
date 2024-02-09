@@ -42,6 +42,10 @@ jobs:
 
       - name: Test server
         run: npm run test -w=server
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
 
       - name: Test client (unit)
         run: npm run test:unit -w=client
