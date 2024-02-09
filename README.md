@@ -27,6 +27,11 @@ For server-side testing:
 - Execute tests using `npm run test`.
 - For test coverage, use `npm run coverage` in the server directory.
 
+For client-side testing:
+
+- Execute tests using `npm run test:e2e`.
+
+
 ## Usage Instructions
 
 The system is accessible to all users. The steps for using the system are as follows:
