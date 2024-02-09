@@ -46,7 +46,11 @@ jobs:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
-
+          TOKEN_KEY: supersecretkey
+          DB_NAME: testdb
+          DB_USER: turing
+          DB_PASSWORD: turing
+          DB_HOST: localhost
       
       
   build-deploy:
@@ -155,7 +159,7 @@ jobs:
             "containerPort": 80,
             "healthCheck": {
               "intervalSeconds": 10,
-              "path": "/api/health"
+              "path": "/health"
             }
           }' > public-endpoint.json
 
