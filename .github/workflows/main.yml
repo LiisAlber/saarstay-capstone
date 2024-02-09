@@ -46,7 +46,6 @@ jobs:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
-          TOKEN_KEY: supersecretkey
           DB_NAME: testdb
           DB_USER: turing
           DB_PASSWORD: turing
@@ -65,6 +64,7 @@ jobs:
       SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}  
       STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}  
       STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }} 
+      TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
