@@ -1,6 +1,6 @@
 {
     "client": {
-      "image": ":saarstay.client.17",
+      "image": "{{ env.LIGHTSAIL_CLIENT_IMAGE }}",
       "command": [],
       "ports": {
         "80": "HTTP"
@@ -11,7 +11,7 @@
       
     },
     "server": {
-      "image": ":saarstay.server.18",
+      "image": "{{ env.LIGHTSAIL_SERVER_IMAGE }}",
       "ports": {
         "3000": "HTTP"
       },
