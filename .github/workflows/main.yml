@@ -66,6 +66,10 @@ jobs:
       STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}  
       STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }} 
       TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
+      DB_HOST: ${{ secrets.PROD_DB_HOST }}
+      DB_NAME: ${{ secrets.PROD_DB_NAME }}
+      DB_USER: ${{ secrets.PROD_DB_USER }}
+      DB_PASSWORD: ${{ secrets.PROD_DB_PASSWORD }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
