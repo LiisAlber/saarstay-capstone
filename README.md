@@ -73,4 +73,6 @@ Use following card data:
 
 Page is deployed here: [SAARStay Guesthouse](https://saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com/)
 
-At the moment only client side works (locally it should be fully functional).
+At the moment test payment doesn't work. 
+
+Personal Github repository is here: [saarstay-capstone](https://github.com/LiisAlber/saarstay-capstone)
