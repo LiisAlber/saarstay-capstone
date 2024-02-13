@@ -3,7 +3,7 @@
     "containerPort": 80,
     "healthCheck": {
       "intervalSeconds": 15,
-      "path": "/health"
+      "path": "/api/health"
     }
   }
   

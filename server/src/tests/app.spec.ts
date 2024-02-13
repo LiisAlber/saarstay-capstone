@@ -30,7 +30,7 @@ describe('Launch app', () => {
 
   it('can launch the app', async () => {
     expect(app).toBeDefined()
-    await supertest(app).get('/health').expect(200, 'OK')
+    await supertest(app).get('/api/health').expect(200, 'OK')
   })
 
   it('should fetch and log the PostgreSQL version', async () => {

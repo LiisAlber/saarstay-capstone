@@ -162,7 +162,7 @@ jobs:
             "containerPort": 80,
             "healthCheck": {
               "intervalSeconds": 10,
-              "path": "/health"
+              "path": "/api/health"
             }
           }' > public-endpoint.json
 
