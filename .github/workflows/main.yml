@@ -57,6 +57,7 @@ jobs:
     runs-on: ubuntu-22.04
     if: github.ref == 'refs/heads/main'
     env:
+      NODE_ENV: 'production'
       API_ORIGIN: ${{ vars.API_ORIGIN }}
       API_PATH: api/v1/trpc
       CLIENT_IMAGE_TAG: client-${{ github.sha }}
@@ -157,15 +158,14 @@ jobs:
 
       - name: Log Environment Variable Presence
         run: |
+          echo "API_ORIGIN is set: ${API_ORIGIN:+true}"
           echo "NODE_ENV is set: ${NODE_ENV:+true}"
           echo "TOKEN_KEY is set: ${TOKEN_KEY:+true}"
           echo "SENDGRID_API_KEY is set: ${SENDGRID_API_KEY:+true}"
           echo "STRIPE_SECRET_KEY is set: ${STRIPE_SECRET_KEY:+true}"
           echo "STRIPE_PUBLISHABLE_KEY is set: ${STRIPE_PUBLISHABLE_KEY:+true}"
           echo "DB_NAME is set: ${DB_NAME:+true}"
-          # Add more variables as needed
       
-
       - name: Create public-endpoint.json file
         run: |
           echo '{
