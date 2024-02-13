@@ -4,10 +4,14 @@ services:
   # spin up a database
   postgres:
     image: postgres:16.1-alpine 
+    env_file:
+    - ./server/.env
+
     environment:
-      POSTGRES_USER: lalberjaansalu 
-      POSTGRES_PASSWORD: fKvhA8axk6By 
-      POSTGRES_DB: guesthouse2
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+
     ports:
       - "5432"
     volumes:
@@ -40,7 +44,9 @@ services:
         # by NGINX to our visitors.
         VITE_API_ORIGIN: https://saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com
         VITE_API_PATH: /api/v1/trpc
-        VITE_STRIPE_PUBLISHABLE_KEY: 'pk_test_51OVagRH4pt7OXRyvBMT3JMFRReJJdZrjuKOUns5idUCG1QesE3rvSLeu7XEs9TLSNYky7ER0ARZPh0z2qzov6Bhk00prrm2n7gz'
+        VITE_STRIPE_PUBLISHABLE_KEY: ${VITE_STRIPE_PUBLISHABLE_KEY}
+      env_file:
+      - ./client/.env
     environment:
       # Since our client NGINX server is not only serving static
       # files, but also routing /api requests to our API server,
