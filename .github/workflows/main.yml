@@ -58,7 +58,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     env:
       NODE_ENV: 'production'
-      API_PATH: api/v1/trpc
+      API_PATH: /api/v1/trpc
       API_ORIGIN: 'https://saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com'
       CLIENT_IMAGE_TAG: client-${{ github.sha }}
       SERVER_IMAGE_TAG: server-${{ github.sha }}
