@@ -133,8 +133,12 @@ export default publicProcedure
           message: validationMessages.join('; '),
         })
       } else if (error instanceof TRPCError) {
+        // eslint-disable-next-line no-console
+        console.error("TRPCError details:", error);
         throw error
       } else {
+        // eslint-disable-next-line no-console
+        console.error("Unexpected error:", error);
         throw new TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'An unexpected error occurred',

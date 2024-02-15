@@ -40,7 +40,7 @@ services:
         # by NGINX to our visitors.
         VITE_API_ORIGIN: https://saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com
         VITE_API_PATH: /api/v1/trpc
-        VITE_STRIPE_PUBLISHABLE_KEY: 'pk_test_51OVagRH4pt7OXRyvBMT3JMFRReJJdZrjuKOUns5idUCG1QesE3rvSLeu7XEs9TLSNYky7ER0ARZPh0z2qzov6Bhk00prrm2n7g'
+        VITE_STRIPE_PUBLISHABLE_KEY: "pk_test_51OVagRH4pt7OXRyvBMT3JMFRReJJdZrjuKOUns5idUCG1QesE3rvSLeu7XEs9TLSNYky7ER0ARZPh0z2qzov6Bhk00prrm2n7g"
     environment:
       # Since our client NGINX server is not only serving static
       # files, but also routing /api requests to our API server,
