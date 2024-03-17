@@ -33,6 +33,7 @@ import { ref, onMounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { loadStripe, type StripeCardElement } from '@stripe/stripe-js'
 import { trpc } from '@/trpc'
+import log from 'loglevel'
 
 const route = useRoute()
 const router = useRouter()
@@ -41,7 +42,7 @@ const bookingId = (route.params.bookingId as string) || ''
 const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY as string
 
 if (!stripePublishableKey) {
-  console.error('Stripe publishable key is not defined in environment variables.')
+  log.error('Stripe publishable key is not defined in environment variables.')
 }
 
 const stripePromise = loadStripe(stripePublishableKey)
@@ -51,7 +52,7 @@ const stripeError = ref('')
 let cardElement: StripeCardElement | null = null
 
 onMounted(async () => {
-  console.log('Route Params:', route.params)
+  log.info('Route Params:', route.params)
 
   const stripe = await stripePromise
   if (stripe) {
@@ -67,7 +68,7 @@ onMounted(async () => {
 
 const handlePayment = async () => {
   if (!clientSecret || !bookingId) {
-    console.error('Client secret or booking ID is missing')
+    log.error('Client secret or booking ID is missing')
     return
   }
 
@@ -81,7 +82,7 @@ const handlePayment = async () => {
     payment_method: { card: cardElement },
   })
 
-  console.log('Payment Confirmation Result:', result)
+  log.info('Payment Confirmation Result:', result)
 
   if (result.error) {
     stripeError.value = result.error.message || 'An unknown error occurred during payment.'
@@ -92,14 +93,14 @@ const handlePayment = async () => {
           bookingId,
           paymentIntentId: result.paymentIntent.id,
         })
-        console.log('Booking status update successful')
+        log.info('Booking status update successful')
         router.push({ name: 'BookingDetails', params: { bookingId: bookingId } })
       } catch (error) {
         stripeError.value = 'Failed to update booking status. Please contact support.'
-        console.error('Error updating booking status:', error)
+        log.error('Error updating booking status:', error)
       }
     } else {
-      console.log('Payment Intent Status:', result.paymentIntent.status)
+      log.info('Payment Intent Status:', result.paymentIntent.status)
     }
   }
 }

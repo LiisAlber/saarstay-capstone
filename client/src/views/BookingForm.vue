@@ -104,6 +104,7 @@ import { trpc } from '@/trpc'
 import { useRouter } from 'vue-router'
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import log from 'loglevel'
 
 const router = useRouter()
 const props = defineProps({
@@ -133,7 +134,7 @@ const fetchCalculatedPrice = async () => {
       })
       calculatedPrice.value = response.price
     } catch (error) {
-      console.error('Error calculating price:', error)
+      log.error('Error calculating price:', error)
     }
   }
 }
@@ -155,7 +156,7 @@ const handleSubmit = async () => {
     }
 
     const response = await trpc.bookings.submit.mutate(formattedData)
-    console.log('Submit response:', response)
+    log.info('Submit response:', response)
     calculatedPrice.value = response.totalPrice
 
     router.push({

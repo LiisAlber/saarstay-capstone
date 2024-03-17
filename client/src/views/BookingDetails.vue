@@ -23,9 +23,8 @@
 
         <p class="mt-4 font-medium">
           A confirmation email has been sent to
-          <span class="font-bold">{{ bookingDetails.guestEmail }}</span
-          >. Please check your inbox for the booking details and contact us if you need any further
-          assistance.
+          <span class="font-bold">{{ bookingDetails.guestEmail }}</span> Please check your inbox for
+          the booking details and contact us if you need any further assistance.
         </p>
 
         <button

@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto max-w-md rounded-lg bg-[#F7EBE9] p-6 shadow-lg">
-    <h2 class="mb-5 text-xl font-semibold text-[#4F6259]">Prices</h2>
+    <h2 class="mb-5 text-xl font-semibold text-[#4F6259]">{{ t('prices.title') }}</h2>
 
     <!-- Seasonal Rates -->
     <div class="space-y-3">
@@ -10,27 +10,29 @@
         class="flex items-center justify-between"
       >
         <p class="text-[#4F6259]">{{ seasonPeriod(rate.start, rate.end) }}</p>
-        <p class="font-bold text-[#4F6259]">{{ rate.rate }}€/night</p>
+        <p class="font-bold text-[#4F6259]">{{ rate.rate }} {{ t('prices.nightlyRate') }}</p>
       </div>
     </div>
 
     <!-- Default Rate -->
     <div class="mt-4 flex items-center justify-between border-t border-[#EACDC7] pt-4">
-      <p class="text-[#4F6259]">Default rate</p>
-      <p class="font-bold text-[#4F6259]">{{ defaultRate }}€/night</p>
+      <p class="text-[#4F6259]">{{ t('prices.defaultRate') }}</p>
+      <p class="font-bold text-[#4F6259]">{{ defaultRate }} {{ t('prices.nightlyRate') }}</p>
     </div>
 
     <!-- Additional Information -->
     <div class="mt-5 text-sm text-[#4F6259]">
-      The price includes use of sauna and the hot tub.<br />
-
-      Ask for a special offer for longer reservations.
+      {{ t('prices.priceIncludes') }}<br />
+      {{ t('prices.specialOffer') }}
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
 
 const defaultRate = ref(150)
 const seasonalRates = ref([
@@ -42,6 +44,7 @@ const seasonPeriod = (start: string, end: string) => {
   const startDate = new Date(start)
   const endDate = new Date(end)
   const options: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit' }
-  return `${startDate.toLocaleDateString('en-US', options)} - ${endDate.toLocaleDateString('en-US', options)}`
+
+  return `${startDate.toLocaleDateString(locale.value, options)} - ${endDate.toLocaleDateString(locale.value, options)}`
 }
 </script>

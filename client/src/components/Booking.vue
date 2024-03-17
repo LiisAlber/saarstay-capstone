@@ -2,16 +2,32 @@
   <Card class="flex flex-row items-center justify-between" data-testid="booking">
     <div>
       <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        Booking Details
+        {{ t('booking.details') }}
       </h5>
-      <p><strong>Guest Name:</strong> {{ booking.guestName }}</p>
-      <p><strong>Email:</strong> {{ booking.guestEmail }}</p>
-      <p><strong>Contact Number:</strong> {{ booking.guestContactNumber }}</p>
-      <p><strong>Check-in Date:</strong> {{ booking.checkInDate }}</p>
-      <p><strong>Check-out Date:</strong> {{ booking.checkOutDate }}</p>
-      <p><strong>Number of Guests:</strong> {{ booking.numberOfGuests }}</p>
-      <p><strong>Special Requests:</strong> {{ booking.specialRequests }}</p>
-      <p><strong>Status:</strong> {{ booking.status }}</p>
+      <p>
+        <strong>{{ t('booking.guestName') }}:</strong> {{ booking.guestName }}
+      </p>
+      <p>
+        <strong>{{ t('booking.email') }}:</strong> {{ booking.guestEmail }}
+      </p>
+      <p>
+        <strong>{{ t('booking.contactNumber') }}:</strong> {{ booking.guestContactNumber }}
+      </p>
+      <p>
+        <strong>{{ t('booking.checkInDate') }}:</strong> {{ booking.checkInDate }}
+      </p>
+      <p>
+        <strong>{{ t('booking.checkOutDate') }}:</strong> {{ booking.checkOutDate }}
+      </p>
+      <p>
+        <strong>{{ t('booking.numberOfGuests') }}:</strong> {{ booking.numberOfGuests }}
+      </p>
+      <p>
+        <strong>{{ t('booking.specialRequests') }}:</strong> {{ booking.specialRequests }}
+      </p>
+      <p>
+        <strong>{{ t('booking.status') }}:</strong> {{ t(`booking.status.${booking.status}`) }}
+      </p>
     </div>
 
     <FwbButton
@@ -20,7 +36,7 @@
       :href="{ name: 'EditBooking', params: { id: booking.id } } as any"
       class="pr-3"
     >
-      Edit Booking
+      {{ t('booking.editBooking') }}
       <ArrowRightIcon aria-hidden="true" class="inline h-4 w-4" />
     </FwbButton>
   </Card>
@@ -31,6 +47,9 @@ import type { Booking } from '@mono/server/src/shared/entities'
 import { ArrowRightIcon } from '@heroicons/vue/24/outline'
 import { FwbButton } from 'flowbite-vue'
 import Card from './Card.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{
   booking: Booking

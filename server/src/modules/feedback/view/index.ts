@@ -11,7 +11,7 @@ export default publicProcedure.query(async ({ ctx: { db } }) => {
 
     return confirmedFeedbacks
   } catch (error) {
-    // Error handling
+  
     throw new TRPCError({
       code: 'INTERNAL_SERVER_ERROR',
       message: 'Error retrieving confirmed feedback',

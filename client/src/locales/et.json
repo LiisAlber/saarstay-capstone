@@ -1,0 +1,117 @@
+{
+  "about": {
+    "title": "Meist",
+    "paragraph1": "Tere tulemast SAARstay'sse, kus kaasaegne disain kohtub hubase mugavusega, pakkudes igale külalisele rafineeritud pelgupaika.",
+    "paragraph2": "Nautige hästi varustatud kööki, kutsuvat elutuba ja päikeselist aeda meie kesklinna alal, mis pakub ideaalset kohta lõõgastumiseks.",
+    "paragraph3": "Kahe kaunilt sisustatud magamistoaga, hästi varustatud saunaga ja mugava vannitoaga garanteerime mugava ja lõõgastava peatumise.",
+    "paragraph4": "Hellitage end meie mullivanni luksusega ja avastage täiusliku mugavuse ning rahu segu Saarstay's, mis asub ideaalselt Kuressaare südames, võimaldades teil uurida linna elavaid vaatamisväärsusi ja maalilist ilu.",
+    "cta": "Broneerige nüüd, et kogeda unustamatut elamust."
+  },
+
+  "footer": {
+    "companyName": "SaarStayGH OÜ",
+    "phone": "+372 55 555 555",
+    "address": "Pärna 35, Kuressaare, Eesti",
+    "viewOnGoogleMaps": "Vaata Google Maps'is",
+    "privacyPolicy": "Privaatsuspoliitika",
+    "cancellationPolicy": "Tühistamispoliitika",
+    "houseRules": "Majareeglid",
+    "faqs": "KKK",
+    "copyright": "© 2024 SAARStay. Kõik õigused kaitstud."
+  },
+
+  "feedback": {
+    "noFeedback": "Ühtegi tagasisidet ei ole veel esitatud."
+  },
+
+  "prices": {
+    "title": "Hinnad",
+    "defaultRate": "Tavahind",
+    "nightlyRate": "€/öö",
+    "priceIncludes": "Hind sisaldab sauna ja kümblustünni kasutust.",
+    "specialOffer": "Küsi pikemate broneeringute eripakkumist."
+  },
+
+  "offers": {
+    "title": "Meie teenused",
+    "privateHouse": "Privaatne maja",
+    "bedrooms": "2 magamistuba",
+    "tvWifi": "TV & wifi",
+    "terraceYard": "Terrass & aed",
+    "saunaHotTub": "Saun & kümblustünn",
+    "fullKitchen": "Varustatud köök",
+    "familyFriendly": "Peresõbralik",
+    "freeParking": "Tasuta parkimine",
+    "greatLocation": "Suurepärane asukoht"
+  },
+
+  "menu": {
+    "dashboard": "Töölaud",
+    "logout": "Logi välja"
+  },
+
+  "admin": {
+    "dashboard": "Administraatori töölaud",
+    "manageBookings": "Halda broneeringuid",
+    "manageFeedback": "Halda tagasisidet",
+    "logout": "Logi välja",
+    "backToDashboard": "Tagasi administraatori töölauale",
+    "bookingManagement": "Administraatori broneeringute haldamine",
+    "errorOccurred": "Ilmnes viga",
+    "failedToConfirm": "Broneeringu kinnitamine ebaõnnestus",
+    "failedToCancel": "Broneeringu tühistamine ebaõnnestus",
+    "changeLanguage": "Vaheta keelt"
+  },
+
+  "nav": {
+    "bookNow": "Broneeri",
+    "leaveFeedback": "Jäta tagasiside"
+  },
+
+  "hero": {
+    "title": "Linna võlu kohtub kaasaegse elegantsiga",
+    "description": "Oma kaasaegse elegantsi ja linna võlu sulandumine Kuressaare südames."
+  },
+
+  "buttons": {
+    "bookNow": "Broneeri kohe"
+  },
+
+  "adminFeedback": {
+    "backToDashboard": "Tagasi Administraatori Töölauale",
+    "header": "Tagasiside Haldamine Administraatorile",
+    "errorFetching": "Tagasiside laadimine ebaõnnestus",
+    "editFeedback": "Muuda Tagasisidet",
+    "update": "Uuenda",
+    "cancel": "Tühista",
+    "failedToEdit": "Tagasiside muutmine ebaõnnestus",
+    "failedToDelete": "Tagasiside kustutamine ebaõnnestus",
+    "comment": "Kommentaar",
+    "rating": "Hinnang",
+    "status": "Olek",
+    "edit": "Muuda",
+    "delete": "Kustuta",
+    "pending": "Ootel",
+    "confirmed": "Kinnitatud",
+    "canceled": "Tühistatud"
+  },
+
+  "booking": {
+    "email": "E-post",
+    "contactNumber": "Kontakttelefon",
+    "checkInDate": "Saabumise kuupäev",
+    "checkOutDate": "Lahkumise kuupäev",
+    "numberOfGuests": "Külaliste arv",
+    "totalPrice": "Koguhind",
+    "status": "Olek",
+    "confirm": "Kinnita",
+    "cancel": "Tühista",
+    "pending": "Ootel",
+    "confirmed": "Kinnitatud",
+    "canceled": "Tühistatud",
+    "details": "Broneeringu Üksikasjad",
+    "guestName": "Külalise Nimi",
+    "specialRequests": "Eritoiveid",
+    "editBooking": "Muuda Broneeringut"
+  }
+}

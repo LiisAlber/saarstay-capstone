@@ -17,10 +17,10 @@
         class="container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4"
       >
         <h1 class="mb-4 text-3xl font-extrabold sm:text-5xl">
-          City charm meets contemporary elegance
+          {{ t('hero.title') }}
         </h1>
         <p class="mb-6 mt-4 text-lg sm:mt-6 sm:text-xl">
-          Embrace the fusion of modern elegance and city charm in the pulsating heart of Kuressaare.
+          {{ t('hero.description') }}
         </p>
         <!-- BookingSubmit button -->
         <div class="absolute bottom-0 left-0 right-0 px-4 pb-4">
@@ -66,6 +66,9 @@ import AboutSection from '@/components/AboutSection.vue'
 import Footer from '@/components/Footer.vue'
 import Gallery from '@/components/Gallery.vue'
 import PriceList from '@/components/PriceList.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <style scoped>

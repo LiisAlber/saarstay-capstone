@@ -65,6 +65,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { trpc } from '@/trpc'
+import log from 'loglevel'
 
 const feedbackText = ref('')
 const feedbackRating = ref(1) // Default to the lowest rating
@@ -88,7 +89,7 @@ const submitFeedback = async () => {
     emit('close') // Close the modal
   } catch (error) {
     // If there's an error, TRPC will throw and handle it here.
-    console.error('Failed to submit feedback', error)
+    log.error('Failed to submit feedback', error)
     alert('Failed to submit feedback.')
   }
 }

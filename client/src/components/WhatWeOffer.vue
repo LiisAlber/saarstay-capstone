@@ -1,26 +1,30 @@
 <template>
   <section class="offers-section bg-pink-light py-8 text-center">
-    <h2 class="text-4f6259 mb-6 text-2xl font-bold">What we offer</h2>
+    <h2 class="text-4f6259 mb-6 text-2xl font-bold">{{ t('offers.title') }}</h2>
     <div class="offers-grid grid grid-cols-1 gap-4 md:grid-cols-3">
-      <div class="offer-item" v-for="offer in offers" :key="offer.text">
+      <div class="offer-item" v-for="offer in offers" :key="offer.key">
         <i :class="['offer-icon', offer.icon]"></i>
-        <div class="offer-text">{{ offer.text }}</div>
+        <div class="offer-text">{{ t(offer.key) }}</div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 const offers = [
-  { icon: 'fas fa-home', text: 'Private house' },
-  { icon: 'fas fa-bed', text: '2 bedrooms' },
-  { icon: 'fas fa-wifi', text: 'TV & wifi' },
-  { icon: 'fas fa-chair', text: 'Terrace & yard' },
-  { icon: 'fas fa-hot-tub', text: 'Sauna & hot tub' },
-  { icon: 'fas fa-utensils', text: 'Full kitchen' },
-  { icon: 'fas fa-child', text: 'Family friendly' },
-  { icon: 'fas fa-parking', text: 'Free parking' },
-  { icon: 'fas fa-map-marked-alt', text: 'Great location' },
+  { icon: 'fas fa-home', key: 'offers.privateHouse' },
+  { icon: 'fas fa-bed', key: 'offers.bedrooms' },
+  { icon: 'fas fa-wifi', key: 'offers.tvWifi' },
+  { icon: 'fas fa-chair', key: 'offers.terraceYard' },
+  { icon: 'fas fa-hot-tub', key: 'offers.saunaHotTub' },
+  { icon: 'fas fa-utensils', key: 'offers.fullKitchen' },
+  { icon: 'fas fa-child', key: 'offers.familyFriendly' },
+  { icon: 'fas fa-parking', key: 'offers.freeParking' },
+  { icon: 'fas fa-map-marked-alt', key: 'offers.greatLocation' },
 ]
 </script>
 

@@ -4,11 +4,11 @@
       @click="goToAdminDashboard"
       class="mb-4 rounded-lg bg-[#EACDC7] px-4 py-2 text-sm font-medium text-[#4F6259] transition-colors hover:bg-[#4F6259] hover:text-white"
     >
-      Back to Admin Dashboard
+      {{ t('adminFeedback.backToDashboard') }}
     </button>
-    <h1 class="mb-4 text-2xl font-bold text-[#4F6259]">Admin Feedback Management</h1>
+    <h1 class="mb-4 text-2xl font-bold text-[#4F6259]">{{ t('adminFeedback.header') }}</h1>
     <div v-if="error" class="mb-4 rounded border border-red-400 bg-red-100 p-4 text-red-700">
-      {{ error }}
+      {{ t('adminFeedback.errorFetching') }}
     </div>
     <div v-if="feedbackList">
       <FeedbackCard
@@ -22,16 +22,18 @@
 
     <!-- Modal -->
     <div v-if="selectedFeedback" class="modal">
-      <h3 class="modal-header">Edit Feedback</h3>
+      <h3 class="modal-header">{{ t('adminFeedback.editFeedback') }}</h3>
       <form @submit.prevent="submitEdit(selectedFeedback.id)" class="modal-body">
         <textarea v-model="editComment" class="modal-textarea"></textarea>
         <select v-model="updatedStatus">
-          <option value="pending">Pending</option>
-          <option value="confirmed">Confirmed</option>
+          <option value="pending">{{ t('adminFeedback.pending') }}</option>
+          <option value="confirmed">{{ t('adminFeedback.confirmed') }}</option>
         </select>
         <div class="modal-actions">
-          <button type="submit" class="modal-button-save">Update</button>
-          <button @click="closeEditModal" class="modal-button-cancel">Cancel</button>
+          <button type="submit" class="modal-button-save">{{ t('adminFeedback.update') }}</button>
+          <button @click="closeEditModal" class="modal-button-cancel">
+            {{ t('adminFeedback.cancel') }}
+          </button>
         </div>
       </form>
     </div>
@@ -45,6 +47,7 @@ import type { Feedback } from '@mono/server/src/shared/entities'
 import { isLoggedIn } from '@/stores/user'
 import FeedbackCard from '@/components/FeedbackCard.vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 const feedbackList = ref<Feedback[] | null>(null)
 const error = ref('')
@@ -52,6 +55,7 @@ const selectedFeedback = ref<Feedback | null>(null)
 const editComment = ref('')
 const updatedStatus = ref<'pending' | 'confirmed' | 'canceled'>('pending')
 const router = useRouter()
+const { t } = useI18n()
 
 const fetchFeedbacks = async () => {
   if (!isLoggedIn.value) {

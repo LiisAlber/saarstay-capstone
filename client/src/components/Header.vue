@@ -1,10 +1,10 @@
 <template>
-  <header class="fixed left-0 top-0 z-50 w-full bg-[rgba(79,98,89,0.62)] shadow">
+  <header class="fixed left-0 top-0 z-50 w-full bg-[rgba(79,98,89,0.90)] shadow">
     <div class="container mx-auto flex items-center justify-between p-2">
       <!-- Logo -->
       <router-link to="/">
         <img
-          src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/SAARstay+logo.png"
+          src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/Logo+l%C3%A4bipaistev.png"
           alt="SAARstay Guesthouse Logo"
           class="logo-size"
         />
@@ -13,9 +13,15 @@
       <!-- Navigation Links for desktop -->
       <nav class="hidden items-center space-x-4 sm:flex">
         <!-- Desktop Booking Button -->
-        <button v-if="!isMenuOpen" @click="goToBookingForm" class="header-action">Book Now</button>
+        <button v-if="!isMenuOpen" @click="goToBookingForm" class="header-action">
+          {{ t('nav.bookNow') }}
+        </button>
 
-        <button @click="isFeedbackFormOpen = true" class="header-action">Leave Feedback</button>
+        <button @click="isFeedbackFormOpen = true" class="header-action">
+          {{ t('nav.leaveFeedback') }}
+        </button>
+
+        <button @click="toggleLanguage" class="header-action">{{ currentLanguage }}</button>
       </nav>
 
       <!-- Burger Menu Icon for mobile -->
@@ -40,15 +46,22 @@
       class="absolute left-0 top-full w-full shadow-md sm:hidden"
       style="background-color: #f7ebe9"
     >
-      <router-link to="/booking/form" class="block px-4 py-2" style="color: #4f6259"
-        >Book Now</router-link
-      >
+      <router-link to="/booking/form" class="block px-4 py-2" style="color: #4f6259">{{
+        t('nav.bookNow')
+      }}</router-link>
       <button
         @click="toggleFeedbackForm"
         class="block w-full px-4 py-2 text-left"
         style="color: #4f6259"
       >
-        Leave Feedback
+        {{ t('nav.leaveFeedback') }}
+      </button>
+      <button
+        @click="toggleLanguage"
+        class="block w-full px-4 py-2 text-left"
+        style="color: #4f6259"
+      >
+        {{ currentLanguage }}
       </button>
     </div>
 
@@ -58,13 +71,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import FeedbackForm from '@/components/FeedbackForm.vue'
 
 const isMenuOpen = ref(false)
 const isFeedbackFormOpen = ref(false)
 const router = useRouter()
+const { t, locale } = useI18n()
 
 const toggleFeedbackForm = () => {
   isMenuOpen.value = false // Close the mobile menu
@@ -74,11 +89,17 @@ const toggleFeedbackForm = () => {
 const goToBookingForm = () => {
   router.push({ name: 'BookingForm' })
 }
+
+const toggleLanguage = () => {
+  locale.value = locale.value === 'en' ? 'et' : 'en'
+}
+
+const currentLanguage = computed(() => (locale.value === 'en' ? 'ET' : 'EN'))
 </script>
 
 <style>
 .logo-size {
-  width: 150px; /* Logo width */
+  width: 80px; /* Logo width */
   height: auto; /* Maintain aspect ratio */
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="booking-navigation">
     <FwbButton @click="navigateToBookingForm" type="submit" class="custom-button">
-      Book now
+      {{ t('buttons.bookNow') }}
     </FwbButton>
   </div>
 </template>
@@ -9,6 +9,9 @@
 <script setup lang="ts">
 import { FwbButton } from 'flowbite-vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const router = useRouter()
 

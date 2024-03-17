@@ -1,0 +1,117 @@
+{
+  "about": {
+    "title": "About us",
+    "paragraph1": "Welcome to SAARstay, where contemporary design meets cozy convenience, providing a sophisticated sanctuary for every guest.",
+    "paragraph2": "Enjoy the well-appointed kitchen, inviting living room, and sunlit garden in our central area, offering the perfect space to unwind.",
+    "paragraph3": "With two beautifully furnished bedrooms, a well-equipped sauna, and a convenient bathroom, we guarantee a comfortable and rejuvenating stay.",
+    "paragraph4": "Indulge in the luxury of our hot tub and discover the perfect blend of comfort and serenity at Saarstay, ideally located in the heart of Kuressaare, allowing you to explore the city's vibrant attractions and scenic beauty.",
+    "cta": "Book now for an unforgettable experience."
+  },
+
+  "footer": {
+    "companyName": "SaarStayGH OÜ",
+    "phone": "+372 55 555 555",
+    "address": "Pärna 35, Kuressaare, Estonia",
+    "viewOnGoogleMaps": "View on Google Maps",
+    "privacyPolicy": "Privacy policy",
+    "cancellationPolicy": "Cancellation policy",
+    "houseRules": "House rules",
+    "faqs": "FAQs",
+    "copyright": "© 2024 SAARStay. All rights reserved."
+  },
+
+  "feedback": {
+    "noFeedback": "No feedback available yet."
+  },
+
+  "prices": {
+    "title": "Prices",
+    "defaultRate": "Default rate",
+    "nightlyRate": "€/night",
+    "priceIncludes": "The price includes use of sauna and the hot tub.",
+    "specialOffer": "Ask for a special offer for longer reservations."
+  },
+
+  "offers": {
+    "title": "What We Offer",
+    "privateHouse": "Private house",
+    "bedrooms": "2 bedrooms",
+    "tvWifi": "TV & wifi",
+    "terraceYard": "Terrace & yard",
+    "saunaHotTub": "Sauna & hot tub",
+    "fullKitchen": "Full kitchen",
+    "familyFriendly": "Family friendly",
+    "freeParking": "Free parking",
+    "greatLocation": "Great location"
+  },
+
+  "menu": {
+    "dashboard": "Dashboard",
+    "logout": "Logout"
+  },
+
+  "admin": {
+    "dashboard": "Admin Dashboard",
+    "manageBookings": "Manage Bookings",
+    "manageFeedback": "Manage Feedback",
+    "logout": "Logout",
+    "backToDashboard": "Back to Admin Dashboard",
+    "bookingManagement": "Admin Booking Management",
+    "errorOccurred": "An error occurred",
+    "failedToConfirm": "Failed to confirm booking",
+    "failedToCancel": "Failed to cancel booking",
+    "changeLanguage": "Change Language"
+  },
+
+  "nav": {
+    "bookNow": "Book Now",
+    "leaveFeedback": "Leave Feedback"
+  },
+
+  "hero": {
+    "title": "City charm meets contemporary elegance",
+    "description": "Embrace the fusion of modern elegance and city charm in the pulsating heart of Kuressaare."
+  },
+
+  "buttons": {
+    "bookNow": "Book now"
+  },
+
+  "adminFeedback": {
+    "backToDashboard": "Back to Admin Dashboard",
+    "header": "Admin Feedback Management",
+    "errorFetching": "Failed to fetch feedbacks",
+    "editFeedback": "Edit Feedback",
+    "update": "Update",
+    "cancel": "Cancel",
+    "failedToEdit": "Failed to edit feedback",
+    "failedToDelete": "Failed to delete feedback",
+    "comment": "Comment",
+    "rating": "Rating",
+    "status": "Status",
+    "edit": "Edit",
+    "delete": "Delete",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "canceled": "Canceled"
+  },
+
+  "booking": {
+    "email": "Email",
+    "contactNumber": "Contact Number",
+    "checkInDate": "Check-In Date",
+    "checkOutDate": "Check-Out Date",
+    "numberOfGuests": "Number of Guests",
+    "totalPrice": "Total Price",
+    "status": "Status",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "canceled": "Canceled",
+    "details": "Booking Details",
+    "guestName": "Guest Name",
+    "specialRequests": "Special Requests",
+    "editBooking": "Edit Booking"
+  }
+}

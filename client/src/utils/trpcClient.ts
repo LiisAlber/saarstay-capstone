@@ -1,4 +1,5 @@
 import { trpc } from '../trpc'
+import log from 'loglevel'
 
 export async function fetchAvailability(checkInDate: string, checkOutDate: string) {
   try {
@@ -11,7 +12,7 @@ export async function fetchAvailability(checkInDate: string, checkOutDate: strin
 
     return response
   } catch (error) {
-    console.error('Error fetching availability:', error)
+    log.error('Error fetching availability:', error)
     throw error
   }
 }

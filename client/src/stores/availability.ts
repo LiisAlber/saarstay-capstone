@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { fetchAvailability } from '../utils/trpcClient'
+import log from 'loglevel'
 
 export const useAvailabilityStore = defineStore('availability', {
   state: () => ({
@@ -11,7 +12,7 @@ export const useAvailabilityStore = defineStore('availability', {
         const response = await fetchAvailability(checkInDate, checkOutDate)
         this.dates = response // Store the dates in the state
       } catch (error) {
-        console.error('Error fetching availability:', error)
+        log.error('Error fetching availability:', error)
         throw error
       }
     },

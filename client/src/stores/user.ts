@@ -9,8 +9,6 @@ import { computed, ref } from 'vue'
 
 // We could wrap this inside of a Pinia store.
 // We could use @tanstack/vue-query for query caching.
-// You are free to experiment with more streamlined state management solutions
-// in your own project.
 // Here we will use a simple example that should be understandable for everyone.
 
 // Intial state.

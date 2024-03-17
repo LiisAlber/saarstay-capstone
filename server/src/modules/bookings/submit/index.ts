@@ -3,6 +3,7 @@ import { publicProcedure } from '@server/trpc'
 import { Booking } from '@server/entities'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
+import logger from '../../../logger';
 import { checkRoomAvailability } from '../services/roomAvailabilityService'
 import { sendBookingConfirmationEmail } from '../services/bookingEmailService'
 import { pricingService } from '../services/pricingService'
@@ -134,11 +135,11 @@ export default publicProcedure
         })
       } else if (error instanceof TRPCError) {
         // eslint-disable-next-line no-console
-        console.error("TRPCError details:", error);
+        logger.error("TRPCError details:", error);
         throw error
       } else {
         // eslint-disable-next-line no-console
-        console.error("Unexpected error:", error);
+        logger.error("Unexpected error:", error);
         throw new TRPCError({
           code: 'INTERNAL_SERVER_ERROR',
           message: 'An unexpected error occurred',

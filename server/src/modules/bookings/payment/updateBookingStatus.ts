@@ -18,7 +18,6 @@ export const updateBookingStatus = publicProcedure
 
     if (isTestEnvironment) {
       // Mock the behavior or perform specific test actions here
-      // For example, you can return a specific result for testing
       return { message: 'Booking updated successfully in test' }
     }
 

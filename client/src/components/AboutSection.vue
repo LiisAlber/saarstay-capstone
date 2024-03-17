@@ -1,28 +1,21 @@
 <template>
   <section class="about-section bg-pink-light py-8 text-center">
-    <h2 class="text-4f6259 mb-6 text-2xl font-bold">About us</h2>
+    <h2 class="text-4f6259 mb-6 text-2xl font-bold">{{ $t('about.title') }}</h2>
     <div class="about-content mx-auto max-w-prose">
-      <p>
-        Welcome to SAARstay, where contemporary design meets cozy convenience, providing a
-        sophisticated sanctuary for every guest.
-      </p>
-      <p>
-        Enjoy the well-appointed kitchen, inviting living room, and sunlit garden in our central
-        area, offering the perfect space to unwind.
-      </p>
-      <p>
-        With two beautifully furnished bedrooms, a well-equipped sauna, and a convenient bathroom,
-        we guarantee a comfortable and rejuvenating stay.
-      </p>
-      <p>
-        Indulge in the luxury of our hot tub and discover the perfect blend of comfort and serenity
-        at Saarstay, ideally located in the heart of Kuressaare, allowing you to explore the city's
-        vibrant attractions and scenic beauty.
-      </p>
-      <p>Book now for an unforgettable experience.</p>
+      <p>{{ t('about.paragraph1') }}</p>
+      <p>{{ t('about.paragraph2') }}</p>
+      <p>{{ t('about.paragraph3') }}</p>
+      <p>{{ t('about.paragraph4') }}</p>
+      <p>{{ t('about.cta') }}</p>
     </div>
   </section>
 </template>
+
+<script setup>
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+</script>
 
 <style scoped>
 .about-section {

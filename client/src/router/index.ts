@@ -7,8 +7,6 @@ import AdminFeedbackView from '../views/AdminFeedbackView.vue'
 import BookingForm from '../views/BookingForm.vue'
 import BookingDetails from '../views/BookingDetails.vue'
 import StripePayment from '../views/StripePayment.vue'
-//import FeedbackView from '../views/FeedbackView.vue';
-// import { getStoredAccessToken } from '@/utils/auth'
 import { isLoggedIn } from '@/stores/user'
 
 const router = createRouter({
@@ -65,14 +63,6 @@ const router = createRouter({
       component: BookingDetails,
     },
 
-    /* {
-      path: '/feedback',
-      name: 'Feedback',
-      component: FeedbackView,
-      meta: { requiresAuth: true }
-    }, */
-
-    // Redirect to home if no other route is matched
     {
       path: '/:pathMatch(.*)*',
       redirect: '/',
@@ -81,8 +71,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // Check the token's presence and log for debugging
-  console.log('Token in localStorage:', localStorage.getItem('adminToken'))
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
 
   if (requiresAuth && !isLoggedIn.value) {
