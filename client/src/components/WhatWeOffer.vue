@@ -66,7 +66,7 @@ const offers = [
     grid-template-columns: repeat(
       auto-fit,
       minmax(100px, 1fr)
-    ); /* Adapt number of columns to screen size */
+    ); 
   }
 }
 

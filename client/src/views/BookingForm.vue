@@ -5,37 +5,37 @@
 
     <section class="flex flex-grow flex-col items-center justify-center p-4 pb-8 pt-[100px]">
       <div class="mx-auto my-8 w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-        <h2 class="mb-6 text-2xl font-bold text-[#4F6259]">Create Booking</h2>
+        <h2 class="mb-6 text-2xl font-bold text-[#4F6259]">{{ t('form.createBooking') }}</h2>
         <form @submit.prevent="handleSubmit">
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">Guest Name</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.guestName') }}</label>
             <input
               type="text"
               v-model="bookingForm.guestName"
               class="w-full rounded-lg border border-[#4F6259] p-3"
-              placeholder="Full Name"
+              :placeholder="t('form.placeholder.fullName')"
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">Guest Email</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.guestEmail') }}</label>
             <input
               type="email"
               v-model="bookingForm.guestEmail"
               class="w-full rounded-lg border border-[#4F6259] p-3"
-              placeholder="Email"
+              :placeholder="t('form.placeholder.email')"
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">Contact Number</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.contactNumber') }}</label>
             <input
               type="tel"
               v-model="bookingForm.guestContactNumber"
               class="w-full rounded-lg border border-[#4F6259] p-3"
-              placeholder="Phone Number"
+              :placeholder="t('form.placeholder.phoneNumber')"
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">Check-In Date</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.checkInDate') }}</label>
             <input
               type="date"
               v-model="bookingForm.checkInDate"
@@ -43,7 +43,7 @@
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">Check-Out Date</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.checkOutDate') }}</label>
             <input
               type="date"
               v-model="bookingForm.checkOutDate"
@@ -51,7 +51,7 @@
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">Number of Guests</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.numberOfGuests') }}</label>
             <input
               type="number"
               v-model="bookingForm.numberOfGuests"
@@ -59,16 +59,16 @@
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">Special Requests</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.specialRequests') }}</label>
             <textarea
               v-model="bookingForm.specialRequests"
               rows="4"
               class="w-full rounded-lg border border-[#4F6259] p-3"
-              placeholder="Any special requests?"
+              :placeholder="t('form.placeholder.specialRequests')"
             ></textarea>
           </div>
           <div v-if="calculatedPrice" class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">Total Price</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.totalPrice') }}</label>
             <p class="font-bold text-[#4F6259]">{{ calculatedPrice }}€</p>
           </div>
           <div class="mt-6 flex items-center justify-between">
@@ -78,19 +78,21 @@
                 class="rounded-lg border border-[#4F6259] bg-[#EACDC7] px-5 py-2 text-sm font-medium text-[#4F6259] transition-colors hover:bg-[#4F6259] hover:text-white"
                 @click="handleCancel"
               >
-                Cancel
+                {{ t('form.cancel') }}
               </button>
 
               <button
                 type="submit"
                 class="ml-auto rounded-lg border border-[#4F6259] bg-[#4F6259] px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-[#EACDC7] hover:text-[#4F6259]"
               >
-                Book
+                {{ t('form.submit') }}
               </button>
             </div>
           </div>
         </form>
-        <div v-if="bookingErrorMessage" class="error-message" v-html="bookingErrorMessage"></div>
+        <div v-if="bookingErrorMessage" class="error-message">
+  {{ bookingErrorMessage }}
+</div>
       </div>
     </section>
   </div>
@@ -99,18 +101,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { trpc } from '@/trpc'
-import { useRouter } from 'vue-router'
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
-import log from 'loglevel'
+import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { trpc } from '@/trpc';
+import { TRPCClientError } from '@trpc/client';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+import log from 'loglevel';
 
-const router = useRouter()
+const { t } = useI18n();
+const router = useRouter();
+
+// Define component props
 const props = defineProps({
   initialCheckInDate: String,
   initialCheckOutDate: String,
-})
+});
 
 const bookingForm = ref({
   guestName: '',
@@ -120,10 +127,10 @@ const bookingForm = ref({
   checkOutDate: props.initialCheckOutDate || '',
   numberOfGuests: '2',
   specialRequests: '',
-})
+});
 
-const bookingErrorMessage = ref('')
-const calculatedPrice = ref<number | null>(null)
+const bookingErrorMessage = ref('');
+const calculatedPrice = ref<number | null>(null);
 
 const fetchCalculatedPrice = async () => {
   if (bookingForm.value.checkInDate && bookingForm.value.checkOutDate) {
@@ -143,7 +150,9 @@ const fetchCalculatedPrice = async () => {
 watch(() => bookingForm.value.checkInDate, fetchCalculatedPrice)
 watch(() => bookingForm.value.checkOutDate, fetchCalculatedPrice)
 
+
 const handleSubmit = async () => {
+  bookingErrorMessage.value = ''; 
   try {
     const formattedData = {
       guestName: bookingForm.value.guestName,
@@ -153,11 +162,11 @@ const handleSubmit = async () => {
       checkOutDate: new Date(bookingForm.value.checkOutDate),
       numberOfGuests: parseInt(bookingForm.value.numberOfGuests, 10),
       specialRequests: bookingForm.value.specialRequests,
-    }
+    };
 
-    const response = await trpc.bookings.submit.mutate(formattedData)
-    log.info('Submit response:', response)
-    calculatedPrice.value = response.totalPrice
+    const response = await trpc.bookings.submit.mutate(formattedData);
+    log.info('Submit response:', response);
+    calculatedPrice.value = response.totalPrice;
 
     router.push({
       name: 'StripePayment',
@@ -165,30 +174,44 @@ const handleSubmit = async () => {
         bookingId: response.bookingId,
         clientSecret: response.clientSecret,
       },
-    })
+    });
   } catch (error) {
-    if (error instanceof Error && 'message' in error) {
-      try {
-        const parsedErrors = JSON.parse(error.message)
-        if (Array.isArray(parsedErrors)) {
-          // Extract only the message from each error and join with line breaks
-          bookingErrorMessage.value = parsedErrors.map((err) => err.message).join('<br>')
-        } else {
-          bookingErrorMessage.value = error.message
-        }
-      } catch (jsonError) {
-        bookingErrorMessage.value = error.message
-      }
+  if (error instanceof TRPCClientError && typeof error.message === 'string') {
+  try {
+    const errorDetails = JSON.parse(error.message);
+    if (Array.isArray(errorDetails)) {
+      bookingErrorMessage.value = errorDetails
+        .map((err) => translateErrorMessage(err.message)) 
+        .join('; ');
     } else {
-      bookingErrorMessage.value = 'An unknown error occurred'
+      bookingErrorMessage.value = translateErrorMessage('error.unexpectedError');
     }
+  } catch (parseError) {
+   
+    bookingErrorMessage.value = translateErrorMessage('error.unexpectedError'); 
   }
+} else {
+  bookingErrorMessage.value = translateErrorMessage('error.unexpectedError'); 
 }
+}
+};
+
+const translateErrorMessage = (errorKey) => {
+  const keyMappings = {
+    "Expected date, received null": "error.dateExpected",
+  };
+  const translationKey = keyMappings[errorKey] || errorKey;
+  const translatedMessage = t(translationKey);
+  return translatedMessage;
+};
+
 
 const handleCancel = () => {
-  router.push('/')
-}
+  router.push('/');
+};
+
 </script>
+
 
 <style scoped>
 .booking-form-container {

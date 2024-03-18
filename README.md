@@ -73,4 +73,4 @@ Use following card data:
 
 Page is deployed here: [SAARStay Guesthouse](https://saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com/)
 
-Personal Github repository is here: [saarstay-capstone](https://github.com/LiisAlber/saarstay-capstone)
+Admin page is here: [Admin](https://saarstay.bi5i76at7ni1s.eu-central-1.cs.amazonlightsail.com/admin/login)

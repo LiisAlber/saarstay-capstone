@@ -9,7 +9,7 @@ import { createI18n } from 'vue-i18n'
 import App from './App.vue'
 import router from './router'
 
-// Import your translations
+// Import translations
 import en from './locales/en.json'
 import et from './locales/et.json'
 
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Create I18n instance with the translations
 const i18n = createI18n({
-  legacy: false, // Important: This disables the legacy API mode
+  legacy: false, // disables legacy API mode
   locale: 'en',
   messages: {
     en,
@@ -38,3 +38,5 @@ app.use(VCalendar)
 app.use(i18n)
 
 app.mount('#app')
+
+export default i18n;

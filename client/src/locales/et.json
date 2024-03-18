@@ -21,7 +21,12 @@
   },
 
   "feedback": {
-    "noFeedback": "Ühtegi tagasisidet ei ole veel esitatud."
+    "noFeedback": "Ühtegi tagasisidet ei ole veel esitatud.",
+    "leaveYourFeedback": "Jäta oma tagasiside",
+    "yourRating": "Sinu hinnang",
+    "yourFeedback": "Sinu tagasiside",
+    "submit": "Esita",
+    "placeholder": "Anna meile teada, mida arvad..."
   },
 
   "prices": {
@@ -113,5 +118,58 @@
     "guestName": "Külalise Nimi",
     "specialRequests": "Eritoiveid",
     "editBooking": "Muuda Broneeringut"
+  },
+
+  "form": {
+    "createBooking": "Loo broneering",
+    "guestName": "Nimi",
+    "guestEmail": "E-post",
+    "contactNumber": "Kontakttelefon",
+    "checkInDate": "Saabumise kuupäev",
+    "checkOutDate": "Lahkumise kuupäev",
+    "numberOfGuests": "Külaliste arv",
+    "specialRequests": "Erisoovid?",
+    "totalPrice": "Koguhind",
+    "submit": "Esita",
+    "cancel": "Tühista",
+    "placeholder": {
+      "fullName": "Täisnimi",
+      "email": "E-post",
+      "phoneNumber": "Telefoninumber",
+      "specialRequests": "Erisoovid?"
+    }
+  },
+
+  "error": {
+    "guestName": {
+      "required": "Nimi on kohustuslik.",
+      "maxLength": "Nimi peab olema vähem kui 100 tähemärki.",
+      "invalidCharacters": "Nimes tohib olla ainult tähti, tühikuid, sidekriipse ja ülakomasid."
+    },
+    "guestEmail": {
+      "invalidFormat": "E-posti aadress on valel kujul.",
+      "maxLength": "E-posti aadress peab olema vähem kui 100 tähemärki."
+    },
+    "guestContactNumber": {
+      "required": "Kontakttelefon on kohustuslik.",
+      "maxLength": "Kontakttelefon peab olema vähem kui 20 tähemärki.",
+      "invalidFormat": "Vigane telefoninumbri formaat. Peab sisaldama ainult numbreid, plussmärki, sidekriipse, sulge ja tühikuid."
+    },
+    "checkInDate": {
+      "pastDate": "Sisseregistreerimise kuupäev ei saa olla minevikus."
+    },
+    "checkOutDate": {
+      "pastDate": "Väljaregistreerimise kuupäev ei saa olla minevikus."
+    },
+    "numberOfGuests": {
+      "integer": "Külaliste arv peab olema täisarv.",
+      "minGuests": "Vähemalt üks külaline on nõutud.",
+      "maxGuests": "Külaliste arv peab olema 10 või vähem."
+    },
+    "specialRequests": {
+      "maxLength": "Erisoovides võib olla vähem kui 500 tähemärki."
+      
+    },
+    "dateExpected": "Esitatud kuupäev on kehtetu. Palun sisestage kehtiv kuupäev."
   }
 }

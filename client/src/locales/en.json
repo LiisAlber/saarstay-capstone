@@ -21,7 +21,12 @@
   },
 
   "feedback": {
-    "noFeedback": "No feedback available yet."
+    "noFeedback": "No feedback available yet.",
+    "leaveYourFeedback": "Leave Your Feedback",
+    "yourRating": "Your Rating",
+    "yourFeedback": "Your Feedback",
+    "submit": "Submit",
+    "placeholder": "Tell us what you think..."
   },
 
   "prices": {
@@ -113,5 +118,58 @@
     "guestName": "Guest Name",
     "specialRequests": "Special Requests",
     "editBooking": "Edit Booking"
+  },
+
+  "form": {
+    "createBooking": "Create Booking",
+    "guestName": "Guest Name",
+    "guestEmail": "Guest Email",
+    "contactNumber": "Contact Number",
+    "checkInDate": "Check-In Date",
+    "checkOutDate": "Check-Out Date",
+    "numberOfGuests": "Number of Guests",
+    "specialRequests": "Any special requests?",
+    "totalPrice": "Total Price",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "placeholder": {
+      "fullName": "Full Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number",
+      "specialRequests": "Any special requests?"
+    }
+  },
+
+  "error": {
+    "guestName": {
+      "required": "Guest name is required.",
+      "maxLength": "Guest name must be less than 100 characters.",
+      "invalidCharacters": "Guest name must only contain letters, spaces, hyphens, and apostrophes."
+    },
+    "guestEmail": {
+      "invalidFormat": "Invalid email format.",
+      "maxLength": "Email must be less than 100 characters."
+    },
+    "guestContactNumber": {
+      "required": "Contact number is required.",
+      "maxLength": "Contact number must be less than 20 characters.",
+      "invalidFormat": "Invalid contact number format. Must contain only numbers, plus, hyphens, parentheses, and spaces."
+    },
+    "checkInDate": {
+      "pastDate": "Check-in date cannot be in the past."
+    },
+    "checkOutDate": {
+      "pastDate": "Check-out date cannot be in the past."
+    },
+    "numberOfGuests": {
+      "integer": "Number of guests must be an integer.",
+      "minGuests": "At least one guest is required.",
+      "maxGuests": "Number of guests must be less than or equal to 10."
+    },
+    "specialRequests": {
+      "maxLength": "Special requests must be less than 500 characters."
+    },
+    "unexpectedError": "An unexpected error occurred.",
+    "dateExpected": "The date provided is invalid. Please provide a valid date."
   }
 }

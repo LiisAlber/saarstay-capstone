@@ -9,47 +9,43 @@ import { sendBookingConfirmationEmail } from '../services/bookingEmailService'
 import { pricingService } from '../services/pricingService'
 import { createPaymentIntent } from '../services/stripeService'
 
-const currentDate = new Date()
+// const currentDate = new Date()
 
 // Define a schema for the booking submission
 const bookingSubmissionSchema = z.object({
   userId: z.number().int().positive().optional(),
   guestName: z
     .string()
-    .min(1, { message: 'Guest name is required.' })
-    .max(100, { message: 'Guest name must be less than 100 characters.' })
-    .regex(/^[a-zA-Z\s'-]+$/, {
-      message: 'Guest name must only contain letters, spaces, hyphens, and apostrophes.',
-    }),
+    .min(1, { message: 'error.guestName.required' })
+    .max(100, { message: 'error.guestName.maxLength' })
+    .regex(/^[a-zA-Z\s'-]+$/, { message: 'error.guestName.invalidCharacters' }),
   guestEmail: z
     .string()
-    .email({ message: 'Invalid email format.' })
-    .max(100, { message: 'Email must be less than 100 characters.' }),
+    .email({ message: 'error.guestEmail.invalidFormat' })
+    .max(100, { message: 'error.guestEmail.maxLength' }),
   guestContactNumber: z
     .string()
-    .min(1, { message: 'Contact number is required.' })
-    .max(20, { message: 'Contact number must be less than 20 characters.' })
-    .regex(/^[0-9+()-\s]+$/, {
-      message:
-        'Invalid contact number format. Must contain only numbers, plus, hyphens, parentheses, and spaces.',
-    }),
-  checkInDate: z.coerce
+    .min(1, { message: 'error.guestContactNumber.required' })
+    .max(20, { message: 'error.guestContactNumber.maxLength' })
+    .regex(/^[0-9+()-\s]+$/, { message: 'error.guestContactNumber.invalidFormat' }),
+  checkInDate: z
     .date()
-    .min(currentDate, { message: 'Check-in date cannot be in the past.' }),
-  checkOutDate: z.coerce
+    .min(new Date(), { message: 'error.checkInDate.pastDate' }),
+  checkOutDate: z
     .date()
-    .min(currentDate, { message: 'Check-out date cannot be in the past.' }),
+    .min(new Date(), { message: 'error.checkOutDate.pastDate' }),
   numberOfGuests: z
     .number()
-    .int({ message: 'Number of guests must be an integer.' })
-    .min(1, { message: 'At least one guest is required.' })
-    .max(10, { message: 'Number of guests must be less than or equal to 10.' }),
+    .int({ message: 'error.numberOfGuests.integer' })
+    .min(1, { message: 'error.numberOfGuests.minGuests' })
+    .max(10, { message: 'error.numberOfGuests.maxGuests' }),
   specialRequests: z
     .string()
-    .max(500, { message: 'Special requests must be less than 500 characters.' })
+    .max(500, { message: 'error.specialRequests.maxLength' })
     .nullable()
     .default(null),
-})
+});
+
 
 export default publicProcedure
   .input(bookingSubmissionSchema)

@@ -17,11 +17,11 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
-      <h2 class="mb-4 text-lg font-bold">Leave Your Feedback</h2>
+      <h2 class="mb-4 text-lg font-bold">{{ t('feedback.leaveYourFeedback') }}</h2>
       <form @submit.prevent="submitFeedback">
         <!-- Rating system -->
         <div class="mb-4">
-          <label class="mb-1 block text-sm font-medium">Your Rating</label>
+          <label class="mb-1 block text-sm font-medium">{{ t('feedback.yourRating') }}</label>
           <div class="flex space-x-2">
             <label v-for="number in 5" :key="number" class="rating-label">
               <input
@@ -40,13 +40,13 @@
         </div>
         <!-- Feedback comment input -->
         <div class="mb-4">
-          <label for="feedback" class="mb-1 block text-sm font-medium">Your Feedback</label>
+          <label for="feedback" class="mb-1 block text-sm font-medium">{{ t('feedback.yourFeedback') }}</label>
           <textarea
             id="feedback"
             v-model="feedbackText"
             rows="4"
             class="w-full rounded border p-2"
-            placeholder="Tell us what you think..."
+            :placeholder="t('feedback.placeholder')"
           ></textarea>
         </div>
         <div class="flex justify-end">
@@ -54,7 +54,7 @@
             type="submit"
             class="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
           >
-            Submit
+            {{ t('feedback.submit') }}
           </button>
         </div>
       </form>
@@ -66,9 +66,13 @@
 import { ref } from 'vue'
 import { trpc } from '@/trpc'
 import log from 'loglevel'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 
 const feedbackText = ref('')
-const feedbackRating = ref(1) // Default to the lowest rating
+const feedbackRating = ref(5) // Default to the highest rating
 const emit = defineEmits(['close'])
 
 const setRating = (rating: number) => {
