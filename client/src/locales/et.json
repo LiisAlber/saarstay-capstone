@@ -8,6 +8,7 @@
     "cta": "Broneerige nüüd, et kogeda unustamatut elamust."
   },
 
+
   "footer": {
     "companyName": "SaarStayGH OÜ",
     "phone": "+372 55 555 555",
@@ -20,6 +21,7 @@
     "copyright": "© 2024 SAARStay. Kõik õigused kaitstud."
   },
 
+
   "feedback": {
     "noFeedback": "Ühtegi tagasisidet ei ole veel esitatud.",
     "leaveYourFeedback": "Jäta oma tagasiside",
@@ -29,6 +31,7 @@
     "placeholder": "Anna meile teada, mida arvad..."
   },
 
+
   "prices": {
     "title": "Hinnad",
     "defaultRate": "Tavahind",
@@ -36,6 +39,7 @@
     "priceIncludes": "Hind sisaldab sauna ja kümblustünni kasutust.",
     "specialOffer": "Küsi pikemate broneeringute eripakkumist."
   },
+
 
   "offers": {
     "title": "Meie teenused",
@@ -50,10 +54,12 @@
     "greatLocation": "Suurepärane asukoht"
   },
 
+
   "menu": {
     "dashboard": "Töölaud",
     "logout": "Logi välja"
   },
+
 
   "admin": {
     "dashboard": "Administraatori töölaud",
@@ -68,19 +74,23 @@
     "changeLanguage": "Vaheta keelt"
   },
 
+
   "nav": {
     "bookNow": "Broneeri",
     "leaveFeedback": "Jäta tagasiside"
   },
+
 
   "hero": {
     "title": "Linna võlu kohtub kaasaegse elegantsiga",
     "description": "Oma kaasaegse elegantsi ja linna võlu sulandumine Kuressaare südames."
   },
 
+
   "buttons": {
     "bookNow": "Broneeri kohe"
   },
+
 
   "adminFeedback": {
     "backToDashboard": "Tagasi Administraatori Töölauale",
@@ -101,6 +111,7 @@
     "canceled": "Tühistatud"
   },
 
+
   "booking": {
     "email": "E-post",
     "contactNumber": "Kontakttelefon",
@@ -119,6 +130,7 @@
     "specialRequests": "Eritoiveid",
     "editBooking": "Muuda Broneeringut"
   },
+
 
   "form": {
     "createBooking": "Loo broneering",
@@ -139,6 +151,7 @@
       "specialRequests": "Erisoovid?"
     }
   },
+
 
   "error": {
     "guestName": {
@@ -168,8 +181,34 @@
     },
     "specialRequests": {
       "maxLength": "Erisoovides võib olla vähem kui 500 tähemärki."
-      
+     
     },
     "dateExpected": "Esitatud kuupäev on kehtetu. Palun sisestage kehtiv kuupäev."
+  },
+
+
+  "payment": {
+    "completeYourPayment": "Viige makse lõpule",
+    "cancel": "Tühista",
+    "pay": "Maksa",
+    "loadingPaymentInfo": "Makseinfo laadimine..."
+  },
+
+
+  "bookingConfirmation": {
+    "title": "Broneeringu kinnitus",
+    "guestName": "Nimi",
+    "email": "E-post",
+    "contactNumber": "Kontakttelefon",
+    "checkInDate": "Sisseregistreerimise kuupäev",
+    "checkOutDate": "Väljaregistreerimise kuupäev",
+    "numberOfGuests": "Külaliste arv",
+    "specialRequests": "Erisoovid",
+    "totalPrice": "Koguhind",
+    "confirmationEmailSent": "Kinnituskiri on saadetud aadressile",
+    "checkYourInbox": "Palun kontrollige oma postkasti ja võtke meiega ühendust, kui vajate edasist abi.",
+    "returnToHomepage": "Tagasi avalehele",
+    "invalidBookingId": "Vigane broneeringu ID",
+    "unexpectedError": "Ilmnes ootamatu viga"
   }
 }

@@ -33,6 +33,14 @@ function createMemoryDatabase(): DataSource {
     implementation: () => '1',
   })
 
+  // Register the 'obj_description' function stub for pg-mem
+  pgMemory.public.registerFunction({
+    name: 'obj_description',
+    args: ['regclass' as any, 'text' as any],
+    returns: 'text' as any,
+    implementation: () => 'This is a mock description',
+  });
+
   return pgMemory.adapters.createTypeormDataSource({
     type: 'postgres',
     entities,

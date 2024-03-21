@@ -55,8 +55,9 @@
     "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "tsup": "^7.2.0",
-    "tsx": "^3.13.0",
+    "tsx": "^3.14.0",
     "typescript": "^5.3.3",
+    "v8-to-istanbul": "^9.2.0",
     "vitest": "^0.34.6"
   },
   "dependencies": {

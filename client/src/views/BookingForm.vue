@@ -196,8 +196,8 @@ const handleSubmit = async () => {
 }
 };
 
-const translateErrorMessage = (errorKey) => {
-  const keyMappings = {
+const translateErrorMessage = (errorKey: string) => {
+  const keyMappings: Record<string, string> = {
     "Expected date, received null": "error.dateExpected",
   };
   const translationKey = keyMappings[errorKey] || errorKey;

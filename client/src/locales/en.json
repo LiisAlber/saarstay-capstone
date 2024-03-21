@@ -8,6 +8,7 @@
     "cta": "Book now for an unforgettable experience."
   },
 
+
   "footer": {
     "companyName": "SaarStayGH OÜ",
     "phone": "+372 55 555 555",
@@ -20,6 +21,7 @@
     "copyright": "© 2024 SAARStay. All rights reserved."
   },
 
+
   "feedback": {
     "noFeedback": "No feedback available yet.",
     "leaveYourFeedback": "Leave Your Feedback",
@@ -29,6 +31,7 @@
     "placeholder": "Tell us what you think..."
   },
 
+
   "prices": {
     "title": "Prices",
     "defaultRate": "Default rate",
@@ -36,6 +39,7 @@
     "priceIncludes": "The price includes use of sauna and the hot tub.",
     "specialOffer": "Ask for a special offer for longer reservations."
   },
+
 
   "offers": {
     "title": "What We Offer",
@@ -50,10 +54,12 @@
     "greatLocation": "Great location"
   },
 
+
   "menu": {
     "dashboard": "Dashboard",
     "logout": "Logout"
   },
+
 
   "admin": {
     "dashboard": "Admin Dashboard",
@@ -68,19 +74,23 @@
     "changeLanguage": "Change Language"
   },
 
+
   "nav": {
     "bookNow": "Book Now",
     "leaveFeedback": "Leave Feedback"
   },
+
 
   "hero": {
     "title": "City charm meets contemporary elegance",
     "description": "Embrace the fusion of modern elegance and city charm in the pulsating heart of Kuressaare."
   },
 
+
   "buttons": {
     "bookNow": "Book now"
   },
+
 
   "adminFeedback": {
     "backToDashboard": "Back to Admin Dashboard",
@@ -101,6 +111,7 @@
     "canceled": "Canceled"
   },
 
+
   "booking": {
     "email": "Email",
     "contactNumber": "Contact Number",
@@ -119,6 +130,7 @@
     "specialRequests": "Special Requests",
     "editBooking": "Edit Booking"
   },
+
 
   "form": {
     "createBooking": "Create Booking",
@@ -139,6 +151,7 @@
       "specialRequests": "Any special requests?"
     }
   },
+
 
   "error": {
     "guestName": {
@@ -171,5 +184,31 @@
     },
     "unexpectedError": "An unexpected error occurred.",
     "dateExpected": "The date provided is invalid. Please provide a valid date."
+  },
+
+
+  "payment": {
+    "completeYourPayment": "Complete Your Payment",
+    "cancel": "Cancel",
+    "pay": "Pay",
+    "loadingPaymentInfo": "Loading payment information..."
+  },
+
+
+  "bookingConfirmation": {
+    "title": "Booking Confirmation",
+    "guestName": "Guest Name",
+    "email": "Email",
+    "contactNumber": "Contact Number",
+    "checkInDate": "Check-In Date",
+    "checkOutDate": "Check-Out Date",
+    "numberOfGuests": "Number of Guests",
+    "specialRequests": "Special Requests",
+    "totalPrice": "Total Price",
+    "confirmationEmailSent": "A confirmation email has been sent to",
+    "checkYourInbox": "Please check your inbox for the booking details and contact us if you need any further assistance.",
+    "returnToHomepage": "Return to Homepage",
+    "invalidBookingId": "Invalid booking ID",
+    "unexpectedError": "An unexpected error occurred"
   }
 }
