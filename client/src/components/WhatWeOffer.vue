@@ -1,16 +1,36 @@
 <template>
-  <section class="offers-section bg-pink-light py-8 text-center">
-    <h2 class="text-4f6259 mb-6 text-2xl font-bold">{{ t('offers.title') }}</h2>
-    <div class="offers-grid grid grid-cols-1 gap-4 md:grid-cols-3">
-      <div class="offer-item" v-for="offer in offers" :key="offer.key">
-        <i :class="['offer-icon', offer.icon]"></i>
-        <div class="offer-text">{{ t(offer.key) }}</div>
+  <section class="offers-section bg-[#F7EBE9]">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 py-8">
+      <!-- Text Section -->
+      <div class="lg:col-span-3 text-left">
+        <h2 class="text-4xl mb-12" style="color: #4F6259;">
+          {{ t('offers.title') }}
+        </h2>
+        <p class="mb-12 text-xl" style="color: #4F6259;">
+          {{ t('offers.description') }}
+        </p>
+        <GreenButton />
+      </div>
+      <!-- Spacer Column -->
+      <div class="hidden lg:block lg:col-span-1"></div>
+      <!-- Icons Section -->
+      <div class="lg:col-span-8">
+        <div class="grid grid-cols-3 lg:grid-cols-3 gap-x-4 gap-y-4 md:gap-x-12 md:gap-y-6">
+          <div class="offer-item flex flex-col md:flex-row items-center justify-center md:justify-start p-6 space-y-4 md:space-y-0 md:space-x-8" 
+               v-for="offer in offers" :key="offer.key" 
+               style="background-color: #4F6259; color: #E8D3D0; border-radius: 0.5rem; width: auto;">
+               <i :class="['offer-icon', offer.icon]" class="text-4xl md:text-5xl"></i>
+            <span class="offer-text text-lg md:text-xl">{{ t(offer.key) }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
+
 <script setup lang="ts">
+import GreenButton from '@/components/GreenButton.vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -30,64 +50,26 @@ const offers = [
 
 <style scoped>
 .offers-section {
-  background-color: #f7ebe9; /* Light pink background */
+  background-color: #f7ebe9;
   padding: 2rem;
   text-align: center;
 }
 
 .offers-heading {
-  color: #4f6259; /* Dark green text */
+  color: #4f6259;
   margin-bottom: 1rem;
 }
 
-/* Mobile styles */
-.offers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 1rem;
-}
-
 .offer-item {
-  background-color: rgba(79, 98, 89, 0.8);
-  border-radius: 10px;
-  width: 100px; /* Fixed width */
-  height: 100px; /* Fixed height */
-  display: flex;
-  flex-direction: column; /* Stack icon and text vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
+  background-color: #D8E2DC;
+  padding: 1rem;
+  width: 100%;
   text-align: center;
-  margin: 0 auto; /* Center the card in the grid */
-}
-
-/* Tablet and desktop styles */
-@media (min-width: 768px) {
-  .offers-grid {
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(100px, 1fr)
-    ); 
-  }
 }
 
 .offer-icon {
-  font-size: 1.5rem; /* icon size */
-  margin-bottom: 0.5rem;
-  color: #f7ebe9; /* Light pink text and icons */
+  transition: color 0.2s ease-in-out;
 }
 
-.offer-text {
-  font-size: 0.875rem; /* text size */
-  color: #f7ebe9; /* Light pink text */
-}
 
-.text-4f6259 {
-  --tw-text-opacity: 1;
-  color: rgba(79, 98, 89, var(--tw-text-opacity));
-}
-
-.bg-pink-light {
-  --tw-bg-opacity: 1;
-  background-color: rgba(247, 235, 233, var(--tw-bg-opacity));
-}
 </style>

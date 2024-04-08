@@ -1,15 +1,15 @@
 {
   "about": {
     "title": "Meist",
-    "paragraph1": "Tere tulemast SAARstay'sse, kus kaasaegne disain kohtub hubase mugavusega, pakkudes igale külalisele rafineeritud pelgupaika.",
-    "paragraph2": "Nautige hästi varustatud kööki, kutsuvat elutuba ja päikeselist aeda meie kesklinna alal, mis pakub ideaalset kohta lõõgastumiseks.",
-    "paragraph3": "Kahe kaunilt sisustatud magamistoaga, hästi varustatud saunaga ja mugava vannitoaga garanteerime mugava ja lõõgastava peatumise.",
-    "paragraph4": "Hellitage end meie mullivanni luksusega ja avastage täiusliku mugavuse ning rahu segu Saarstay's, mis asub ideaalselt Kuressaare südames, võimaldades teil uurida linna elavaid vaatamisväärsusi ja maalilist ilu.",
-    "cta": "Broneerige nüüd, et kogeda unustamatut elamust."
+    "paragraph1": "Avasta SAARstay võlu - kaasaegne puhkepaik, mis peegeldab Kuressaare saareelu olemust. Naudi rahulikku puhkust saare rikkalikus kultuuris.",
+    "paragraph2": "Meie külalistemaja on loodud mõeldes sinu mugavusele, pakkudes hästi varustatud kööke, hubaseid eluruume ja rahulikke magamistubasid. Lõõgastu meie saunas või kümblustünnis.",
+    "paragraph3": "Avasta meie peidupaiga vaikset elegantsi. Uuri lähedal asuvaid kultuurimälestisi. Naudi Saaremaa muutuvaid aastaaegu. Tunne end koduselt kohas, kus modernsed mugavused kohtuvad saare lihtsusega.",
+    "cta": "Leia ainulaadne segu lõõgastusest ja kohalikest elamustest SAARstay's. Oled valmis unustamatuks peatumiseks? Broneeri meie juures juba täna."
   },
-
-
+  
   "footer": {
+    "aboutTitle": "Meist",
+    "aboutDescription": "Hubane SAARStay külalistemaja asub Kuressaares, pakkudes meeldejäävat saarekogemust mugavate majutusvõimaluste ja hooliva teenindusega. Ühendage end Saaremaa rahuga SAARStay's.",
     "companyName": "SaarStayGH OÜ",
     "phone": "+372 55 555 555",
     "address": "Pärna 35, Kuressaare, Eesti",
@@ -42,6 +42,7 @@
 
 
   "offers": {
+    "description": "Tere tulemast SAARstay'sse, kus kaasaegne disain kohtub hubase mugavusega, pakkudes igale külalisele rafineeritud pelgupaika",
     "title": "Meie teenused",
     "privateHouse": "Privaatne maja",
     "bedrooms": "2 magamistuba",

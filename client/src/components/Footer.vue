@@ -1,9 +1,21 @@
 <template>
-  <footer class="bg-[#4F6259] text-white">
-    <div class="container mx-auto px-6 py-8">
-      <div class="flex flex-col justify-between md:flex-row">
-        <!-- Left Side Content -->
-        <div class="mb-6 flex flex-col md:mb-0">
+  <footer class="bg-[#4F6259] text-[#F7EBE9] py-8">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 gap-4 leading-loose text-left md:text-left">
+        <!-- About Us -->
+        <div class="flex flex-col">
+          <h3 class="mb-2 text-lg font-semibold">{{ t('footer.aboutTitle') }}</h3>
+          <p>{{ t('footer.aboutDescription') }}</p>
+          <div class="flex justify-center md:justify-start space-x-4 mt-4">
+            <!-- Facebook Icon -->
+            <i class="fa-brands fa-facebook-f text-2xl hover:text-green-700 cursor-pointer"></i>
+            <!-- Instagram Icon -->
+            <i class="fa-brands fa-instagram text-2xl hover:text-green-700 cursor-pointer"></i>
+          </div>
+              </div>
+
+        <!-- Company Information -->
+        <div class="flex flex-col">
           <h3 class="mb-2 text-lg font-semibold">{{ t('footer.companyName') }}</h3>
           <p>{{ t('footer.phone') }}</p>
           <p>info@saarstay.ee</p>
@@ -16,35 +28,26 @@
             <i class="fas fa-map-marker-alt"></i>
             <span>{{ t('footer.viewOnGoogleMaps') }}</span>
           </a>
-          <div class="mt-4 flex space-x-4">
-            <i class="fab fa-facebook-f transition-colors hover:text-[#EACDC7]"></i>
-            <i class="fab fa-instagram transition-colors hover:text-[#EACDC7]"></i>
-          </div>
         </div>
 
-        <!-- Center Logo -->
-        <div class="mb-6 flex justify-center md:mb-0">
+        <!-- Useful Links -->
+        <div class="flex flex-col">
+          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.privacyPolicy') }}</a>
+          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.cancellationPolicy') }}</a>
+          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.houseRules') }}</a>
+          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.faqs') }}</a>
+        </div>
+
+        <!-- Logo and Name -->
+        <div class="flex items-center justify-center md:justify-end">
           <img
-            src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/SAARstay+logo.png"
+            src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/Logo+l%C3%A4bipaistev.png"
             alt="SAARstay Guesthouse Logo"
-            class="h-16 w-auto"
+            class="h-24 md:h-36 w-auto"
           />
         </div>
-
-        <!-- Right Side Content -->
-        <div class="flex flex-col items-start md:items-end">
-          <p class="my-2 block transition-colors hover:text-[#EACDC7]">
-            {{ t('footer.privacyPolicy') }}
-          </p>
-          <p class="my-2 block transition-colors hover:text-[#EACDC7]">
-            {{ t('footer.cancellationPolicy') }}
-          </p>
-          <p class="my-2 block transition-colors hover:text-[#EACDC7]">
-            {{ t('footer.houseRules') }}
-          </p>
-          <p class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.faqs') }}</p>
-        </div>
       </div>
+      <!-- Copyright Text -->
       <div class="mt-8 text-center text-sm">{{ t('footer.copyright') }}</div>
     </div>
   </footer>

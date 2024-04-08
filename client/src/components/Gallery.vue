@@ -25,7 +25,7 @@ const images = [
 
 <style scoped>
 .carousel-container {
-  max-width: 50%;
+  max-width: 100%;
   margin: auto;
 }
 

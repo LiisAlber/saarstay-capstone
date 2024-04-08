@@ -1,17 +1,17 @@
 <template>
   <header class="fixed left-0 top-0 z-50 w-full bg-[rgba(79,98,89,0.90)] shadow">
-    <div class="container mx-auto flex items-center justify-between p-2">
+    <div class="container mx-auto flex items-center justify-between h-auto">
       <!-- Logo -->
-      <router-link to="/">
+      <router-link to="/" class="h-40 px-16">
         <img
-          src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/Logo+l%C3%A4bipaistev.png"
+          src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/SAAR+(1).png"
           alt="SAARstay Guesthouse Logo"
-          class="logo-size"
+          class="h-48"
         />
       </router-link>
 
       <!-- Navigation Links for desktop -->
-      <nav class="hidden items-center space-x-4 sm:flex">
+      <nav class="hidden items-center text-xl space-x-4 sm:flex">
         <!-- Desktop Booking Button -->
         <button v-if="!isMenuOpen" @click="goToBookingForm" class="header-action">
           {{ t('nav.bookNow') }}
@@ -99,13 +99,12 @@ const currentLanguage = computed(() => (locale.value === 'en' ? 'ET' : 'EN'))
 
 <style>
 .logo-size {
-  width: 80px; /* Logo width */
+  width: 200px; /* Logo width */
   height: auto; /* Maintain aspect ratio */
 }
 
 .header-action {
   padding: 8px 16px;
-  font-size: 1rem; /* Match font size with the rest of the header links */
   color: #eacdc7; /* Color that stands out against the header background */
   background-color: transparent; /* No background for a link-like appearance */
   border: none; /* No border */

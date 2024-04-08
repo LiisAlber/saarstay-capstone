@@ -1,15 +1,15 @@
 {
   "about": {
     "title": "About us",
-    "paragraph1": "Welcome to SAARstay, where contemporary design meets cozy convenience, providing a sophisticated sanctuary for every guest.",
-    "paragraph2": "Enjoy the well-appointed kitchen, inviting living room, and sunlit garden in our central area, offering the perfect space to unwind.",
-    "paragraph3": "With two beautifully furnished bedrooms, a well-equipped sauna, and a convenient bathroom, we guarantee a comfortable and rejuvenating stay.",
-    "paragraph4": "Indulge in the luxury of our hot tub and discover the perfect blend of comfort and serenity at Saarstay, ideally located in the heart of Kuressaare, allowing you to explore the city's vibrant attractions and scenic beauty.",
-    "cta": "Book now for an unforgettable experience."
+    "paragraph1": "Discover the charm of SAARstay, a modern retreat that captures the essence of island life in Kuressaare. Enjoy a peaceful stay steeped in the island's rich culture.",
+    "paragraph2": "Our guesthouse is designed with your comfort in mind, featuring well-appointed kitchens, cozy living spaces, and tranquil bedrooms. Relax in our sauna or hot tub at your leisure.",
+    "paragraph3": "Uncover the quiet elegance of our hideaway. Explore the nearby cultural landmarks. Delight in the changing seasons of Saaremaa. Make yourself at home in a place where modern amenities meet island simplicity.",
+    "cta": "Come find a unique blend of relaxation and local experiences at Saarstay. Ready for an unforgettable stay? Book with us today."
   },
 
-
   "footer": {
+    "aboutTitle": "About Us",
+    "aboutDescription": "Nestled in Kuressaare, SAARStay Guesthouse is a cozy retreat offering a memorable island experience with comfortable accommodations and attentive service. Connect with the tranquility of Saaremaa at SAARStay.",
     "companyName": "SaarStayGH OÜ",
     "phone": "+372 55 555 555",
     "address": "Pärna 35, Kuressaare, Estonia",
@@ -42,6 +42,7 @@
 
 
   "offers": {
+    "description": "Welcome to SAARstay, where contemporary design meets cozy convenience, providing a sophisticated sanctuary for every guest",
     "title": "What We Offer",
     "privateHouse": "Private house",
     "bedrooms": "2 bedrooms",

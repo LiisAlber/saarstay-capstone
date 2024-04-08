@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen flex-col bg-[#F7EBE9]">
     <!-- Header -->
-    <Header class="fixed top-0 z-10 w-full bg-[#4F6259] bg-opacity-60 shadow-md" />
+    <Header/>
 
     <!-- Hero Section -->
     <section
@@ -12,7 +12,7 @@
       }"
     >
       <!-- Overlay with increased opacity for a darker effect -->
-      <div class="absolute bottom-0 left-0 right-0 top-0 bg-black bg-opacity-20"></div>
+      <div class="absolute bottom-0 left-0 right-0 top-0 bg-black bg-opacity-40"></div>
       <div
         class="container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4"
       >
@@ -31,23 +31,21 @@
       </div>
     </section>
 
-    <!-- About Us Section -->
-    <AboutSection />
-
-    <!-- Gallery Section -->
-    <section class="bg-[#F7EBE9]">
-      <Gallery />
+    <!-- Combined About Us and Gallery Section -->
+    <section class="flex flex-col md:flex-row justify-center items-stretch mx-8 my-8">
+      <Gallery class="w-full md:w-1/2 md:mr-4" />
+      <AboutSection class="w-full md:w-1/2 md:ml-4" />
     </section>
 
     <!-- What We Offer Section -->
     <WhatWeOffer />
 
     <!-- Pricelist Section -->
-    <section class="bg-[#F7EBE9] py-8">
-      <div class="container mx-auto">
-        <PriceList class="mx-auto" />
-      </div>
-    </section>
+    <section class="bg-[#4F6259] ">
+    <div class="max-w-6xl mx-auto p-4">
+      <PriceList class="mx-auto" />
+    </div>
+</section>
 
     <!-- Feedback Section -->
     <FeedbackDisplay class="mb-8" />
@@ -74,5 +72,17 @@ const { t } = useI18n()
 <style scoped>
 .text-shadow {
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+  .md\:mr-4 {
+    margin-right: 1rem; 
+  }
+  .md\:ml-4 {
+    margin-left: 1rem; 
+  }
 }
 </style>
