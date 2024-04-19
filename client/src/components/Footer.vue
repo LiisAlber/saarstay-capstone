@@ -2,7 +2,7 @@
   <footer class="bg-[#4F6259] py-8 text-[#F7EBE9]">
     <div class="container mx-auto px-6">
       <div
-        class="grid grid-cols-1 text-left leading-loose md:grid-cols-4 md:grid-cols-4 md:gap-8 md:space-x-16 md:text-left"
+        class="grid grid-cols-1 text-left  md:grid-cols-4 md:grid-cols-4 md:gap-8 md:space-x-16 md:text-left"
       >
         <!-- About Us -->
         <div class="flex flex-col space-y-2">

@@ -58,8 +58,6 @@ export async function getPostgresVersion() {
   const response = await sql`select version()`
   const [{ version }] = response
 
-  // eslint-disable-next-line no-console
-  console.log(response)
   return version
 }
 
