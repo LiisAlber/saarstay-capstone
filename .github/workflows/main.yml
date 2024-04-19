@@ -195,6 +195,6 @@ jobs:
       - name: Deploy to AWS Lightsail
         run: |
           aws lightsail create-container-service-deployment \
-          --service-name ${{ env.AWS_LIGHTSAIL_SERVICE }} \
+          --service-name ${{ vars.AWS_LIGHTSAIL_SERVICE }} \
           --containers file://containers.json \
           --public-endpoint file://public-endpoint.json
