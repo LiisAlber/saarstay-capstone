@@ -1,6 +1,6 @@
 <template>
   <header class="fixed left-0 top-0 z-50 w-full bg-[rgba(79,98,89,0.90)] shadow">
-    <div class="container mx-auto flex items-center justify-between h-auto">
+    <div class="container mx-auto flex h-auto items-center justify-between">
       <!-- Logo -->
       <router-link to="/" class="h-40 px-16">
         <img
@@ -11,7 +11,7 @@
       </router-link>
 
       <!-- Navigation Links for desktop -->
-      <nav class="hidden items-center text-xl space-x-4 sm:flex">
+      <nav class="hidden items-center space-x-4 text-xl sm:flex">
         <!-- Desktop Booking Button -->
         <button v-if="!isMenuOpen" @click="goToBookingForm" class="header-action">
           {{ t('nav.bookNow') }}

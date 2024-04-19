@@ -1,0 +1,13 @@
+/* theme.css */
+.vc-custom-color {
+  --vc-accent-50: #e6e8eb; /* lightest */
+  --vc-accent-100: #d1d4da;
+  --vc-accent-200: #bdc0c9;
+  --vc-accent-300: #a9acb8;
+  --vc-accent-400: #9498a7;
+  --vc-accent-500: #545f71; /* Base color */
+  --vc-accent-600: #4a5568;
+  --vc-accent-700: #404a5e;
+  --vc-accent-800: #364055;
+  --vc-accent-900: #2c364b; /* darkest */
+}

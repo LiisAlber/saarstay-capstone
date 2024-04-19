@@ -6,7 +6,6 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { FwbButton } from 'flowbite-vue'
 import { useRouter } from 'vue-router'
@@ -24,13 +23,12 @@ const navigateToBookingForm = () => {
 <style>
 .custom-button.custom-button {
   background-color: #eacdc7;
-  color: #4F6259; 
+  color: #4f6259;
   font-weight: bold;
 }
 
 .custom-button.custom-button:hover {
   background-color: #f2c5bc;
-  color: #4F6259; 
+  color: #4f6259;
 }
 </style>
-

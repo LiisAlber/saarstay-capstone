@@ -21,13 +21,14 @@
         </button>
       </div>
     </form>
-    <p v-if="!stripeReady" class="text-center text-[#4F6259]">{{ t('payment.loadingPaymentInfo') }}</p>
+    <p v-if="!stripeReady" class="text-center text-[#4F6259]">
+      {{ t('payment.loadingPaymentInfo') }}
+    </p>
     <p v-if="stripeError" class="mt-4 rounded-lg border border-red-400 bg-red-200 p-3 text-red-600">
       {{ stripeError }}
     </p>
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue'
@@ -37,9 +38,7 @@ import { trpc } from '@/trpc'
 import log from 'loglevel'
 import { useI18n } from 'vue-i18n'
 
-
 const { t } = useI18n()
-
 
 const route = useRoute()
 const router = useRouter()
@@ -47,23 +46,18 @@ const clientSecret = (route.params.clientSecret as string) || ''
 const bookingId = (route.params.bookingId as string) || ''
 const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY as string
 
-
 if (!stripePublishableKey) {
   log.error('Stripe publishable key is not defined in environment variables.')
 }
-
 
 const stripePromise = loadStripe(stripePublishableKey)
 const stripeReady = ref(false)
 const stripeError = ref('')
 
-
 let cardElement: StripeCardElement | null = null
-
 
 onMounted(async () => {
   log.info('Route Params:', route.params)
-
 
   const stripe = await stripePromise
   if (stripe) {
@@ -77,13 +71,11 @@ onMounted(async () => {
   }
 })
 
-
 const handlePayment = async () => {
   if (!clientSecret || !bookingId) {
     log.error('Client secret or booking ID is missing')
     return
   }
-
 
   const stripe = await stripePromise
   if (!stripe || !cardElement) {
@@ -91,14 +83,11 @@ const handlePayment = async () => {
     return
   }
 
-
   const result = await stripe.confirmCardPayment(clientSecret, {
     payment_method: { card: cardElement },
   })
 
-
   log.info('Payment Confirmation Result:', result)
-
 
   if (result.error) {
     stripeError.value = result.error.message || 'An unknown error occurred during payment.'
@@ -120,7 +109,6 @@ const handlePayment = async () => {
     }
   }
 }
-
 
 const handleCancel = () => {
   // Directs the user to the booking form page

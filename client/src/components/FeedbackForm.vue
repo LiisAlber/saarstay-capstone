@@ -40,7 +40,9 @@
         </div>
         <!-- Feedback comment input -->
         <div class="mb-4">
-          <label for="feedback" class="mb-1 block text-sm font-medium">{{ t('feedback.yourFeedback') }}</label>
+          <label for="feedback" class="mb-1 block text-sm font-medium">{{
+            t('feedback.yourFeedback')
+          }}</label>
           <textarea
             id="feedback"
             v-model="feedbackText"
@@ -69,7 +71,6 @@ import log from 'loglevel'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-
 
 const feedbackText = ref('')
 const feedbackRating = ref(5) // Default to the highest rating

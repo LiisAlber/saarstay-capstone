@@ -12,5 +12,6 @@
     "**/e2e/**",
     "**/cypress/**",
     "**/.{idea,git,cache,output,temp}/**"
-  ]
+  ],
+  "twiggy.framework": "ignore"
 }

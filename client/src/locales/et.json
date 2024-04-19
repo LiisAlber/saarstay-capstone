@@ -6,7 +6,7 @@
     "paragraph3": "Avasta meie peidupaiga vaikset elegantsi. Uuri lähedal asuvaid kultuurimälestisi. Naudi Saaremaa muutuvaid aastaaegu. Tunne end koduselt kohas, kus modernsed mugavused kohtuvad saare lihtsusega.",
     "cta": "Leia ainulaadne segu lõõgastusest ja kohalikest elamustest SAARstay's. Oled valmis unustamatuks peatumiseks? Broneeri meie juures juba täna."
   },
-  
+
   "footer": {
     "aboutTitle": "Meist",
     "aboutDescription": "Hubane SAARStay külalistemaja asub Kuressaares, pakkudes meeldejäävat saarekogemust mugavate majutusvõimaluste ja hooliva teenindusega. Ühendage end Saaremaa rahuga SAARStay's.",
@@ -21,7 +21,6 @@
     "copyright": "© 2024 SAARStay. Kõik õigused kaitstud."
   },
 
-
   "feedback": {
     "noFeedback": "Ühtegi tagasisidet ei ole veel esitatud.",
     "leaveYourFeedback": "Jäta oma tagasiside",
@@ -31,7 +30,6 @@
     "placeholder": "Anna meile teada, mida arvad..."
   },
 
-
   "prices": {
     "title": "Hinnad",
     "defaultRate": "Tavahind",
@@ -39,7 +37,6 @@
     "priceIncludes": "Hind sisaldab sauna ja kümblustünni kasutust.",
     "specialOffer": "Küsi pikemate broneeringute eripakkumist."
   },
-
 
   "offers": {
     "description": "Tere tulemast SAARstay'sse, kus kaasaegne disain kohtub hubase mugavusega, pakkudes igale külalisele rafineeritud pelgupaika",
@@ -55,12 +52,10 @@
     "greatLocation": "Suurepärane asukoht"
   },
 
-
   "menu": {
     "dashboard": "Töölaud",
     "logout": "Logi välja"
   },
-
 
   "admin": {
     "dashboard": "Administraatori töölaud",
@@ -72,26 +67,24 @@
     "errorOccurred": "Ilmnes viga",
     "failedToConfirm": "Broneeringu kinnitamine ebaõnnestus",
     "failedToCancel": "Broneeringu tühistamine ebaõnnestus",
-    "changeLanguage": "Vaheta keelt"
+    "changeLanguage": "Vaheta keelt",
+    "pendingFeedbackNotificationTitle": "Ootel tagasiside",
+    "noPendingFeedback": "Ootel tagasisidet pole"
   },
-
 
   "nav": {
     "bookNow": "Broneeri",
     "leaveFeedback": "Jäta tagasiside"
   },
 
-
   "hero": {
     "title": "Linna võlu kohtub kaasaegse elegantsiga",
     "description": "Oma kaasaegse elegantsi ja linna võlu sulandumine Kuressaare südames."
   },
 
-
   "buttons": {
     "bookNow": "Broneeri kohe"
   },
-
 
   "adminFeedback": {
     "backToDashboard": "Tagasi Administraatori Töölauale",
@@ -112,7 +105,6 @@
     "canceled": "Tühistatud"
   },
 
-
   "booking": {
     "email": "E-post",
     "contactNumber": "Kontakttelefon",
@@ -131,7 +123,6 @@
     "specialRequests": "Eritoiveid",
     "editBooking": "Muuda Broneeringut"
   },
-
 
   "form": {
     "createBooking": "Loo broneering",
@@ -152,7 +143,6 @@
       "specialRequests": "Erisoovid?"
     }
   },
-
 
   "error": {
     "guestName": {
@@ -182,11 +172,9 @@
     },
     "specialRequests": {
       "maxLength": "Erisoovides võib olla vähem kui 500 tähemärki."
-     
     },
     "dateExpected": "Esitatud kuupäev on kehtetu. Palun sisestage kehtiv kuupäev."
   },
-
 
   "payment": {
     "completeYourPayment": "Viige makse lõpule",
@@ -194,7 +182,6 @@
     "pay": "Maksa",
     "loadingPaymentInfo": "Makseinfo laadimine..."
   },
-
 
   "bookingConfirmation": {
     "title": "Broneeringu kinnitus",

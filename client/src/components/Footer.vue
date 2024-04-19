@@ -1,21 +1,23 @@
 <template>
-  <footer class="bg-[#4F6259] text-[#F7EBE9] py-8">
+  <footer class="bg-[#4F6259] py-8 text-[#F7EBE9]">
     <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 gap-4 leading-loose text-left md:text-left">
+      <div
+        class="grid grid-cols-1 text-left leading-loose md:grid-cols-4 md:grid-cols-4 md:gap-8 md:space-x-16 md:text-left"
+      >
         <!-- About Us -->
-        <div class="flex flex-col">
+        <div class="flex flex-col space-y-2">
           <h3 class="mb-2 text-lg font-semibold">{{ t('footer.aboutTitle') }}</h3>
           <p>{{ t('footer.aboutDescription') }}</p>
-          <div class="flex justify-center md:justify-start space-x-4 mt-4">
+          <div class="mt-4 flex justify-center space-x-4 md:justify-start">
             <!-- Facebook Icon -->
-            <i class="fa-brands fa-facebook-f text-2xl hover:text-green-700 cursor-pointer"></i>
+            <i class="fa-brands fa-facebook-f cursor-pointer text-2xl hover:text-green-700"></i>
             <!-- Instagram Icon -->
-            <i class="fa-brands fa-instagram text-2xl hover:text-green-700 cursor-pointer"></i>
+            <i class="fa-brands fa-instagram cursor-pointer text-2xl hover:text-green-700"></i>
           </div>
-              </div>
+        </div>
 
         <!-- Company Information -->
-        <div class="flex flex-col">
+        <div class="flex flex-col space-y-2">
           <h3 class="mb-2 text-lg font-semibold">{{ t('footer.companyName') }}</h3>
           <p>{{ t('footer.phone') }}</p>
           <p>info@saarstay.ee</p>
@@ -32,9 +34,15 @@
 
         <!-- Useful Links -->
         <div class="flex flex-col">
-          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.privacyPolicy') }}</a>
-          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.cancellationPolicy') }}</a>
-          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.houseRules') }}</a>
+          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{
+            t('footer.privacyPolicy')
+          }}</a>
+          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{
+            t('footer.cancellationPolicy')
+          }}</a>
+          <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{
+            t('footer.houseRules')
+          }}</a>
           <a class="my-2 block transition-colors hover:text-[#EACDC7]">{{ t('footer.faqs') }}</a>
         </div>
 
@@ -43,7 +51,7 @@
           <img
             src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/Logo+l%C3%A4bipaistev.png"
             alt="SAARstay Guesthouse Logo"
-            class="h-24 md:h-36 w-auto"
+            class="h-24 w-auto md:h-36"
           />
         </div>
       </div>

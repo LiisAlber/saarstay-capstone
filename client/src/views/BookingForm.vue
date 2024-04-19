@@ -26,7 +26,9 @@
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.contactNumber') }}</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{
+              t('form.contactNumber')
+            }}</label>
             <input
               type="tel"
               v-model="bookingForm.guestContactNumber"
@@ -43,7 +45,9 @@
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.checkOutDate') }}</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{
+              t('form.checkOutDate')
+            }}</label>
             <input
               type="date"
               v-model="bookingForm.checkOutDate"
@@ -51,7 +55,9 @@
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.numberOfGuests') }}</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{
+              t('form.numberOfGuests')
+            }}</label>
             <input
               type="number"
               v-model="bookingForm.numberOfGuests"
@@ -59,7 +65,9 @@
             />
           </div>
           <div class="mb-4">
-            <label class="mb-2 block font-medium text-[#4F6259]">{{ t('form.specialRequests') }}</label>
+            <label class="mb-2 block font-medium text-[#4F6259]">{{
+              t('form.specialRequests')
+            }}</label>
             <textarea
               v-model="bookingForm.specialRequests"
               rows="4"
@@ -91,8 +99,8 @@
           </div>
         </form>
         <div v-if="bookingErrorMessage" class="error-message">
-  {{ bookingErrorMessage }}
-</div>
+          {{ bookingErrorMessage }}
+        </div>
       </div>
     </section>
   </div>
@@ -101,23 +109,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
-import { trpc } from '@/trpc';
-import { TRPCClientError } from '@trpc/client';
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
-import log from 'loglevel';
+import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { trpc } from '@/trpc'
+import { TRPCClientError } from '@trpc/client'
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
+import log from 'loglevel'
 
-const { t } = useI18n();
-const router = useRouter();
+const { t } = useI18n()
+const router = useRouter()
 
 // Define component props
 const props = defineProps({
   initialCheckInDate: String,
   initialCheckOutDate: String,
-});
+})
 
 const bookingForm = ref({
   guestName: '',
@@ -127,10 +135,10 @@ const bookingForm = ref({
   checkOutDate: props.initialCheckOutDate || '',
   numberOfGuests: '2',
   specialRequests: '',
-});
+})
 
-const bookingErrorMessage = ref('');
-const calculatedPrice = ref<number | null>(null);
+const bookingErrorMessage = ref('')
+const calculatedPrice = ref<number | null>(null)
 
 const fetchCalculatedPrice = async () => {
   if (bookingForm.value.checkInDate && bookingForm.value.checkOutDate) {
@@ -150,9 +158,8 @@ const fetchCalculatedPrice = async () => {
 watch(() => bookingForm.value.checkInDate, fetchCalculatedPrice)
 watch(() => bookingForm.value.checkOutDate, fetchCalculatedPrice)
 
-
 const handleSubmit = async () => {
-  bookingErrorMessage.value = ''; 
+  bookingErrorMessage.value = ''
   try {
     const formattedData = {
       guestName: bookingForm.value.guestName,
@@ -162,11 +169,11 @@ const handleSubmit = async () => {
       checkOutDate: new Date(bookingForm.value.checkOutDate),
       numberOfGuests: parseInt(bookingForm.value.numberOfGuests, 10),
       specialRequests: bookingForm.value.specialRequests,
-    };
+    }
 
-    const response = await trpc.bookings.submit.mutate(formattedData);
-    log.info('Submit response:', response);
-    calculatedPrice.value = response.totalPrice;
+    const response = await trpc.bookings.submit.mutate(formattedData)
+    log.info('Submit response:', response)
+    calculatedPrice.value = response.totalPrice
 
     router.push({
       name: 'StripePayment',
@@ -174,44 +181,40 @@ const handleSubmit = async () => {
         bookingId: response.bookingId,
         clientSecret: response.clientSecret,
       },
-    });
+    })
   } catch (error) {
-  if (error instanceof TRPCClientError && typeof error.message === 'string') {
-  try {
-    const errorDetails = JSON.parse(error.message);
-    if (Array.isArray(errorDetails)) {
-      bookingErrorMessage.value = errorDetails
-        .map((err) => translateErrorMessage(err.message)) 
-        .join('; ');
+    if (error instanceof TRPCClientError && typeof error.message === 'string') {
+      try {
+        const errorDetails = JSON.parse(error.message)
+        if (Array.isArray(errorDetails)) {
+          bookingErrorMessage.value = errorDetails
+            .map((err) => translateErrorMessage(err.message))
+            .join('; ')
+        } else {
+          bookingErrorMessage.value = translateErrorMessage('error.unexpectedError')
+        }
+      } catch (parseError) {
+        bookingErrorMessage.value = translateErrorMessage('error.unexpectedError')
+      }
     } else {
-      bookingErrorMessage.value = translateErrorMessage('error.unexpectedError');
+      bookingErrorMessage.value = translateErrorMessage('error.unexpectedError')
     }
-  } catch (parseError) {
-   
-    bookingErrorMessage.value = translateErrorMessage('error.unexpectedError'); 
   }
-} else {
-  bookingErrorMessage.value = translateErrorMessage('error.unexpectedError'); 
 }
-}
-};
 
 const translateErrorMessage = (errorKey: string) => {
   const keyMappings: Record<string, string> = {
-    "Expected date, received null": "error.dateExpected",
-  };
-  const translationKey = keyMappings[errorKey] || errorKey;
-  const translatedMessage = t(translationKey);
-  return translatedMessage;
-};
-
+    'Expected date, received null': 'error.dateExpected',
+  }
+  const translationKey = keyMappings[errorKey] || errorKey
+  const translatedMessage = t(translationKey)
+  return translatedMessage
+}
 
 const handleCancel = () => {
-  router.push('/');
-};
-
+  router.push('/')
+}
 </script>
-
 
 <style scoped>
 .booking-form-container {

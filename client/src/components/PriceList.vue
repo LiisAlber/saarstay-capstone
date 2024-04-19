@@ -1,50 +1,66 @@
 <template>
-  <div class="flex justify-center items-center p-4 sm:p-12 bg-[#4F6259]"> 
-    <div class="flex flex-col sm:flex-row justify-between items-center w-full max-w-6xl mx-auto">
-
+  <div class="flex items-center justify-center bg-[#4F6259] p-4 sm:p-12">
+    <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-between sm:flex-row">
       <!-- Pricing Card -->
-      <div class="bg-[#E8D3D0] rounded-lg shadow-lg p-6 flex flex-col justify-between w-full sm:w-1/2" style="height: 600px;">
-        <h2 class="text-3xl font-semibold text-[#4F6259] text-center mb-6">{{ t('prices.title') }}</h2>
+      <div
+        class="flex w-full flex-col justify-between rounded-lg bg-[#E8D3D0] p-6 shadow-lg sm:w-1/2"
+        style="height: 600px"
+      >
+        <h2 class="mb-6 text-center text-3xl font-semibold text-[#4F6259]">
+          {{ t('prices.title') }}
+        </h2>
         <!-- Seasonal Rates -->
         <div>
-          <div class="flex justify-between mb-3" v-for="(rate, index) in seasonalRates" :key="index"> 
-            <span class="text-[#4F6259] text-xl">{{ seasonPeriod(rate.start, rate.end) }}</span> 
-            <span class="text-[#4F6259] font-bold text-xl">{{ rate.rate }} {{ t('prices.nightlyRate') }}</span> 
+          <div
+            class="mb-3 flex justify-between"
+            v-for="(rate, index) in seasonalRates"
+            :key="index"
+          >
+            <span class="text-xl text-[#4F6259]">{{ seasonPeriod(rate.start, rate.end) }}</span>
+            <span class="text-xl font-bold text-[#4F6259]"
+              >{{ rate.rate }} {{ t('prices.nightlyRate') }}</span
+            >
           </div>
           <!-- Default Rate -->
-          <div class="border-t border-[#4F6259] pt-4 mt-4">
+          <div class="mt-4 border-t border-[#4F6259] pt-4">
             <div class="flex justify-between">
-              <span class="text-[#4F6259] text-xl">{{ t('prices.defaultRate') }}</span> <!-- Larger text -->
-              <span class="text-[#4F6259] font-bold text-xl">{{ defaultRate }} {{ t('prices.nightlyRate') }}</span>
+              <span class="text-xl text-[#4F6259]">{{ t('prices.defaultRate') }}</span>
+              <!-- Larger text -->
+              <span class="text-xl font-bold text-[#4F6259]"
+                >{{ defaultRate }} {{ t('prices.nightlyRate') }}</span
+              >
             </div>
           </div>
         </div>
         <!-- Additional Information -->
-        <p class="text-[#4F6259] text-lg mb-8 mt-2">{{ t('prices.priceIncludes') }}<br>{{ t('prices.specialOffer') }}</p> 
+        <p class="mb-8 mt-2 text-lg text-[#4F6259]">
+          {{ t('prices.priceIncludes') }}<br />{{ t('prices.specialOffer') }}
+        </p>
       </div>
 
       <!-- Gap between cards -->
-      <div style="width: 8rem;"></div>
+      <div style="width: 8rem"></div>
 
       <!-- Image Card -->
-      <div class="hidden sm:block bg-[#E8D3D0] rounded-lg shadow-lg w-full sm:w-1/2" style="height: 600px;">
-  <img
-    src="https://stghbucket.s3.eu-north-1.amazonaws.com/interior/johnny-mcclung-YOQOCzP2aNQ-unsplash.jpg"
-    alt="Interior"
-    class="object-cover w-full h-full rounded-lg"
-  />
-</div>
+      <div
+        class="hidden w-full rounded-lg bg-[#E8D3D0] shadow-lg sm:block sm:w-1/2"
+        style="height: 600px"
+      >
+        <img
+          src="https://stghbucket.s3.eu-north-1.amazonaws.com/interior/johnny-mcclung-YOQOCzP2aNQ-unsplash.jpg"
+          alt="Interior"
+          class="h-full w-full rounded-lg object-cover"
+        />
       </div>
     </div>
-
+  </div>
 </template>
-
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const { t} = useI18n()
+const { t } = useI18n()
 
 const defaultRate = ref(150)
 const seasonalRates = ref([
@@ -53,19 +69,19 @@ const seasonalRates = ref([
 ])
 
 const seasonPeriod = (start: string, end: string) => {
-  const startDate = new Date(start);
-  const endDate = new Date(end);
+  const startDate = new Date(start)
+  const endDate = new Date(end)
 
   const options: Intl.DateTimeFormatOptions = {
     day: '2-digit',
     month: '2-digit',
     timeZone: 'UTC', // Using UTC to avoid timezone-related discrepancies
-  };
+  }
 
   // Manually constructing the date string in 'day-month-year' format
-  const startFormatted = new Intl.DateTimeFormat('en-GB', options).format(startDate);
-  const endFormatted = new Intl.DateTimeFormat('en-GB', options).format(endDate);
+  const startFormatted = new Intl.DateTimeFormat('en-GB', options).format(startDate)
+  const endFormatted = new Intl.DateTimeFormat('en-GB', options).format(endDate)
 
-  return `${startFormatted} - ${endFormatted}`;
+  return `${startFormatted} - ${endFormatted}`
 }
 </script>

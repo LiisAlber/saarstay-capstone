@@ -21,7 +21,6 @@
     "copyright": "© 2024 SAARStay. All rights reserved."
   },
 
-
   "feedback": {
     "noFeedback": "No feedback available yet.",
     "leaveYourFeedback": "Leave Your Feedback",
@@ -31,7 +30,6 @@
     "placeholder": "Tell us what you think..."
   },
 
-
   "prices": {
     "title": "Prices",
     "defaultRate": "Default rate",
@@ -39,7 +37,6 @@
     "priceIncludes": "The price includes use of sauna and the hot tub.",
     "specialOffer": "Ask for a special offer for longer reservations."
   },
-
 
   "offers": {
     "description": "Welcome to SAARstay, where contemporary design meets cozy convenience, providing a sophisticated sanctuary for every guest",
@@ -55,12 +52,10 @@
     "greatLocation": "Great location"
   },
 
-
   "menu": {
     "dashboard": "Dashboard",
     "logout": "Logout"
   },
-
 
   "admin": {
     "dashboard": "Admin Dashboard",
@@ -72,26 +67,24 @@
     "errorOccurred": "An error occurred",
     "failedToConfirm": "Failed to confirm booking",
     "failedToCancel": "Failed to cancel booking",
-    "changeLanguage": "Change Language"
+    "changeLanguage": "Change Language",
+    "pendingFeedbackNotificationTitle": "Pending Feedback",
+    "noPendingFeedback": "No pending feedback"
   },
-
 
   "nav": {
     "bookNow": "Book Now",
     "leaveFeedback": "Leave Feedback"
   },
 
-
   "hero": {
     "title": "City charm meets contemporary elegance",
     "description": "Embrace the fusion of modern elegance and city charm in the pulsating heart of Kuressaare."
   },
 
-
   "buttons": {
     "bookNow": "Book now"
   },
-
 
   "adminFeedback": {
     "backToDashboard": "Back to Admin Dashboard",
@@ -112,7 +105,6 @@
     "canceled": "Canceled"
   },
 
-
   "booking": {
     "email": "Email",
     "contactNumber": "Contact Number",
@@ -131,7 +123,6 @@
     "specialRequests": "Special Requests",
     "editBooking": "Edit Booking"
   },
-
 
   "form": {
     "createBooking": "Create Booking",
@@ -152,7 +143,6 @@
       "specialRequests": "Any special requests?"
     }
   },
-
 
   "error": {
     "guestName": {
@@ -187,14 +177,12 @@
     "dateExpected": "The date provided is invalid. Please provide a valid date."
   },
 
-
   "payment": {
     "completeYourPayment": "Complete Your Payment",
     "cancel": "Cancel",
     "pay": "Pay",
     "loadingPaymentInfo": "Loading payment information..."
   },
-
 
   "bookingConfirmation": {
     "title": "Booking Confirmation",

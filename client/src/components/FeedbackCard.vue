@@ -1,25 +1,33 @@
 <template>
-  <div class="mb-4 rounded-lg bg-[#EACDC7] p-4 shadow">
-    <p class="text-[#4F6259]">{{ t('adminFeedback.comment') }}: {{ feedback.comment }}</p>
-    <p class="text-[#4F6259]">{{ t('adminFeedback.rating') }}: {{ feedback.rating }}</p>
-    <p class="text-[#4F6259]">
-      {{ t('adminFeedback.status') }}: {{ t(`adminFeedback.${feedback.status}`) }}
-    </p>
-    <div class="mt-4 flex justify-end space-x-2">
+  <tr
+    class="mb-4 rounded-lg bg-[#FBF5F4] shadow transition duration-300 ease-in-out hover:bg-opacity-90"
+  >
+    <td class="px-4 py-2">
+      <!-- Display star rating -->
+      <div class="flex">
+        <span v-for="star in 5" :key="star" class="text-[#4F6259]">
+          <i v-if="star <= feedback.rating" class="fas fa-star"></i>
+          <i v-else class="far fa-star"></i>
+        </span>
+      </div>
+    </td>
+    <td class="px-4 py-2 text-[#4F6259]">{{ feedback.comment }}</td>
+    <td class="px-4 py-2 text-[#4F6259]">{{ t(`adminFeedback.${feedback.status}`) }}</td>
+    <td class="px-4 py-2">
       <button
         @click="$emit('edit', feedback)"
-        class="rounded bg-[#4F6259] px-4 py-2 text-white hover:bg-[#3A4D46]"
+        class="mr-2 rounded bg-[#4F6259] px-4 py-2 text-[#EACDC7] hover:bg-opacity-90"
       >
-        {{ t('adminFeedback.edit') }}
+        Edit
       </button>
       <button
         @click="$emit('delete', feedback.id)"
-        class="rounded bg-[#4F6259] px-4 py-2 text-white hover:bg-[#3A4D46]"
+        class="rounded bg-[#EACDC7] px-4 py-2 text-[#4F6259] hover:bg-opacity-90"
       >
-        {{ t('adminFeedback.delete') }}
+        Delete
       </button>
-    </div>
-  </div>
+    </td>
+  </tr>
 </template>
 
 <script setup lang="ts">

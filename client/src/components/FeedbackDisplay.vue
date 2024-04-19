@@ -1,17 +1,30 @@
 <template>
   <div class="bg-[#f7ebe9] p-24">
     <div v-if="error" class="text-[#4f6259]">{{ error }}</div>
-    <Carousel v-else-if="feedbackList.length" :wrap-around="true" :autoplay="3000" :navigationEnabled="true" :breakpoints="breakpoints">
+    <Carousel
+      v-else-if="feedbackList.length"
+      :wrap-around="true"
+      :autoplay="3000"
+      :navigationEnabled="true"
+      :breakpoints="breakpoints"
+    >
       <Slide v-for="feedback in feedbackList" :key="feedback.id">
-    <div class="bg-[#E8D3D0] rounded-lg shadow-lg flex flex-col items-center text-center p-8 min-h-[250px]">
-      <div class="flex justify-center gap-x-1 mt-2 mb-4"> 
-        <div class="star-rating mt-2 mb-4"> 
-            <StarIcon v-for="index in 5" :key="index" :class="getStarClass(feedback.rating, index)" class="star" />
+        <div
+          class="flex min-h-[250px] flex-col items-center rounded-lg bg-[#E8D3D0] p-8 text-center shadow-lg"
+        >
+          <div class="mb-4 mt-2 flex justify-center gap-x-1">
+            <div class="star-rating mb-4 mt-2">
+              <StarIcon
+                v-for="index in 5"
+                :key="index"
+                :class="getStarClass(feedback.rating, index)"
+                class="star"
+              />
+            </div>
           </div>
-      </div>
-      <p class="text-xl text-[#4f6259]">{{ feedback.comment }}</p>
-    </div>
-  </Slide>
+          <p class="text-xl text-[#4f6259]">{{ feedback.comment }}</p>
+        </div>
+      </Slide>
       <template #addons>
         <Navigation />
       </template>
@@ -19,7 +32,6 @@
     <div v-else>{{ t('feedback.noFeedback') }}</div>
   </div>
 </template>
-
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
@@ -59,9 +71,7 @@ const breakpoints = {
 }
 </script>
 
-
 <style scoped>
-
 /* Star icon size and color */
 .h-5.w-5.fill-current {
   height: 1.25rem; /* 20px */
@@ -69,11 +79,11 @@ const breakpoints = {
 }
 
 .text-dark-green {
-  color: #3a5a40; 
+  color: #3a5a40;
 }
 
 .text-light-green {
-  color: #a2b29f; 
+  color: #a2b29f;
 }
 
 .star-container {
@@ -81,8 +91,8 @@ const breakpoints = {
 }
 
 .star-rating .star {
-  width: 24px; 
-  height: 24px; 
+  width: 24px;
+  height: 24px;
   margin: 0 2px; /* Adds spacing between stars */
 }
 
@@ -91,5 +101,4 @@ const breakpoints = {
   justify-content: center;
   align-items: center;
 }
-
 </style>

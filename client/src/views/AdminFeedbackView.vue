@@ -1,23 +1,53 @@
 <template>
-  <div class="container mx-auto bg-[#F7EBE9] px-4 py-4">
-    <button
-      @click="goToAdminDashboard"
-      class="mb-4 rounded-lg bg-[#EACDC7] px-4 py-2 text-sm font-medium text-[#4F6259] transition-colors hover:bg-[#4F6259] hover:text-white"
-    >
-      {{ t('adminFeedback.backToDashboard') }}
-    </button>
-    <h1 class="mb-4 text-2xl font-bold text-[#4F6259]">{{ t('adminFeedback.header') }}</h1>
-    <div v-if="error" class="mb-4 rounded border border-red-400 bg-red-100 p-4 text-red-700">
-      {{ t('adminFeedback.errorFetching') }}
+  <AdminHeader />
+  <div class="">
+    <div class="nav-bar flex space-x-4 bg-[#f2e1dd] shadow">
+      <router-link to="/admin/dashboard" class="nav-link">{{ t('admin.dashboard') }}</router-link>
+      <router-link to="/admin/bookings" class="nav-link">{{
+        t('admin.manageBookings')
+      }}</router-link>
+      <router-link to="/admin/feedback" class="nav-link">{{
+        t('admin.manageFeedback')
+      }}</router-link>
     </div>
-    <div v-if="feedbackList">
-      <FeedbackCard
-        v-for="feedback in feedbackList"
-        :key="feedback.id"
-        :feedback="feedback"
-        @edit="openEditModal"
-        @delete="deleteFeedback"
-      />
+  </div>
+  <div class="rounded-lg bg-[#F7EBE9] p-4 shadow-lg">
+    <!-- Filter Dropdown for Status -->
+    <div class="mx-auto mt-4 max-w-4xl rounded-lg bg-[#F7EBE9] p-4 shadow">
+      <div class="mb-4">
+        <label for="statusFilter" class="text-sm font-medium text-[#4F6259]"
+          >Filter by Status:</label
+        >
+        <select
+          id="statusFilter"
+          v-model="statusFilter"
+          class="rounded-lg border border-gray-300 bg-[#F7EBE9] p-2 text-sm text-[#4F6259] shadow outline-none focus:border-[#4F6259] focus:ring-[#4F6259]"
+        >
+          <option value="">All</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="pending">Pending</option>
+        </select>
+      </div>
+
+      <table class="mx-auto mb-4 w-full max-w-4xl divide-y overflow-hidden rounded-lg">
+        <thead class="bg-[#FBF5F4]">
+          <tr>
+            <th scope="col" class="text-l px-3 py-2 text-left font-bold text-[#4F6259]">Rating</th>
+            <th scope="col" class="text-l px-3 py-2 text-left font-bold text-[#4F6259]">Comment</th>
+            <th scope="col" class="text-l px-3 py-2 text-left font-bold text-[#4F6259]">Status</th>
+            <th scope="col" class="text-l px-3 py-2 text-left font-bold text-[#4F6259]">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <FeedbackCard
+            v-for="feedback in filteredFeedback"
+            :key="feedback.id"
+            :feedback="feedback"
+            @edit="openEditModal"
+            @delete="deleteFeedback"
+          />
+        </tbody>
+      </table>
     </div>
 
     <!-- Modal -->
@@ -41,28 +71,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { trpc } from '@/trpc'
 import type { Feedback } from '@mono/server/src/shared/entities'
 import { isLoggedIn } from '@/stores/user'
 import FeedbackCard from '@/components/FeedbackCard.vue'
-import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import AdminHeader from '@/components/AdminHeader.vue'
+import { useRouter } from 'vue-router'
 
-const feedbackList = ref<Feedback[] | null>(null)
-const error = ref('')
-const selectedFeedback = ref<Feedback | null>(null)
-const editComment = ref('')
-const updatedStatus = ref<'pending' | 'confirmed' | 'canceled'>('pending')
-const router = useRouter()
 const { t } = useI18n()
+const feedbackList = ref<Feedback[]>([])
+const error = ref<string | null>(null)
+const selectedFeedback = ref<Feedback | null>(null)
+const editComment = ref<string>('')
+const updatedStatus = ref<'confirmed' | 'pending' | 'canceled'>('pending');
+const statusFilter = ref<string>('')
+const router = useRouter();
 
-const fetchFeedbacks = async () => {
-  if (!isLoggedIn.value) {
-    // Redirect to login page or handle unauthenticated state
-    return
-  }
+const filteredFeedback = computed(() => {
+  return statusFilter.value
+    ? feedbackList.value.filter((feedback) => feedback.status === statusFilter.value)
+    : feedbackList.value
+})
 
+async function fetchFeedbacks() {
   try {
     const data = await trpc.feedback.admin.adminView.query()
     feedbackList.value = data
@@ -74,8 +107,6 @@ const fetchFeedbacks = async () => {
 const openEditModal = (feedback: Feedback) => {
   selectedFeedback.value = feedback
   editComment.value = feedback.comment
-
-  // Set updatedStatus based on current feedback status
   updatedStatus.value = feedback.status
 }
 
@@ -88,10 +119,10 @@ const submitEdit = async (feedbackId: number) => {
     await trpc.feedback.admin.adminEdit.mutate({
       feedbackId,
       updatedComment: editComment.value,
-      updatedStatus: updatedStatus.value as 'pending' | 'confirmed',
+      updatedStatus: updatedStatus.value,
     })
     closeEditModal()
-    await fetchFeedbacks()
+    fetchFeedbacks()
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Failed to edit feedback'
   }
@@ -100,17 +131,22 @@ const submitEdit = async (feedbackId: number) => {
 const deleteFeedback = async (feedbackId: number) => {
   try {
     await trpc.feedback.admin.adminDelete.mutate({ feedbackId })
-    await fetchFeedbacks() // Refetch feedbacks after deletion
+    fetchFeedbacks()
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Failed to delete feedback'
   }
 }
 
-onMounted(fetchFeedbacks)
-
-const goToAdminDashboard = () => {
-  router.push('/admin/dashboard')
+const checkAdminAuth = () => {
+  if (!isLoggedIn.value) {
+    router.push('/admin/login')
+  }
 }
+
+onMounted(() => {
+  fetchFeedbacks();
+  checkAdminAuth();
+});
 </script>
 
 <style scoped>
@@ -167,5 +203,50 @@ const goToAdminDashboard = () => {
   background-color: #eacdc7; /* Cancel button background */
   color: #4f6259;
   margin-left: 10px;
+}
+
+.link-style {
+  color: #4f6259;
+  font-weight: semi-bold;
+  text-decoration: none;
+}
+
+.link-style:hover {
+  text-decoration: underline;
+}
+
+.language-toggle-button {
+  padding: 5px 10px;
+  background-color: #eacdc7;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.language-toggle-button:hover {
+  background-color: #d3b8ae;
+}
+
+.nav-bar {
+  background-color: #f2e1dd; /* Different shade of pink */
+  padding: 0.5em 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+  padding-left: 150px;
+}
+
+.nav-link {
+  color: #4f6259;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-link:not(:last-of-type) {
+  border-right: 1px solid #ddd;
+}
+
+.nav-link:hover {
+  background-color: #eed7d2; /* Lighter pink for hover */
 }
 </style>

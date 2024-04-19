@@ -39,4 +39,4 @@ app.use(i18n)
 
 app.mount('#app')
 
-export default i18n;
+export default i18n

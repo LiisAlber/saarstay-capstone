@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen flex-col bg-[#F7EBE9]">
     <!-- Header -->
-    <Header/>
+    <Header />
 
     <!-- Hero Section -->
     <section
@@ -32,20 +32,20 @@
     </section>
 
     <!-- Combined About Us and Gallery Section -->
-    <section class="flex flex-col md:flex-row justify-center items-stretch mx-8 my-8">
-      <Gallery class="w-full md:w-1/2 md:mr-4" />
-      <AboutSection class="w-full md:w-1/2 md:ml-4" />
+    <section class="mx-8 my-8 flex flex-col items-stretch justify-center md:flex-row">
+      <Gallery class="w-full md:mr-4 md:w-1/2" />
+      <AboutSection class="w-full md:ml-4 md:w-1/2" />
     </section>
 
     <!-- What We Offer Section -->
     <WhatWeOffer />
 
     <!-- Pricelist Section -->
-    <section class="bg-[#4F6259] ">
-    <div class="max-w-6xl mx-auto p-4">
-      <PriceList class="mx-auto" />
-    </div>
-</section>
+    <section class="bg-[#4F6259]">
+      <div class="mx-auto max-w-6xl p-4">
+        <PriceList class="mx-auto" />
+      </div>
+    </section>
 
     <!-- Feedback Section -->
     <FeedbackDisplay class="mb-8" />
@@ -79,10 +79,10 @@ const { t } = useI18n()
     width: 50%;
   }
   .md\:mr-4 {
-    margin-right: 1rem; 
+    margin-right: 1rem;
   }
   .md\:ml-4 {
-    margin-left: 1rem; 
+    margin-left: 1rem;
   }
 }
 </style>
