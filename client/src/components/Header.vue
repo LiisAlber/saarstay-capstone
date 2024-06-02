@@ -2,11 +2,11 @@
   <header class="fixed left-0 top-0 z-50 w-full bg-[rgba(79,98,89,0.90)] shadow">
     <div class="container mx-auto flex h-auto items-center justify-between">
       <!-- Logo -->
-      <router-link to="/" class="h-40 px-16">
+      <router-link to="/" class="h-32 px-16">
         <img
           src="https://stghbucket.s3.eu-north-1.amazonaws.com/logo/SAAR+(1).png"
           alt="SAARstay Guesthouse Logo"
-          class="h-48"
+          class="h-40"
         />
       </router-link>
 

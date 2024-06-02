@@ -49,7 +49,7 @@ export const sql = postgres(process.env.DATABASE_URL as string, {
   ssl:
     process.env.DB_SSL_IS === 'true'
       ? {
-          rejectUnauthorized: true,
+          rejectUnauthorized: false,
         }
       : undefined,
 })

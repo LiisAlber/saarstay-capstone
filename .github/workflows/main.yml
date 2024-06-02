@@ -130,46 +130,38 @@ jobs:
 
       - name: Create containers.json
         run: |
-            cat <<EOF > containers.json
-            {
-              "client": {
-                "image": "${{ env.LIGHTSAIL_CLIENT_IMAGE }}",
-                "command": [],
-                "ports": {
-                  "80": "HTTP"
-                },
-                "environment": {
-                  "API_PROXY_PASS": "http://localhost:3000"
-                }
+          echo '{
+            "client": {
+              "image": "${{ env.LIGHTSAIL_CLIENT_IMAGE }}",
+              "command": [],
+              "ports": {
+                "80": "HTTP"
               },
-              "server": {
-                "image": "${{ env.LIGHTSAIL_SERVER_IMAGE }}",
-                "ports": {
-                  "3000": "HTTP"
-                },
-                "environment": {
-                  "NODE_ENV": "production",
-                  "DB_SSL": "true",
-                  "DB_SYNC": "true",
-                  "DB_HOST": "${{ secrets.DB_HOST }}",
-                  "DB_NAME": "${{ secrets.DB_NAME }}",
-                  "DB_USER": "${{ secrets.DB_USER }}",
-                  "DB_PASSWORD": "${{ secrets.DB_PASSWORD }}",
-                  "DATABASE_URL": "${{ secrets.DATABASE_URL }}",
-                  "SENDGRID_API_KEY": "${{ secrets.SENDGRID_API_KEY }}",
-                  "STRIPE_SECRET_KEY": "${{ secrets.STRIPE_SECRET_KEY }}",
-                  "STRIPE_PUBLISHABLE_KEY": "${{ secrets.STRIPE_PUBLISHABLE_KEY }}",
-                  "TOKEN_KEY": "${{ secrets.TOKEN_KEY }}"
-                }
+              "environment": {
+                "API_PROXY_PASS": "http://localhost:3000"
+              }
+            },
+            "server": {
+              "image": "${{ env.LIGHTSAIL_SERVER_IMAGE }}",
+              "ports": {
+                "3000": "HTTP"
+              },
+              "environment": {
+                "NODE_ENV": "production",
+                "DB_SSL": "true",
+                "DB_SYNC": "true",
+                "DB_HOST": ${{ secrets.DB_HOST }},
+                "DB_NAME": ${{ secrets.DB_NAME }},
+                "DB_USER": ${{ secrets.DB_USER }},
+                "DB_PASSWORD": ${{ secrets.DB_PASSWORD }},
+                "DATABASE_URL": ${{ secrets.DATABASE_URL }},
+                "SENDGRID_API_KEY": ${{ secrets.SENDGRID_API_KEY }},
+                "STRIPE_SECRET_KEY": ${{ secrets.STRIPE_SECRET_KEY }},
+                "STRIPE_PUBLISHABLE_KEY": ${{ secrets.STRIPE_PUBLISHABLE_KEY }},
+                "TOKEN_KEY": ${{ secrets.TOKEN_KEY }}"
               }
             }
-            EOF
-        
-
-      - name: Log Lightsail Image Tags
-        run: |
-          echo "Server Image Tag: ${{ env.LIGHTSAIL_SERVER_IMAGE }}"
-          echo "Client Image Tag: ${{ env.LIGHTSAIL_CLIENT_IMAGE }}"
+          }' > containers.json
 
       - name: Log Environment Variable Presence
         run: |
