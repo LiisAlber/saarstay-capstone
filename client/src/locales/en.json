@@ -131,7 +131,7 @@
     "contactNumber": "Contact Number",
     "checkInDate": "Check-In Date",
     "checkOutDate": "Check-Out Date",
-    "numberOfGuests": "Number of Guests",
+    "numberOfGuests": "Number of Guests (1-10)",
     "specialRequests": "Any special requests?",
     "totalPrice": "Total Price",
     "submit": "Submit",

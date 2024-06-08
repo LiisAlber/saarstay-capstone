@@ -131,7 +131,7 @@
     "contactNumber": "Kontakttelefon",
     "checkInDate": "Saabumise kuupäev",
     "checkOutDate": "Lahkumise kuupäev",
-    "numberOfGuests": "Külaliste arv",
+    "numberOfGuests": "Külaliste arv (1-10)",
     "specialRequests": "Erisoovid?",
     "totalPrice": "Koguhind",
     "submit": "Esita",

@@ -62,6 +62,8 @@
               type="number"
               v-model="bookingForm.numberOfGuests"
               class="w-full rounded-lg border border-[#4F6259] p-3"
+              min="1"
+              max="10"
             />
           </div>
           <div class="mb-4">
